@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Habit Day</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="overview" aria-labelledby="app-title">
+        <div>
+          <p class="eyebrow">Habit Day</p>
+          <h1 id="app-title">Today's Habits</h1>
+          <p class="summary" id="summaryText">Start small and keep your day moving.</p>
+        </div>
+        <div class="progress-card" aria-live="polite">
+          <span id="progressPercent">0%</span>
+          <p>Complete</p>
+        </div>
+      </section>
+
+      <section class="composer" aria-label="Add habit">
+        <form id="habitForm">
+          <label for="habitInput">New habit</label>
+          <div class="input-row">
+            <input id="habitInput" name="habit" type="text" maxlength="32" placeholder="Example: Drink water" autocomplete="off" />
+            <button type="submit">Add</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="board" aria-label="Habit list">
+        <div class="toolbar">
+          <h2>Checklist</h2>
+          <button class="ghost-button" id="resetToday" type="button">Reset today</button>
+        </div>
+        <ul class="habit-list" id="habitList"></ul>
+        <p class="empty-state" id="emptyState">No habits yet. Add one above to get started.</p>
+      </section>
+    </main>
+
+    <template id="habitTemplate">
+      <li class="habit-item">
+        <button class="check-button" type="button" aria-label="Toggle complete"></button>
+        <div class="habit-copy">
+          <strong></strong>
+          <span></span>
+        </div>
+        <button class="delete-button" type="button" aria-label="Delete">x</button>
+      </li>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
