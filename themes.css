@@ -367,9 +367,31 @@
   min-height: calc(100dvh - env(safe-area-inset-top) - 48px);
 }
 
+[data-theme="kuromi"] .habit-item.done .check-button,
+[data-theme="friends"] .habit-item.done .check-button,
+[data-theme="gintama"] .habit-item.done .check-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
 [data-theme="kuromi"] .habit-item.done .check-button::after {
   content: "♥";
   font-size: 18px;
+  line-height: 1;
+}
+
+[data-theme="friends"] .habit-item.done .check-button::after {
+  content: "🥕";
+  font-size: 20px;
+  line-height: 1;
+}
+
+[data-theme="gintama"] .habit-item.done .check-button::after {
+  content: "🍓";
+  font-size: 18px;
+  line-height: 1;
 }
 
 [data-theme="friends"] .habit-snap {
@@ -483,13 +505,14 @@
   --collage-step-gap: clamp(14px, 3vw, 24px);
   --collage-photo-main-h: min(48vw, 272px);
   --collage-photo-main-w: calc(var(--collage-main-slot) - 10px);
-  --collage-photo-sub-w: min(24vw, 128px);
-  --collage-photo-sub-h: min(22vw, 118px);
+  --collage-photo-sub-w: min(26vw, 142px);
+  --collage-photo-sub-h: min(24vw, 132px);
   left: 0;
   right: 0;
   width: auto;
   overflow: visible;
-  height: calc(var(--collage-photo-main-h) + var(--collage-photo-sub-h) * 0.28);
+  height: calc(var(--collage-photo-main-h) + 12px);
+  max-height: calc(var(--collage-photo-main-h) + var(--collage-photo-sub-h) * 0.72);
   min-height: 0;
 }
 
@@ -540,36 +563,36 @@
     0 14px 32px rgba(44, 42, 38, 0.22);
 }
 
-/* 홈 2 — 좌: 화면 밖으로 대부분 숨김, 살짝만 비침 */
+/* 홈 2 — 우 슬롯 왼쪽: 메인 옆, 잘 보이게 */
 .theme-collage--home .theme-photo-sub--left {
-  top: calc(max(6px, env(safe-area-inset-top)) + var(--collage-photo-main-h) * 0.54);
-  left: calc(-1 * var(--collage-photo-sub-w) * 0.72);
-  right: auto;
-  width: var(--collage-photo-sub-w);
-  height: var(--collage-photo-sub-h);
+  top: calc(max(6px, env(safe-area-inset-top)) + var(--collage-photo-main-h) * 0.28);
+  left: auto;
+  right: calc(var(--collage-main-slot) + var(--collage-main-gap) * 0.35);
+  width: calc(var(--collage-photo-sub-w) * 0.92);
+  height: calc(var(--collage-photo-sub-h) * 0.92);
   transform: rotate(-5deg);
-  transform-origin: 0% 50%;
-  opacity: 0.22;
-  z-index: 0;
+  transform-origin: 100% 40%;
+  opacity: 0.5;
+  z-index: 1;
   box-shadow:
-    0 0 0 2px #ffffff,
-    0 8px 18px rgba(44, 42, 38, 0.12);
+    0 0 0 3px #ffffff,
+    0 10px 22px rgba(44, 42, 38, 0.16);
 }
 
-/* 홈 3 — 우: 메인 뒤·우하단, 본문 안 가리게 */
+/* 홈 3 — 우 슬롯: 메인 아래, 겹쳐 보이게 */
 .theme-collage--home .theme-photo-sub--right {
-  top: calc(max(6px, env(safe-area-inset-top)) + var(--collage-photo-main-h) * 0.66);
-  right: max(8px, calc(env(safe-area-inset-right) + 6px));
+  top: calc(max(6px, env(safe-area-inset-top)) + var(--collage-photo-main-h) * 0.52);
+  right: max(8px, calc(env(safe-area-inset-right) + 4px));
   left: auto;
-  width: calc(var(--collage-photo-sub-w) * 0.82);
-  height: calc(var(--collage-photo-sub-h) * 0.82);
-  transform: rotate(4deg);
-  transform-origin: 100% 90%;
-  opacity: 0.24;
-  z-index: 0;
+  width: var(--collage-photo-sub-w);
+  height: var(--collage-photo-sub-h);
+  transform: rotate(5deg);
+  transform-origin: 100% 85%;
+  opacity: 0.58;
+  z-index: 1;
   box-shadow:
-    0 0 0 2px #ffffff,
-    0 8px 16px rgba(44, 42, 38, 0.1);
+    0 0 0 3px #ffffff,
+    0 10px 22px rgba(44, 42, 38, 0.18);
 }
 
 .page-home .theme-collage--home {
@@ -613,14 +636,17 @@
 }
 
 .theme-collage--subpage .theme-photo-sub {
-  top: calc(var(--collage-photo-h) + var(--collage-photo-gap) * 0.5);
-  left: calc(-1 * min(34vw, 168px) * 0.58);
-  right: auto;
-  width: min(28vw, 132px);
-  opacity: 0.26;
-  transform: rotate(-5deg);
-  transform-origin: 0% 100%;
-  z-index: 0;
+  top: calc(var(--collage-photo-h) + var(--collage-photo-gap) * 0.35);
+  left: auto;
+  right: 0;
+  width: min(30vw, 148px);
+  opacity: 0.52;
+  transform: rotate(-4deg);
+  transform-origin: 100% 100%;
+  z-index: 1;
+  box-shadow:
+    0 0 0 3px #ffffff,
+    0 10px 20px rgba(44, 42, 38, 0.14);
 }
 
 [data-theme="friends"] .theme-collage,
@@ -1411,8 +1437,8 @@ body.celebration-open {
     --collage-step-gap: clamp(12px, 2.8vw, 20px);
     --collage-photo-main-h: min(46vw, 248px);
     --collage-photo-main-w: calc(var(--collage-main-slot) - 8px);
-    --collage-photo-sub-w: min(22vw, 116px);
-    --collage-photo-sub-h: min(20vw, 108px);
+    --collage-photo-sub-w: min(24vw, 128px);
+    --collage-photo-sub-h: min(22vw, 120px);
   }
 
   .page-home .theme-collage--home {
@@ -1425,14 +1451,14 @@ body.celebration-open {
   }
 
   .theme-collage--home .theme-photo-sub--left {
-    top: calc(max(6px, env(safe-area-inset-top)) + var(--collage-photo-main-h) * 0.52);
-    left: calc(-1 * var(--collage-photo-sub-w) * 0.76);
-    opacity: 0.18;
+    top: calc(max(6px, env(safe-area-inset-top)) + var(--collage-photo-main-h) * 0.26);
+    right: calc(var(--collage-main-slot) + var(--collage-main-gap) * 0.3);
+    opacity: 0.46;
   }
 
   .theme-collage--home .theme-photo-sub--right {
-    top: calc(max(6px, env(safe-area-inset-top)) + var(--collage-photo-main-h) * 0.64);
-    opacity: 0.2;
+    top: calc(max(6px, env(safe-area-inset-top)) + var(--collage-photo-main-h) * 0.5);
+    opacity: 0.54;
   }
 
   .theme-collage--subpage {
@@ -1446,12 +1472,13 @@ body.celebration-open {
   }
 
   .theme-photo-sub {
-    opacity: 0.2;
+    opacity: 0.48;
   }
 
   .theme-collage--subpage .theme-photo-sub {
-    opacity: 0.22;
-    left: calc(-1 * min(32vw, 140px) * 0.62);
+    opacity: 0.5;
+    left: auto;
+    right: 0;
   }
 
   .decor-hero {
