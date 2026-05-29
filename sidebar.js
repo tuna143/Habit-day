@@ -1,4 +1,4 @@
-/* sidebar.js build 13 — top-right overflow menus (mobile) + desktop sidebar */
+/* sidebar.js build 14 — single top-right ⋯ menu (mobile) + desktop sidebar */
 const HOME_HREF = "app.html";
 
 function renderSidebar() {
@@ -12,72 +12,61 @@ function renderSidebar() {
   const isHome = page === "home";
 
   sidebar.innerHTML = `
-    <div class="app-menu-bar" aria-label="Quick menus">
-      <div class="app-menu" data-menu="pages">
+    <div class="app-menu-bar" aria-label="App menu">
+      <div class="app-menu" data-menu="main">
         <button
           type="button"
           class="app-menu-trigger"
           aria-expanded="false"
-          aria-controls="appMenuPages"
-          aria-label="Pages menu"
+          aria-controls="appMenuMain"
+          aria-label="Open menu"
         >
           <span class="app-menu-dots" aria-hidden="true"></span>
         </button>
-        <div class="app-menu-dropdown" id="appMenuPages" role="menu" hidden>
-          <nav class="app-menu-links">
-            <a
-              role="menuitem"
-              class="app-menu-link${page === "home" ? " is-active" : ""}"
-              href="${HOME_HREF}"
-            >Today</a>
-            <a
-              role="menuitem"
-              class="app-menu-link${page === "weekly" ? " is-active" : ""}"
-              href="weekly.html"
-            >Weekly</a>
-            <a
-              role="menuitem"
-              class="app-menu-link${page === "calendar" ? " is-active" : ""}"
-              href="calendar.html"
-            >Calendar</a>
-          </nav>
-        </div>
-      </div>
-
-      <div class="app-menu" data-menu="more">
-        <button
-          type="button"
-          class="app-menu-trigger"
-          aria-expanded="false"
-          aria-controls="appMenuMore"
-          aria-label="Theme and tools menu"
-        >
-          <span class="app-menu-dots" aria-hidden="true"></span>
-        </button>
-        <div class="app-menu-dropdown app-menu-dropdown--stacked" id="appMenuMore" hidden>
+        <div class="app-menu-dropdown app-menu-dropdown--full" id="appMenuMain" role="menu" hidden>
           <div class="app-menu-stack" data-menu-stack>
             <div class="app-menu-layer is-active" data-layer="root">
-              <button type="button" class="app-menu-row app-menu-row--sub" data-open-layer="themes">
-                <span class="app-menu-row-icon theme-row-icon" aria-hidden="true">◆</span>
-                <span class="app-menu-row-text">Theme</span>
-                <span class="app-menu-chevron" aria-hidden="true">›</span>
-              </button>
-              <a
-                class="app-menu-row${page === "photos" ? " is-active" : ""}"
-                href="photos.html"
-                role="menuitem"
-              >
-                <span class="app-menu-row-icon" aria-hidden="true">▣</span>
-                <span class="app-menu-row-text">Photos</span>
-              </a>
-              ${
-                isHome
-                  ? `<button type="button" class="app-menu-row app-menu-row--accent" id="sideAddHabit" role="menuitem">
-                <span class="app-menu-row-icon" aria-hidden="true">+</span>
-                <span class="app-menu-row-text">Add habit</span>
-              </button>`
-                  : ""
-              }
+              <nav class="app-menu-section" aria-label="Pages">
+                <a
+                  role="menuitem"
+                  class="app-menu-link${page === "home" ? " is-active" : ""}"
+                  href="${HOME_HREF}"
+                >Today</a>
+                <a
+                  role="menuitem"
+                  class="app-menu-link${page === "weekly" ? " is-active" : ""}"
+                  href="weekly.html"
+                >Weekly</a>
+                <a
+                  role="menuitem"
+                  class="app-menu-link${page === "calendar" ? " is-active" : ""}"
+                  href="calendar.html"
+                >Calendar</a>
+              </nav>
+              <div class="app-menu-divider" role="separator"></div>
+              <div class="app-menu-section app-menu-section--tools">
+                <button type="button" class="app-menu-row app-menu-row--sub" data-open-layer="themes">
+                  <span class="app-menu-row-icon theme-row-icon" aria-hidden="true">◆</span>
+                  <span class="app-menu-row-text">Theme</span>
+                  <span class="app-menu-chevron" aria-hidden="true">›</span>
+                </button>
+                <a
+                  class="app-menu-row${page === "photos" ? " is-active" : ""}"
+                  href="photos.html"
+                  role="menuitem"
+                >
+                  <span class="app-menu-row-icon" aria-hidden="true">▣</span>
+                  <span class="app-menu-row-text">Photos</span>
+                </a>
+                ${
+                  isHome
+                    ? `<button type="button" class="app-menu-row app-menu-row--accent" id="sideAddHabit" role="menuitem">
+                  <span class="app-menu-row-icon" aria-hidden="true">+</span>
+                  <span class="app-menu-row-text">Add habit</span>
+                </button>`
+                    : ""
+                }
+              </div>
             </div>
             <div class="app-menu-layer" data-layer="themes" hidden>
               <button type="button" class="app-menu-row app-menu-row--back" data-back-layer="root">

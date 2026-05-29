@@ -286,6 +286,26 @@ body {
   box-shadow: 0 12px 36px rgba(0, 0, 0, 0.14);
 }
 
+.app-menu-dropdown--full {
+  min-width: min(248px, calc(100vw - 20px));
+  max-height: min(72dvh, 520px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 8px;
+}
+
+.app-menu-section {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.app-menu-divider {
+  height: 1px;
+  margin: 8px 6px;
+  background: var(--line);
+}
+
 .app-menu-dropdown[hidden] {
   display: none !important;
 }
@@ -1055,15 +1075,35 @@ body.habit-sheet-open {
     align-items: flex-start;
     gap: 0;
     width: auto;
+    height: 0;
+    min-height: 0;
     max-height: none;
+    overflow: visible;
     padding:
       max(6px, env(safe-area-inset-top))
       max(10px, env(safe-area-inset-right))
       0
       0;
     border: 0;
-    background: transparent;
+    background: transparent !important;
     box-shadow: none;
+    pointer-events: none;
+  }
+
+  .app-sidebar .app-menu-bar,
+  .app-sidebar .app-menu-bar * {
+    pointer-events: auto;
+  }
+
+  .app-sidebar .side-block,
+  .app-sidebar .side-nav,
+  .app-sidebar .side-link,
+  .app-sidebar .side-themes,
+  .app-sidebar .side-theme,
+  .app-sidebar .side-toolbar,
+  .app-sidebar .side-quick,
+  .app-sidebar .side-desktop-nav {
+    display: none !important;
   }
 
   .app-menu-bar {
@@ -1072,6 +1112,10 @@ body.habit-sheet-open {
 
   .side-desktop-nav {
     display: none !important;
+  }
+
+  .app-layout > .app-sidebar {
+    order: 99;
   }
 
   .app-shell,

@@ -189,6 +189,10 @@
   color: #f5ebe0;
 }
 
+[data-theme="friends"] .app-menu-divider {
+  background: rgba(255, 255, 255, 0.16);
+}
+
 [data-theme="friends"] .app-menu-link,
 [data-theme="friends"] .app-menu-row {
   color: #f5ebe0;
