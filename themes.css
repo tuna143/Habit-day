@@ -339,7 +339,11 @@
 .friends-scene {
   display: none;
   position: absolute;
-  inset: 0;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: min(200px, 36vw);
+  max-height: 220px;
   z-index: 1;
   overflow: hidden;
   pointer-events: none;
@@ -361,10 +365,12 @@
 .friends-cutout.cutout-a {
   object-fit: cover;
   object-position: center top;
-  width: min(42vw, 300px);
-  height: min(42vw, 300px);
+  top: 0;
+  right: 0;
+  width: min(34vw, 200px);
+  height: min(34vw, 200px);
   aspect-ratio: 1;
-  transform: rotate(-7deg);
+  transform: rotate(-6deg);
   transform-origin: 100% 0%;
 }
 
@@ -392,6 +398,18 @@
   z-index: 2;
 }
 
+[data-theme="friends"] .friends-cutout.cutout-b {
+  top: 4px;
+  right: min(30vw, 168px);
+  width: min(16vw, 88px);
+  height: min(16vw, 88px);
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: center top;
+  transform: rotate(8deg);
+  opacity: 0.95;
+}
+
 .cutout-c {
   top: 52%;
   right: 2%;
@@ -399,6 +417,18 @@
   aspect-ratio: 1;
   transform: rotate(-4deg);
   z-index: 4;
+}
+
+[data-theme="friends"] .friends-cutout.cutout-c {
+  top: min(72px, 14vw);
+  right: min(22vw, 120px);
+  width: min(14vw, 76px);
+  height: min(14vw, 76px);
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: center top;
+  transform: rotate(-5deg);
+  opacity: 0.9;
 }
 
 .cutout-d {
@@ -437,6 +467,10 @@
 [data-theme="friends"] .overview,
 [data-theme="kuromi"] .overview {
   grid-template-columns: 1fr;
+  align-items: start;
+  gap: 10px;
+  margin-bottom: 12px;
+  min-height: clamp(120px, 28vw, 168px);
 }
 
 [data-theme="friends"] .progress-card,
@@ -448,13 +482,26 @@
 [data-theme="kuromi"] .overview-copy {
   position: relative;
   z-index: 2;
-  max-width: min(380px, 52%);
-  padding: 16px 18px;
+  max-width: min(340px, 62%);
+  padding: 12px 14px;
   border-radius: var(--radius);
-  background: color-mix(in srgb, var(--card-bg) 82%, transparent);
+  background: color-mix(in srgb, var(--card-bg) 88%, transparent);
   border: 1px solid var(--card-border);
   box-shadow: var(--shadow);
   backdrop-filter: blur(4px);
+}
+
+[data-theme="friends"] .overview-copy .eyebrow,
+[data-theme="kuromi"] .overview-copy .eyebrow {
+  margin-bottom: 2px;
+  font-size: 12px;
+}
+
+[data-theme="friends"] .overview-copy .summary,
+[data-theme="kuromi"] .overview-copy .summary {
+  margin-top: 6px;
+  font-size: 14px;
+  line-height: 1.45;
 }
 
 [data-theme="friends"] .composer,
@@ -467,17 +514,18 @@
 }
 
 [data-theme="kuromi"] h1 {
-  font-size: clamp(36px, 8vw, 64px);
+  font-size: clamp(26px, 6vw, 44px);
   font-weight: 800;
   letter-spacing: -0.03em;
-  margin-bottom: 4px;
+  margin: 0 0 2px;
+  line-height: 1.08;
 }
 
 .theme-progress-inline {
   display: none;
   align-items: center;
   gap: 12px;
-  margin: 12px 0 14px;
+  margin: 8px 0 6px;
 }
 
 [data-theme="friends"] .theme-progress-inline,
@@ -515,9 +563,15 @@
 }
 
 [data-theme="friends"] h1 {
-  font-size: clamp(40px, 9vw, 76px);
+  font-size: clamp(26px, 6.5vw, 46px);
   letter-spacing: -0.02em;
-  margin-bottom: 4px;
+  margin: 0 0 2px;
+  line-height: 1.08;
+}
+
+[data-theme="friends"] .subpage-header h1,
+[data-theme="kuromi"] .subpage-header h1 {
+  font-size: clamp(24px, 6.5vw, 40px);
 }
 
 /* Kuromi — 콜라주 장식 */
@@ -525,7 +579,11 @@
 .kuromi-scene {
   display: none;
   position: absolute;
-  inset: 0;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: min(200px, 36vw);
+  max-height: 220px;
   z-index: 1;
   overflow: hidden;
   pointer-events: none;
@@ -551,30 +609,39 @@
 
 .kuromi-cutout.cutout-a {
   top: 0;
-  right: -2%;
-  width: min(40vw, 280px);
+  right: 0;
+  width: min(34vw, 200px);
+  height: min(34vw, 200px);
   aspect-ratio: 1;
   transform: rotate(-6deg);
+  transform-origin: 100% 0;
   z-index: 3;
   opacity: 1;
-  object-fit: contain;
-  object-position: center bottom;
-  background: transparent;
+  object-fit: cover;
+  object-position: center top;
 }
 
 .kuromi-cutout.cutout-b {
-  top: 32%;
-  right: 10%;
-  width: min(22vw, 150px);
+  top: 6px;
+  right: min(30vw, 168px);
+  width: min(16vw, 88px);
+  height: min(16vw, 88px);
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: center top;
   transform: rotate(8deg);
   z-index: 2;
   opacity: 0.92;
 }
 
 .kuromi-cutout.cutout-c {
-  bottom: 14%;
-  left: 2%;
-  width: min(24vw, 160px);
+  top: min(72px, 14vw);
+  right: min(22vw, 120px);
+  width: min(14vw, 76px);
+  height: min(14vw, 76px);
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: center top;
   transform: rotate(-5deg);
   z-index: 2;
   opacity: 0.88;
@@ -594,11 +661,12 @@
 .friends-weekly-photo {
   display: none;
   position: absolute;
-  left: clamp(8px, 3vw, 32px);
-  top: clamp(60px, 12vw, 100px);
+  right: clamp(8px, 3vw, 24px);
+  top: clamp(48px, 10vw, 72px);
+  left: auto;
   z-index: 3;
   margin: 0;
-  width: clamp(120px, 26vw, 180px);
+  width: clamp(88px, 22vw, 120px);
   pointer-events: none;
   transform: rotate(5deg);
   filter: drop-shadow(0 12px 24px rgba(44, 28, 18, 0.18));
@@ -611,11 +679,11 @@
 .kuromi-weekly-photo {
   display: none;
   position: absolute;
-  right: clamp(8px, 3vw, 32px);
-  top: clamp(60px, 12vw, 100px);
+  right: clamp(8px, 3vw, 24px);
+  top: clamp(48px, 10vw, 72px);
   z-index: 3;
   margin: 0;
-  width: clamp(100px, 22vw, 150px);
+  width: clamp(88px, 22vw, 120px);
   pointer-events: none;
   transform: rotate(-6deg);
   filter: drop-shadow(0 12px 24px rgba(62, 28, 90, 0.2));
@@ -628,13 +696,15 @@
 .kuromi-weekly-photo img {
   display: block;
   width: 100%;
-  height: auto;
-  object-fit: contain;
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 14px;
 }
 
 [data-theme="kuromi"] .weekly-page .subpage-header {
-  padding-right: clamp(0px, 20vw, 180px);
-  min-height: clamp(72px, 16vw, 120px);
+  padding-right: clamp(0px, 18vw, 160px);
+  min-height: clamp(56px, 14vw, 96px);
 }
 
 .friends-weekly-photo img {
@@ -649,8 +719,9 @@
 }
 
 [data-theme="friends"] .weekly-page .subpage-header {
-  padding-left: clamp(0px, 22vw, 200px);
-  min-height: clamp(80px, 18vw, 140px);
+  padding-left: 0;
+  padding-right: clamp(0px, 18vw, 160px);
+  min-height: clamp(56px, 14vw, 96px);
 }
 
 .overview-wrap {
@@ -981,6 +1052,9 @@ body.celebration-open {
   .kuromi-scene {
     pointer-events: none;
     opacity: 1;
+    z-index: 1;
+    height: min(168px, 32vw);
+    max-height: 180px;
   }
 
   .decor-hero {
@@ -988,32 +1062,38 @@ body.celebration-open {
     opacity: 1;
   }
 
+  .friends-cutout.cutout-a,
   .kuromi-cutout.cutout-a {
-    width: min(46vw, 200px) !important;
-    right: -4% !important;
+    width: min(40vw, 168px) !important;
+    height: min(40vw, 168px) !important;
+    right: 0 !important;
     top: 0 !important;
-    opacity: 1 !important;
-  }
-
-  .friends-cutout.cutout-a {
-    width: min(46vw, 210px) !important;
-    height: min(46vw, 210px) !important;
-    aspect-ratio: 1 !important;
-    right: -2% !important;
-    top: 0 !important;
-    opacity: 1 !important;
     object-fit: cover !important;
     object-position: center top !important;
-    transform: rotate(-6deg) !important;
-    transform-origin: 100% 0% !important;
+    transform: rotate(-5deg) !important;
+    transform-origin: 100% 0 !important;
+    filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.22));
   }
 
-  .cutout-b,
-  .cutout-c,
-  .kuromi-cutout.cutout-b,
-  .kuromi-cutout.cutout-c {
-    width: min(30vw, 120px) !important;
-    opacity: 0.92 !important;
+  [data-theme="friends"] .friends-cutout.cutout-b,
+  [data-theme="friends"] .friends-cutout.cutout-c,
+  [data-theme="kuromi"] .kuromi-cutout.cutout-b,
+  [data-theme="kuromi"] .kuromi-cutout.cutout-c {
+    width: min(22vw, 72px) !important;
+    height: min(22vw, 72px) !important;
+    opacity: 0.9 !important;
+  }
+
+  [data-theme="friends"] .friends-cutout.cutout-b,
+  [data-theme="kuromi"] .kuromi-cutout.cutout-b {
+    right: min(36vw, 148px) !important;
+    top: 2px !important;
+  }
+
+  [data-theme="friends"] .friends-cutout.cutout-c,
+  [data-theme="kuromi"] .kuromi-cutout.cutout-c {
+    right: min(26vw, 108px) !important;
+    top: min(56px, 12vw) !important;
   }
 
   .cutout-d,
@@ -1023,57 +1103,36 @@ body.celebration-open {
     display: none;
   }
 
+  [data-theme="friends"] .overview,
+  [data-theme="kuromi"] .overview {
+    min-height: clamp(108px, 26vw, 148px);
+    margin-bottom: 10px;
+  }
+
   [data-theme="friends"] .overview-copy,
   [data-theme="kuromi"] .overview-copy {
-    max-width: min(100%, 62%);
-    padding: 14px 16px;
-    background: color-mix(in srgb, var(--card-bg) 86%, transparent);
-  }
-
-  .friends-scene,
-  .kuromi-scene {
-    z-index: 1;
-  }
-
-  .kuromi-cutout.cutout-a {
-    width: min(52vw, 220px) !important;
-    right: 0 !important;
-    top: -4px !important;
-    opacity: 1 !important;
-    filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.28));
-  }
-
-  .friends-cutout.cutout-a {
-    width: min(48vw, 220px) !important;
-    height: min(48vw, 220px) !important;
-    aspect-ratio: 1 !important;
-    right: 0 !important;
-    top: 0 !important;
-    opacity: 1 !important;
-    object-fit: cover !important;
-    object-position: center top !important;
-    transform: rotate(-6deg) !important;
-    transform-origin: 100% 0% !important;
-    filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.28));
+    max-width: min(100%, 58%);
+    padding: 10px 12px;
+    background: color-mix(in srgb, var(--card-bg) 90%, transparent);
   }
 
   [data-theme="friends"] h1,
   [data-theme="kuromi"] h1 {
-    font-size: clamp(30px, 9vw, 52px);
+    font-size: clamp(22px, 7vw, 34px);
   }
 
   [data-theme="kuromi"] .weekly-page .subpage-header {
     padding-right: 0;
-    padding-top: clamp(108px, 30vw, 150px);
+    padding-top: clamp(88px, 24vw, 120px);
     min-height: 0;
   }
 
   .kuromi-weekly-photo {
-    left: 50%;
-    right: auto;
-    top: max(72px, calc(56px + env(safe-area-inset-top)));
-    transform: translateX(-50%) rotate(-4deg);
-    width: min(128px, 46vw);
+    left: auto;
+    right: 8px;
+    top: max(52px, calc(44px + env(safe-area-inset-top)));
+    transform: rotate(-4deg);
+    width: min(100px, 32vw);
   }
 
   [data-theme="kuromi"] .calendar-day.has-photo,
@@ -1083,15 +1142,16 @@ body.celebration-open {
 
   [data-theme="friends"] .weekly-page .subpage-header {
     padding-left: 0;
-    padding-top: clamp(116px, 32vw, 168px);
+    padding-top: clamp(88px, 24vw, 120px);
     min-height: 0;
   }
 
   .friends-weekly-photo {
-    left: 50%;
-    top: max(72px, calc(56px + env(safe-area-inset-top)));
-    transform: translateX(-50%) rotate(3deg);
-    width: min(140px, 50vw);
+    left: auto;
+    right: 8px;
+    top: max(52px, calc(44px + env(safe-area-inset-top)));
+    transform: rotate(3deg);
+    width: min(100px, 32vw);
   }
 
   [data-theme="friends"] .calendar-day.has-photo,

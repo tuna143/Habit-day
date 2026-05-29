@@ -1189,7 +1189,7 @@ body.habit-sheet-open {
 @media (max-width: 768px) {
   [data-theme="friends"] .overview,
   [data-theme="kuromi"] .overview {
-    min-height: clamp(200px, 42vw, 280px);
+    min-height: clamp(108px, 26vw, 148px);
   }
 
   [data-theme="friends"] .composer,
