@@ -342,12 +342,14 @@
 /* Friends / Kuromi — 지그재그 콜라주 (토끼 위 → 반대편 → 오른쪽 아래) */
 
 .theme-collage {
+  --collage-photo-h: min(52vw, 280px);
+  --collage-photo-gap: clamp(22px, 5vw, 36px);
   display: none;
   position: absolute;
   top: max(52px, calc(44px + env(safe-area-inset-top)));
   right: max(4px, env(safe-area-inset-right));
-  width: min(52vw, 280px);
-  height: min(720px, 124vw);
+  width: min(54vw, 292px);
+  height: calc(var(--collage-photo-h) * 3 + var(--collage-photo-gap) * 2);
   z-index: 1;
   pointer-events: none;
 }
@@ -361,7 +363,7 @@
   position: absolute;
   display: block;
   width: min(48vw, 260px);
-  height: min(52vw, 280px);
+  height: var(--collage-photo-h);
   object-fit: cover;
   object-position: center top;
   border-radius: 4px;
@@ -384,18 +386,18 @@
   z-index: 1;
 }
 
-/* 2번째: 아래 줄 반대편(왼쪽) */
+/* 2번째: 아래 줄 반대편(왼쪽) — 1번과 안 겹침 */
 .theme-photo-sub--left {
-  top: min(236px, 44vw);
+  top: calc(var(--collage-photo-h) + var(--collage-photo-gap));
   left: 0;
   right: auto;
   transform: rotate(-6deg);
   transform-origin: 0% 50%;
 }
 
-/* 3번째: 맨 아래 토끼 쪽 오른쪽 */
+/* 3번째: 맨 아래 토끼 쪽 오른쪽 — 2번과 안 겹침 */
 .theme-photo-sub--right {
-  top: min(472px, 88vw);
+  top: calc((var(--collage-photo-h) + var(--collage-photo-gap)) * 2);
   right: 0;
   left: auto;
   transform: rotate(5deg);
@@ -973,8 +975,9 @@ body.celebration-open {
 
 @media (max-width: 768px) {
   .theme-collage {
-    width: min(50vw, 240px);
-    height: min(640px, 118vw);
+    --collage-photo-h: min(50vw, 226px);
+    --collage-photo-gap: clamp(18px, 4.5vw, 28px);
+    width: min(52vw, 248px);
   }
 
   .page-home .theme-collage {
@@ -983,15 +986,6 @@ body.celebration-open {
 
   .theme-photo {
     width: min(46vw, 210px);
-    height: min(50vw, 226px);
-  }
-
-  .theme-photo-sub--left {
-    top: min(200px, 38vw);
-  }
-
-  .theme-photo-sub--right {
-    top: min(400px, 76vw);
   }
 
   .theme-photo-sub {

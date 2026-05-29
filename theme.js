@@ -34,27 +34,26 @@ function getTheme() {
   return themes.includes(saved) ? saved : "original";
 }
 
-function setLinkHref(selector, href) {
+function setThemeIconLink(rel, href, extra) {
+  const selector = extra
+    ? `link[rel="${rel}"][${extra}]`
+    : `link[rel="${rel}"]`;
   let link = document.querySelector(selector);
 
   if (!link) {
     link = document.createElement("link");
-    const relMatch = selector.match(/rel="([^"]+)"/);
+    link.rel = rel;
 
-    if (relMatch) {
-      link.rel = relMatch[1];
-    }
-
-    if (selector.includes("image/svg")) {
-      link.type = "image/svg+xml";
-    }
-
-    if (selector.includes("192x192")) {
-      link.sizes = "192x192";
+    if (extra && extra.startsWith("sizes=")) {
+      link.sizes = extra.replace('sizes="', "").replace('"', "");
       link.type = "image/png";
     }
 
-    if (selector.includes("apple-touch")) {
+    if (extra === 'type="image/svg+xml"') {
+      link.type = "image/svg+xml";
+    }
+
+    if (rel === "apple-touch-icon") {
       link.sizes = "180x180";
     }
 
@@ -75,9 +74,21 @@ function syncThemeBranding(theme) {
     themeColorMeta.setAttribute("content", brand.themeColor);
   }
 
-  setLinkHref('link[rel="apple-touch-icon"]', `${brand.apple}${q}`);
-  setLinkHref('link[rel="icon"][sizes="192x192"]', `${brand.png192}${q}`);
-  setLinkHref('link[rel="icon"][type="image/svg+xml"]', `${brand.svg}${q}`);
+  document.querySelectorAll("link[data-theme-icon]").forEach((link) => {
+    const rel = link.rel;
+
+    if (rel === "apple-touch-icon") {
+      link.href = `${brand.apple}${q}`;
+    } else if (rel === "icon" && link.sizes === "192x192") {
+      link.href = `${brand.png192}${q}`;
+    } else if (rel === "icon" && link.type === "image/svg+xml") {
+      link.href = `${brand.svg}${q}`;
+    }
+  });
+
+  setThemeIconLink("apple-touch-icon", `${brand.apple}${q}`);
+  setThemeIconLink("icon", `${brand.png192}${q}`, 'sizes="192x192"');
+  setThemeIconLink("icon", `${brand.svg}${q}`, 'type="image/svg+xml"');
 }
 
 function applyTheme(theme) {
