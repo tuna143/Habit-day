@@ -11,7 +11,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="mobile-web-app-capable" content="yes" />
     <title>Habit Day</title>
-    <link rel="manifest" href="manifest.webmanifest?v=10" />
+    <link rel="manifest" href="manifest.webmanifest?v=11" />
     <link rel="icon" href="icon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="icon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -20,11 +20,11 @@
       href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Outfit:wght@600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=10" />
-    <link rel="stylesheet" href="layout.css?v=10" />
-    <link rel="stylesheet" href="themes.css?v=10" />
+    <link rel="stylesheet" href="styles.css?v=11" />
+    <link rel="stylesheet" href="layout.css?v=11" />
+    <link rel="stylesheet" href="themes.css?v=11" />
     <script>
-      window.__HABIT_BUILD = "10";
+      window.__HABIT_BUILD = "11";
       (function () {
         if ("serviceWorker" in navigator) {
           navigator.serviceWorker.getRegistrations().then(function (regs) {
@@ -36,7 +36,7 @@
         if (window.caches) {
           caches.keys().then(function (keys) {
             keys.forEach(function (key) {
-              if (key.indexOf("habit-day-v10") === -1) {
+              if (key.indexOf("habit-day-v11") === -1) {
                 caches.delete(key);
               }
             });
@@ -44,7 +44,7 @@
         }
       })();
     </script>
-    <script src="theme.js?v=10"></script>
+    <script src="theme.js?v=11"></script>
   </head>
   <body>
     <div class="app-layout">
@@ -116,7 +116,7 @@
             </div>
           </section>
 
-          <section class="composer" aria-label="Add habit">
+          <section class="composer composer--desktop" aria-label="Add habit">
             <form id="habitForm">
               <label for="habitInput">New habit</label>
               <div class="input-row">
@@ -147,10 +147,33 @@
                 src="assets/kuromi/empty.svg"
                 alt=""
               />
-              No habits yet. Add one above to get started.
+              No habits yet. Tap <strong>+ Habit</strong> below to add one.
             </p>
           </section>
         </main>
+      </div>
+    </div>
+
+    <div id="habitAddSheet" class="habit-add-sheet" hidden>
+      <button type="button" class="habit-add-backdrop" aria-label="Close"></button>
+      <div class="habit-add-panel" role="dialog" aria-labelledby="habitAddTitle" aria-modal="true">
+        <div class="habit-add-head">
+          <h2 id="habitAddTitle">New habit</h2>
+          <button type="button" class="habit-add-close" id="habitAddClose" aria-label="Close">×</button>
+        </div>
+        <form id="habitFormMobile" class="habit-add-form">
+          <label for="habitInputMobile">Habit name</label>
+          <input
+            id="habitInputMobile"
+            name="habit"
+            type="text"
+            maxlength="32"
+            placeholder="Example: Drink water"
+            autocomplete="off"
+            enterkeyhint="done"
+          />
+          <button type="submit" class="habit-add-submit">Add habit</button>
+        </form>
       </div>
     </div>
 
@@ -185,10 +208,10 @@
       </li>
     </template>
 
-    <script src="sidebar.js?v=10"></script>
-    <script src="shared.js?v=10"></script>
-    <script src="user-photos.js?v=10"></script>
-    <script src="fireworks.js?v=10"></script>
-    <script src="app.js?v=10"></script>
+    <script src="sidebar.js?v=11"></script>
+    <script src="shared.js?v=11"></script>
+    <script src="user-photos.js?v=11"></script>
+    <script src="fireworks.js?v=11"></script>
+    <script src="app.js?v=11"></script>
   </body>
 </html>

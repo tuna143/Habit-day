@@ -1,4 +1,4 @@
-const cacheName = "habit-day-v10";
+const cacheName = "habit-day-v11";
 const mainPage = "./app.html";
 
 function isCodeRequest(request) {

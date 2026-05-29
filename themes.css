@@ -152,18 +152,8 @@
   color: #fff;
 }
 
-[data-theme="friends"] .side-theme {
-  color: #f5ebe0;
-  border-color: rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.06);
-}
-
-[data-theme="friends"] .side-theme:hover {
-  border-color: rgba(255, 255, 255, 0.35);
-  color: #fff;
-}
-
-[data-theme="friends"] .side-theme.is-active {
+[data-theme="friends"] .side-link--pics-desktop.is-active,
+[data-theme="friends"] .side-link--pics-mobile.is-active {
   background: rgba(255, 255, 255, 0.18);
   border-color: rgba(255, 255, 255, 0.4);
   color: #fff;

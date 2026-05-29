@@ -1,11 +1,17 @@
 const habitForm = document.querySelector("#habitForm");
+const habitFormMobile = document.querySelector("#habitFormMobile");
 
-if (!habitForm) {
+if (!habitForm && !habitFormMobile) {
   /* Not the habit checklist page */
 } else if (typeof loadData !== "function") {
   console.warn("Habit Day: shared.js must load before app.js");
 } else {
   const habitInput = document.querySelector("#habitInput");
+  const habitInputMobile = document.querySelector("#habitInputMobile");
+  const habitAddSheet = document.querySelector("#habitAddSheet");
+  const habitAddClose = document.querySelector("#habitAddClose");
+  const habitAddBackdrop = document.querySelector(".habit-add-backdrop");
+  const sideAddHabit = document.querySelector("#sideAddHabit");
   const habitList = document.querySelector("#habitList");
   const habitTemplate = document.querySelector("#habitTemplate");
   const emptyState = document.querySelector("#emptyState");
@@ -283,27 +289,91 @@ if (!habitForm) {
     renderProgress();
   }
 
-  function addHabitFromInput() {
-    const title = habitInput.value.trim();
+  function readHabitDraft() {
+    const mobileOpen = habitAddSheet && !habitAddSheet.hidden;
 
-    if (!title) {
-      habitInput.focus();
+    if (mobileOpen && habitInputMobile) {
+      return habitInputMobile.value.trim();
+    }
+
+    return habitInput ? habitInput.value.trim() : "";
+  }
+
+  function clearHabitDraft() {
+    if (habitInput) {
+      habitInput.value = "";
+    }
+
+    if (habitInputMobile) {
+      habitInputMobile.value = "";
+    }
+  }
+
+  function focusHabitDraft() {
+    const mobileOpen = habitAddSheet && !habitAddSheet.hidden;
+
+    if (mobileOpen && habitInputMobile) {
+      habitInputMobile.focus();
       return;
     }
 
-    data.habits = [{ id: makeId(), title }, ...data.habits];
-    habitInput.value = "";
-
-    if (persistData()) {
-      renderHabits();
+    if (habitInput) {
       habitInput.focus();
     }
   }
 
-  habitForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-    addHabitFromInput();
-  });
+  function openHabitSheet() {
+    if (!habitAddSheet) {
+      return;
+    }
+
+    habitAddSheet.hidden = false;
+    document.body.classList.add("habit-sheet-open");
+
+    if (habitInputMobile) {
+      window.setTimeout(() => habitInputMobile.focus(), 50);
+    }
+  }
+
+  function closeHabitSheet() {
+    if (!habitAddSheet) {
+      return;
+    }
+
+    habitAddSheet.hidden = true;
+    document.body.classList.remove("habit-sheet-open");
+  }
+
+  function addHabitFromInput() {
+    const title = readHabitDraft();
+
+    if (!title) {
+      focusHabitDraft();
+      return;
+    }
+
+    data.habits = [{ id: makeId(), title }, ...data.habits];
+    clearHabitDraft();
+
+    if (persistData()) {
+      renderHabits();
+      closeHabitSheet();
+    }
+  }
+
+  if (habitForm) {
+    habitForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      addHabitFromInput();
+    });
+  }
+
+  if (habitFormMobile) {
+    habitFormMobile.addEventListener("submit", (event) => {
+      event.preventDefault();
+      addHabitFromInput();
+    });
+  }
 
   const habitAddButton = document.querySelector("#habitAddButton");
 
@@ -312,6 +382,18 @@ if (!habitForm) {
       event.preventDefault();
       addHabitFromInput();
     });
+  }
+
+  if (sideAddHabit) {
+    sideAddHabit.addEventListener("click", openHabitSheet);
+  }
+
+  if (habitAddClose) {
+    habitAddClose.addEventListener("click", closeHabitSheet);
+  }
+
+  if (habitAddBackdrop) {
+    habitAddBackdrop.addEventListener("click", closeHabitSheet);
   }
 
   if (resetToday) {
@@ -357,5 +439,5 @@ if (!habitForm) {
 }
 
 if ("serviceWorker" in navigator && location.protocol !== "file:") {
-  navigator.serviceWorker.register("./sw.js?v=10").catch(() => {});
+  navigator.serviceWorker.register("./sw.js?v=11").catch(() => {});
 }
