@@ -328,7 +328,6 @@ const GINTAMA_ASSETS = {
 
 const GINTAMA_SCENE_POOL = [
   "assets/gintama/scene-01.png",
-  "assets/gintama/scene-02.png",
   "assets/gintama/scene-03.png",
   "assets/gintama/scene-04.png",
   "assets/gintama/scene-05.png",
@@ -338,7 +337,6 @@ const GINTAMA_SCENE_POOL = [
   "assets/gintama/scene-09.png",
   "assets/gintama/scene-10.png",
   "assets/gintama/scene-11.png",
-  "assets/gintama/scene-12.png",
   "assets/gintama/scene-13.png",
   "assets/gintama/scene-14.png",
   "assets/gintama/scene-15.png",

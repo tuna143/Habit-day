@@ -24,7 +24,7 @@ if (!habitForm) {
   const celebrationPhotoBursts = document.querySelector("#celebrationPhotoBursts");
   const habitCameraInput = document.querySelector("#habitCameraInput");
 
-  const CELEBRATION_BURST_STYLES = ["pop-rise", "pop-spring", "pop-float"];
+  const CELEBRATION_BURST_STYLES = ["pop-launch", "pop-launch-fast", "pop-launch-wide"];
   const CELEBRATION_BURST_TARGET = 5;
   const CELEBRATION_BURST_MAX = 14;
   let celebrationBurstPool = [];
@@ -248,9 +248,8 @@ if (!habitForm) {
     const lane = Math.random();
     const left = Math.max(6, Math.min(w - sizeW - 6, w * (0.05 + lane * 0.9) - sizeW / 2));
     const top = h - sizeH - (8 + Math.random() * 32);
-    const driftX = Math.round((Math.random() - 0.5) * w * 0.2);
-    const driftMidX = Math.round((Math.random() - 0.5) * w * 0.08);
-    const rot = Math.round(-20 + Math.random() * 40);
+    const driftX = Math.round((Math.random() - 0.5) * w * 0.18);
+    const rot = Math.round(-16 + Math.random() * 32);
 
     const img = document.createElement("img");
     const style = pickBurstStyle(index);
@@ -265,7 +264,6 @@ if (!habitForm) {
     img.style.width = `${sizeW}px`;
     img.style.height = `${sizeH}px`;
     img.style.setProperty("--burst-dx", `${driftX}px`);
-    img.style.setProperty("--burst-mid-x", `${driftMidX}px`);
     img.style.setProperty("--burst-rot", `${rot}deg`);
 
     const remove = () => {
@@ -275,7 +273,7 @@ if (!habitForm) {
     };
 
     img.addEventListener("animationend", remove, { once: true });
-    window.setTimeout(remove, 3600);
+    window.setTimeout(remove, 3200);
     celebrationPhotoBursts.append(img);
   }
 

@@ -1275,111 +1275,40 @@
   border-radius: 4px;
   opacity: 0;
   --burst-dx: 0px;
-  --burst-mid-x: 0px;
   --burst-rot: 0deg;
   box-shadow:
     0 0 0 3px #ffffff,
     0 14px 32px rgba(0, 0, 0, 0.38);
   will-change: transform, opacity;
   transform-origin: center bottom;
+  backface-visibility: hidden;
 }
 
-.celebration-burst-photo--pop-rise {
-  animation: burst-pop-rise 3s cubic-bezier(0.28, 1.12, 0.42, 1) forwards;
+.celebration-burst-photo--pop-launch {
+  animation: burst-pop-launch 2.85s cubic-bezier(0.2, 0.92, 0.32, 1.02) forwards;
 }
 
-.celebration-burst-photo--pop-spring {
-  animation: burst-pop-spring 2.6s cubic-bezier(0.34, 1.45, 0.44, 1) forwards;
+.celebration-burst-photo--pop-launch-fast {
+  animation: burst-pop-launch 2.6s cubic-bezier(0.24, 1.02, 0.34, 1) forwards;
 }
 
-.celebration-burst-photo--pop-float {
-  animation: burst-pop-float 3s ease-out forwards;
+.celebration-burst-photo--pop-launch-wide {
+  animation: burst-pop-launch 3.1s cubic-bezier(0.18, 0.9, 0.3, 1.03) forwards;
 }
 
-.celebration-burst-photo--pop-wiggle {
-  animation: burst-pop-wiggle 2.9s cubic-bezier(0.36, 1.1, 0.4, 1) forwards;
-}
-
-.celebration-burst-photo--pop-spin {
-  animation: burst-pop-spin 3.1s cubic-bezier(0.25, 1.05, 0.4, 1) forwards;
-}
-
-.celebration-burst-photo--pop-arc {
-  animation: burst-pop-arc 3s cubic-bezier(0.3, 1.2, 0.42, 1) forwards;
-}
-
-@keyframes burst-pop-rise {
+@keyframes burst-pop-launch {
   0% {
     opacity: 0;
-    transform: translate(0, 18px) scale(0.28) rotate(var(--burst-rot));
+    transform: translate3d(0, 10px, 0) scale(0.32) rotate(var(--burst-rot));
   }
 
-  12% {
+  6% {
     opacity: 1;
-    transform: translate(var(--burst-mid-x), -52px) scale(1.06) rotate(calc(var(--burst-rot) + 5deg));
-  }
-
-  24% {
-    transform: translate(calc(var(--burst-dx) * 0.1), 10px) scale(0.9) rotate(calc(var(--burst-rot) - 3deg));
-  }
-
-  36% {
-    transform: translate(calc(var(--burst-dx) * 0.18), -88px) scale(1) rotate(calc(var(--burst-rot) + 2deg));
   }
 
   100% {
     opacity: 0;
-    transform: translate(var(--burst-dx), min(-72vh, -500px)) scale(0.8) rotate(calc(var(--burst-rot) + 4deg));
-  }
-}
-
-@keyframes burst-pop-spring {
-  0% {
-    opacity: 0;
-    transform: translate(0, 22px) scale(0.24) rotate(var(--burst-rot));
-  }
-
-  14% {
-    opacity: 1;
-    transform: translate(var(--burst-mid-x), -58px) scale(1.1) rotate(calc(var(--burst-rot) - 4deg));
-  }
-
-  28% {
-    transform: translate(calc(var(--burst-dx) * 0.08), 14px) scale(0.88) rotate(calc(var(--burst-rot) + 3deg));
-  }
-
-  42% {
-    transform: translate(calc(var(--burst-dx) * 0.2), -96px) scale(1.02) rotate(calc(var(--burst-rot) - 2deg));
-  }
-
-  100% {
-    opacity: 0;
-    transform: translate(var(--burst-dx), min(-76vh, -540px)) scale(0.78) rotate(calc(var(--burst-rot) + 6deg));
-  }
-}
-
-@keyframes burst-pop-float {
-  0% {
-    opacity: 0;
-    transform: translate(0, 20px) scale(0.26) rotate(var(--burst-rot));
-  }
-
-  13% {
-    opacity: 1;
-    transform: translate(var(--burst-mid-x), -46px) scale(1.04) rotate(calc(var(--burst-rot) + 6deg));
-  }
-
-  26% {
-    transform: translate(calc(var(--burst-dx) * 0.12), 8px) scale(0.92) rotate(calc(var(--burst-rot) - 5deg));
-  }
-
-  40% {
-    transform: translate(calc(var(--burst-dx) * 0.35), -200px) scale(0.96) rotate(calc(var(--burst-rot) + 3deg));
-  }
-
-  100% {
-    opacity: 0;
-    transform: translate(var(--burst-dx), min(-70vh, -480px)) scale(0.8) rotate(calc(var(--burst-rot) + 5deg));
+    transform: translate3d(var(--burst-dx), min(-68vh, -460px), 0) scale(0.86) rotate(calc(var(--burst-rot) + 3deg));
   }
 }
 
@@ -1447,16 +1376,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .celebration-burst-photo--pop-scatter,
-  .celebration-burst-photo--pop-scatter-wide,
-  .celebration-burst-photo--pop-scatter-sway,
-  .celebration-burst-photo--pop-rise,
-  .celebration-burst-photo--pop-spring,
-  .celebration-burst-photo--pop-float,
-  .celebration-burst-photo--pop-wiggle,
-  .celebration-burst-photo--pop-spin,
-  .celebration-burst-photo--pop-arc {
-    animation: burst-pop-rise 1.5s ease-out forwards;
+  .celebration-burst-photo--pop-launch,
+  .celebration-burst-photo--pop-launch-fast,
+  .celebration-burst-photo--pop-launch-wide {
+    animation: burst-pop-launch 1.4s ease-out forwards;
   }
 }
 
