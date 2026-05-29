@@ -168,10 +168,23 @@ body {
 }
 
 .side-theme[data-theme="friends"].is-active {
-  background: linear-gradient(160deg, #8a8378 0%, #4a4540 100%);
-  border-color: rgba(255, 248, 235, 0.5);
+  background: linear-gradient(160deg, #9a9288 0%, #4a4540 100%);
+  border-color: rgba(255, 248, 235, 0.55);
   color: #fff;
   box-shadow: 0 3px 10px rgba(44, 42, 38, 0.28);
+}
+
+.side-theme[data-theme="gintama"] {
+  background: linear-gradient(160deg, #eef1f6 0%, #c5cad4 100%);
+  border-color: rgba(42, 58, 92, 0.3);
+  color: #1a2233;
+}
+
+.side-theme[data-theme="gintama"].is-active {
+  background: linear-gradient(160deg, #4a5f82 0%, #1a2233 100%);
+  border-color: rgba(232, 90, 130, 0.55);
+  color: #fff;
+  box-shadow: 0 3px 10px rgba(26, 34, 51, 0.28);
 }
 
 .side-quick {
@@ -426,7 +439,7 @@ body {
 }
 
 .theme-row-icon {
-  background: linear-gradient(135deg, #8fd4b8, #6a3f96 48%, #8a8378);
+  background: linear-gradient(135deg, #2f8f72 0%, #7b52a8 38%, #5c574f 68%, #e85a82 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -510,53 +523,53 @@ body {
 }
 
 .theme-chip--kuromi {
-  background: linear-gradient(145deg, #faf6ff 0%, #e5d8f2 100%);
-  border-color: rgba(106, 63, 150, 0.3);
+  background: linear-gradient(145deg, #fcf8ff 0%, #e8dcf4 100%);
+  border-color: rgba(69, 32, 112, 0.34);
   color: #2d1548;
 }
 
 .theme-chip--kuromi .theme-chip-dot {
-  background: linear-gradient(145deg, #b088d4, #6a3f96);
+  background: linear-gradient(145deg, #e8c4f8, #6a3f96);
 }
 
 .theme-chip--kuromi.is-active {
-  background: linear-gradient(145deg, #7b52a8 0%, #2d1548 100%);
+  background: linear-gradient(145deg, #8b62b8 0%, #2d1548 100%);
   border-color: #2d1548;
   color: #fff;
   box-shadow: 0 4px 14px rgba(45, 21, 72, 0.3);
 }
 
 .theme-chip--friends {
-  background: linear-gradient(145deg, #f0ebe3 0%, #d8d0c4 100%);
-  border-color: rgba(90, 82, 72, 0.28);
-  color: #3d3934;
+  background: linear-gradient(145deg, #faf6f0 0%, #e0d6c8 100%);
+  border-color: rgba(56, 53, 48, 0.32);
+  color: #2c2a28;
 }
 
 .theme-chip--friends .theme-chip-dot {
-  background: linear-gradient(145deg, #a89f92, #5c574f);
+  background: linear-gradient(145deg, #e8c090, #5c574f);
 }
 
 .theme-chip--friends.is-active {
-  background: linear-gradient(145deg, #7a7268 0%, #4a4540 100%);
-  border-color: rgba(255, 248, 235, 0.45);
+  background: linear-gradient(145deg, #8a8378 0%, #383532 100%);
+  border-color: rgba(255, 248, 235, 0.5);
   color: #fffaf2;
   box-shadow: 0 4px 14px rgba(44, 42, 38, 0.28);
 }
 
 .theme-chip--gintama {
-  background: linear-gradient(145deg, #eef1f6 0%, #c5cad4 100%);
-  border-color: rgba(42, 58, 92, 0.28);
+  background: linear-gradient(145deg, #f4f6fa 0%, #d5dae3 100%);
+  border-color: rgba(42, 58, 92, 0.34);
   color: #1a2233;
 }
 
 .theme-chip--gintama .theme-chip-dot {
-  background: linear-gradient(145deg, #d4567a, #2a3a5c);
+  background: linear-gradient(145deg, #e85a82, #2a3a5c);
 }
 
 .theme-chip--gintama.is-active {
-  background: linear-gradient(145deg, #3d4f6a 0%, #1a2233 100%);
-  border-color: rgba(212, 86, 122, 0.45);
-  color: #f4f6fa;
+  background: linear-gradient(145deg, #4a5f82 0%, #1a2233 100%);
+  border-color: rgba(232, 90, 130, 0.5);
+  color: #fff;
   box-shadow: 0 4px 14px rgba(18, 21, 28, 0.28);
 }
 
