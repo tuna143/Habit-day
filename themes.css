@@ -1290,22 +1290,22 @@
   --burst-rot: 0deg;
   box-shadow:
     0 0 0 3px #ffffff,
-    0 14px 32px rgba(0, 0, 0, 0.38);
+    0 10px 28px rgba(0, 0, 0, 0.5);
   will-change: transform, opacity;
   transform-origin: center bottom;
   backface-visibility: hidden;
 }
 
 .celebration-burst-photo--pop-launch {
-  animation: burst-pop-launch 2.85s cubic-bezier(0.2, 0.92, 0.32, 1.02) forwards;
+  animation: burst-pop-launch 3.55s cubic-bezier(0.2, 0.92, 0.32, 1.02) forwards;
 }
 
 .celebration-burst-photo--pop-launch-fast {
-  animation: burst-pop-launch 2.6s cubic-bezier(0.24, 1.02, 0.34, 1) forwards;
+  animation: burst-pop-launch 3.25s cubic-bezier(0.24, 1.02, 0.34, 1) forwards;
 }
 
 .celebration-burst-photo--pop-launch-wide {
-  animation: burst-pop-launch 3.1s cubic-bezier(0.18, 0.9, 0.3, 1.03) forwards;
+  animation: burst-pop-launch 3.85s cubic-bezier(0.18, 0.9, 0.3, 1.03) forwards;
 }
 
 .celebration-burst-badge {
@@ -1334,7 +1334,8 @@
   justify-content: center;
   line-height: 1;
   pointer-events: none;
-  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.45));
+  opacity: 1;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.55)) drop-shadow(0 0 10px rgba(255, 255, 255, 0.35));
 }
 
 .celebration-burst-badge--kuromi .celebration-burst-badge__mark {
@@ -1374,12 +1375,20 @@
     transform: translate3d(0, 10px, 0) scale(0.32) rotate(var(--burst-rot));
   }
 
-  6% {
+  8% {
     opacity: 1;
   }
 
+  72% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 0.92;
+  }
+
   100% {
-    opacity: 0;
+    opacity: 0.55;
     transform: translate3d(var(--burst-dx), min(-68vh, -460px), 0) scale(0.86) rotate(calc(var(--burst-rot) + 3deg));
   }
 }
@@ -1454,7 +1463,7 @@
   .celebration-burst-badge.celebration-burst-photo--pop-launch,
   .celebration-burst-badge.celebration-burst-photo--pop-launch-fast,
   .celebration-burst-badge.celebration-burst-photo--pop-launch-wide {
-    animation: burst-pop-launch 1.4s ease-out forwards;
+    animation: burst-pop-launch 1.85s ease-out forwards;
   }
 }
 

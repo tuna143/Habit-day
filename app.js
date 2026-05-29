@@ -378,7 +378,7 @@ if (!habitForm) {
         }
 
         spawnCelebrationPhotoPop(w, h);
-      }, burst * 200 + Math.random() * 160);
+      }, burst * 280 + Math.random() * 200);
     }
 
     if (!isCelebrationBadgeTheme(theme)) {
@@ -392,7 +392,7 @@ if (!habitForm) {
         }
 
         spawnCelebrationBadgePop(w, h, theme, badge);
-      }, badge * 220 + 120 + Math.random() * 140);
+      }, badge * 300 + 160 + Math.random() * 180);
     }
   }
 
