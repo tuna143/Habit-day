@@ -354,7 +354,13 @@
 }
 
 .theme-collage--home {
-  height: calc(var(--collage-photo-h) * 4 + var(--collage-photo-gap) * 3);
+  --collage-photo-sub-h: calc(var(--collage-photo-h) * 0.76);
+  --collage-photo-sub-w: min(36vw, 198px);
+  left: 0;
+  right: 0;
+  width: auto;
+  height: min(78vh, 560px);
+  min-height: calc(var(--collage-photo-h) * 1.4);
 }
 
 [data-theme="friends"] .friends-collage,
@@ -383,41 +389,50 @@
 }
 
 .theme-photo-sub {
-  opacity: 0.38;
+  opacity: 0.36;
   z-index: 1;
 }
 
-/* 홈 1: 위 오른쪽(메인) */
+/* 홈 1: 메인(토끼/쿠로미) — 우상단, 원래 크기 */
 .theme-collage--home .theme-photo-main {
-  top: 0;
-  right: 0;
-}
-
-/* 홈 2: 왼쪽 */
-.theme-collage--home .theme-photo-sub--left {
-  top: calc(var(--collage-photo-h) + var(--collage-photo-gap));
-  left: 0;
-  right: auto;
-  transform: rotate(-6deg);
-  transform-origin: 0% 50%;
-}
-
-/* 홈 3: 오른쪽 */
-.theme-collage--home .theme-photo-sub--right {
-  top: calc((var(--collage-photo-h) + var(--collage-photo-gap)) * 2);
-  right: 0;
+  top: max(8px, env(safe-area-inset-top));
+  right: max(6px, env(safe-area-inset-right));
   left: auto;
-  transform: rotate(5deg);
-  transform-origin: 100% 50%;
 }
 
-/* 홈 4: 왼쪽 아래 */
-.theme-collage--home .theme-photo-sub--bl {
-  top: calc((var(--collage-photo-h) + var(--collage-photo-gap)) * 3);
-  left: 0;
+/* 홈 2: 서브 — 메인 왼쪽(반대편)이 아니라 우측 아래, 작게 */
+.theme-collage--home .theme-photo-sub--left {
+  top: calc(max(8px, env(safe-area-inset-top)) + var(--collage-photo-h) * 0.58);
+  right: max(10px, env(safe-area-inset-right));
+  left: auto;
+  width: var(--collage-photo-sub-w);
+  height: var(--collage-photo-sub-h);
+  transform: rotate(7deg);
+  transform-origin: 100% 0;
+}
+
+/* 홈 3: 서브 — 아래로 쌓지 않고 본문과 절반 겹침, 좌측에서 살짝 */
+.theme-collage--home .theme-photo-sub--right {
+  top: clamp(210px, 34vh, 360px);
+  left: max(4px, env(safe-area-inset-left));
   right: auto;
-  transform: rotate(-4deg);
-  transform-origin: 0% 100%;
+  width: var(--collage-photo-sub-w);
+  height: var(--collage-photo-sub-h);
+  transform: rotate(-5deg);
+  transform-origin: 0% 35%;
+  opacity: 0.3;
+}
+
+/* 홈 4: 서브 — 좌상단 악센트, 작게 */
+.theme-collage--home .theme-photo-sub--bl {
+  top: max(20px, calc(12px + env(safe-area-inset-top)));
+  left: max(8px, env(safe-area-inset-left));
+  right: auto;
+  width: min(30vw, 164px);
+  height: calc(var(--collage-photo-sub-h) * 0.9);
+  transform: rotate(-6deg);
+  transform-origin: 0% 0;
+  opacity: 0.34;
 }
 
 .page-home .theme-collage--home {
@@ -1024,15 +1039,26 @@ body.celebration-open {
   .theme-collage--home {
     --collage-photo-h: min(50vw, 226px);
     --collage-photo-gap: clamp(18px, 4.5vw, 28px);
-    width: min(52vw, 248px);
+    --collage-photo-sub-w: min(34vw, 172px);
+    --collage-photo-sub-h: calc(var(--collage-photo-h) * 0.74);
+    min-height: calc(var(--collage-photo-h) * 1.35);
   }
 
   .page-home .theme-collage--home {
-    top: max(48px, calc(40px + env(safe-area-inset-top)));
+    top: 0;
   }
 
-  .theme-collage--home .theme-photo {
+  .theme-collage--home .theme-photo-main {
     width: min(46vw, 210px);
+  }
+
+  .theme-collage--home .theme-photo-sub--right {
+    top: clamp(188px, 32vh, 300px);
+    opacity: 0.28;
+  }
+
+  .theme-collage--home .theme-photo-sub--bl {
+    width: min(28vw, 148px);
   }
 
   .theme-collage--subpage {
