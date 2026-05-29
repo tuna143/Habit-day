@@ -810,13 +810,20 @@
 [data-theme="kuromi"] .overview-copy .overview-date,
 [data-theme="gintama"] .overview-copy .overview-date,
 [data-theme="toothless"] .overview-copy .overview-date {
-  margin-left: 0.28em;
-  font-size: clamp(11px, 2.6vw, 14px);
+  margin-left: 0.22em;
+  font-size: clamp(10px, 2.4vw, 12px);
   font-weight: 700;
   letter-spacing: 0.02em;
-  color: color-mix(in srgb, var(--ink) 68%, var(--muted));
-  white-space: nowrap;
-  line-height: 1.15;
+  color: color-mix(in srgb, var(--ink) 62%, var(--muted));
+  line-height: 1.1;
+}
+
+[data-theme="friends"] .overview-title.is-habit-glued .overview-title-habit,
+[data-theme="kuromi"] .overview-title.is-habit-glued .overview-title-habit,
+[data-theme="gintama"] .overview-title.is-habit-glued .overview-title-habit,
+[data-theme="toothless"] .overview-title.is-habit-glued .overview-title-habit {
+  font-size: inherit;
+  font-weight: inherit;
 }
 
 [data-theme="friends"] .overview-copy .summary,
@@ -864,10 +871,6 @@
   letter-spacing: -0.03em;
   margin: 0;
   line-height: 1.14;
-}
-
-[data-theme="kuromi"] .overview-copy .overview-title {
-  display: inline-flex;
 }
 
 .theme-progress-inline {
@@ -945,13 +948,9 @@
   line-height: 1.14;
 }
 
-[data-theme="toothless"] .overview-title-text {
+[data-theme="toothless"] .overview-title-prefix {
   overflow-wrap: anywhere;
   word-break: keep-all;
-}
-
-[data-theme="toothless"] .overview-copy .overview-title {
-  display: inline-flex;
 }
 
 [data-theme="friends"] .subpage-header,

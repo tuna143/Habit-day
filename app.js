@@ -13,7 +13,8 @@ if (!habitForm) {
   const progressPercent = document.querySelector("#progressPercent");
   const appEyebrow = document.querySelector("#app-eyebrow");
   const appTitle = document.querySelector("#app-title");
-  const appTitleText = document.querySelector("#app-title-text");
+  const appTitlePrefix = document.querySelector("#app-title-prefix");
+  const appTitleHabit = document.querySelector("#app-title-habit");
   const appDate = document.querySelector("#app-date");
   const themeProgressFill = document.querySelector("#themeProgressFill");
   const themeProgressPct = document.querySelector("#themeProgressPct");
@@ -134,6 +135,35 @@ if (!habitForm) {
     return `${month}/${day} ${weekdayShort[date.getDay()]}`;
   }
 
+  /** Name's habit titles: line 1 = "Name's", line 2 = "habit" + small date */
+  function shouldGlueDateAfterHabit(titleText) {
+    return /'s\s+habit\s*$/i.test((titleText || "").trim());
+  }
+
+  function setOverviewTitle(titleText) {
+    if (appTitlePrefix && appTitleHabit && appTitle) {
+      const gluedMatch = shouldGlueDateAfterHabit(titleText)
+        ? titleText.match(/^(.+'s)\s+(habit)\s*$/i)
+        : null;
+
+      appTitle.classList.toggle("is-habit-glued", Boolean(gluedMatch));
+
+      if (gluedMatch) {
+        appTitlePrefix.textContent = `${gluedMatch[1]}`;
+        appTitleHabit.textContent = gluedMatch[2];
+      } else {
+        appTitlePrefix.textContent = titleText;
+        appTitleHabit.textContent = "";
+      }
+
+      return;
+    }
+
+    if (appTitle) {
+      appTitle.textContent = titleText;
+    }
+  }
+
   function getThemeTodayTitle() {
     if (typeof HabitTheme !== "undefined" && typeof HabitTheme.getTodayTitle === "function") {
       return HabitTheme.getTodayTitle();
@@ -155,11 +185,7 @@ if (!habitForm) {
 
     const titleText = themeTitle || (isToday ? "Today's Habits" : `Habits for ${label}`);
 
-    if (appTitleText) {
-      appTitleText.textContent = titleText;
-    } else if (appTitle) {
-      appTitle.textContent = titleText;
-    }
+    setOverviewTitle(titleText);
 
     if (appDate) {
       appDate.textContent = formatTitleBoxDate(activeDateKey);

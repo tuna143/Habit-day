@@ -62,27 +62,52 @@ input {
 }
 
 .overview-title {
-  display: inline-flex;
-  flex-wrap: nowrap;
-  align-items: baseline;
-  gap: 0;
+  display: block;
   max-width: 100%;
   margin-bottom: 8px;
+  line-height: 1.1;
 }
 
-.overview-title-text {
-  min-width: 0;
+.overview-title-prefix,
+.overview-title-habit,
+.overview-title-tail,
+.overview-date {
+  display: inline;
+}
+
+.overview-title-tail {
+  white-space: nowrap;
+}
+
+/* Lucy's / Kromi's on line 1 — habit + date together on line 2 */
+.overview-title.is-habit-glued .overview-title-prefix {
+  display: block;
+}
+
+.overview-title.is-habit-glued .overview-title-tail {
+  display: block;
+  margin-top: 1px;
+  white-space: nowrap;
+}
+
+.overview-title:not(.is-habit-glued) .overview-title-habit:empty {
+  display: none;
+}
+
+.overview-title:not(.is-habit-glued) .overview-date {
+  margin-left: 0.28em;
+}
+
+.overview-title.is-habit-glued .overview-date {
+  margin-left: 0.22em;
 }
 
 .overview-date {
-  margin: 0 0 0 0.32em;
-  flex-shrink: 0;
   color: var(--muted);
   font-size: clamp(14px, 3.2vw, 20px);
   font-weight: 600;
   letter-spacing: 0.02em;
-  line-height: 1.2;
-  white-space: nowrap;
+  line-height: inherit;
 }
 
 h1,
