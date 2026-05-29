@@ -799,15 +799,25 @@
   letter-spacing: 0.04em;
 }
 
+[data-theme="friends"] .overview-title-row,
+[data-theme="kuromi"] .overview-title-row,
+[data-theme="gintama"] .overview-title-row,
+[data-theme="toothless"] .overview-title-row {
+  gap: 5px 8px;
+  margin-bottom: 4px;
+}
+
 [data-theme="friends"] .overview-copy .overview-date,
 [data-theme="kuromi"] .overview-copy .overview-date,
 [data-theme="gintama"] .overview-copy .overview-date,
 [data-theme="toothless"] .overview-copy .overview-date {
-  margin: 2px 0 4px;
-  font-size: 9px;
+  font-size: clamp(11px, 2.6vw, 14px);
   font-weight: 700;
-  letter-spacing: 0.03em;
-  color: color-mix(in srgb, var(--ink) 62%, var(--muted));
+  letter-spacing: 0.02em;
+  color: color-mix(in srgb, var(--ink) 68%, var(--muted));
+  white-space: normal;
+  max-width: 9.5rem;
+  line-height: 1.15;
 }
 
 [data-theme="friends"] .overview-copy .summary,
