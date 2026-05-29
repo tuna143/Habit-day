@@ -1,9 +1,26 @@
 const themeStorageKey = "habit-theme";
 const themes = ["original", "kuromi", "friends"];
-const themeColors = {
-  original: "#f6f7f2",
-  kuromi: "#ccc6d4",
-  friends: "#e8e5e0",
+const ICON_BUST = "16";
+
+const themeBranding = {
+  original: {
+    themeColor: "#26735b",
+    svg: "icon.svg",
+    apple: "apple-touch-icon.png",
+    png192: "icon-192.png",
+  },
+  kuromi: {
+    themeColor: "#2d1548",
+    svg: "icon-kuromi.svg",
+    apple: "apple-touch-icon-kuromi.png",
+    png192: "icon-192-kuromi.png",
+  },
+  friends: {
+    themeColor: "#3d3934",
+    svg: "icon-friends.svg",
+    apple: "apple-touch-icon-friends.png",
+    png192: "icon-192-friends.png",
+  },
 };
 
 function getTheme() {
@@ -17,16 +34,57 @@ function getTheme() {
   return themes.includes(saved) ? saved : "original";
 }
 
-function applyTheme(theme) {
-  document.documentElement.dataset.theme = theme;
-  localStorage.setItem(themeStorageKey, theme);
-  syncThemeButtons(theme);
+function setLinkHref(selector, href) {
+  let link = document.querySelector(selector);
+
+  if (!link) {
+    link = document.createElement("link");
+    const relMatch = selector.match(/rel="([^"]+)"/);
+
+    if (relMatch) {
+      link.rel = relMatch[1];
+    }
+
+    if (selector.includes("image/svg")) {
+      link.type = "image/svg+xml";
+    }
+
+    if (selector.includes("192x192")) {
+      link.sizes = "192x192";
+      link.type = "image/png";
+    }
+
+    if (selector.includes("apple-touch")) {
+      link.sizes = "180x180";
+    }
+
+    link.setAttribute("data-theme-icon", "true");
+    document.head.appendChild(link);
+  }
+
+  link.href = href;
+}
+
+function syncThemeBranding(theme) {
+  const brand = themeBranding[theme] || themeBranding.original;
+  const q = `?v=${ICON_BUST}`;
 
   const themeColorMeta = document.querySelector('meta[name="theme-color"]');
 
   if (themeColorMeta) {
-    themeColorMeta.setAttribute("content", themeColors[theme] || themeColors.original);
+    themeColorMeta.setAttribute("content", brand.themeColor);
   }
+
+  setLinkHref('link[rel="apple-touch-icon"]', `${brand.apple}${q}`);
+  setLinkHref('link[rel="icon"][sizes="192x192"]', `${brand.png192}${q}`);
+  setLinkHref('link[rel="icon"][type="image/svg+xml"]', `${brand.svg}${q}`);
+}
+
+function applyTheme(theme) {
+  document.documentElement.dataset.theme = theme;
+  localStorage.setItem(themeStorageKey, theme);
+  syncThemeButtons(theme);
+  syncThemeBranding(theme);
 
   window.dispatchEvent(new CustomEvent("habit-theme-change", { detail: { theme } }));
 }
