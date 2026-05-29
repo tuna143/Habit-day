@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en" data-theme="original">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#f6f7f2" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <title>Habit Day</title>
+    <link rel="manifest" href="manifest.webmanifest?v=8" />
+    <link rel="icon" href="icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="icon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Outfit:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css?v=8" />
+    <link rel="stylesheet" href="layout.css?v=8" />
+    <link rel="stylesheet" href="themes.css?v=8" />
+    <script>
+      window.__HABIT_BUILD = "8";
+      (function () {
+        if ("serviceWorker" in navigator) {
+          navigator.serviceWorker.getRegistrations().then(function (regs) {
+            regs.forEach(function (reg) {
+              reg.update();
+            });
+          });
+        }
+        if (window.caches) {
+          caches.keys().then(function (keys) {
+            keys.forEach(function (key) {
+              if (key.indexOf("habit-day-v8") === -1) {
+                caches.delete(key);
+              }
+            });
+          });
+        }
+      })();
+    </script>
+    <script src="theme.js?v=8"></script>
+  </head>
+  <body>
+    <div class="app-layout">
+      <aside id="app-sidebar" class="app-sidebar" data-page="home"></aside>
+
+      <div class="app-content">
+        <div class="friends-scene theme-decor theme-decor-friends" aria-hidden="true">
+          <img
+            class="friends-cutout cutout-a"
+            src="assets/friends/banner.png"
+            alt=""
+            onerror="this.onerror=null;this.src='assets/friends/hero.svg'"
+          />
+          <img
+            class="friends-cutout cutout-b"
+            src="assets/friends/day-04.png"
+            alt=""
+            onerror="this.onerror=null;this.style.display='none'"
+          />
+          <img
+            class="friends-cutout cutout-c"
+            src="assets/friends/day-05.png"
+            alt=""
+            onerror="this.onerror=null;this.style.display='none'"
+          />
+        </div>
+        <div class="kuromi-scene theme-decor theme-decor-kuromi" aria-hidden="true">
+          <img
+            class="kuromi-cutout cutout-a"
+            src="assets/kuromi/celebrate.png"
+            alt=""
+            onerror="this.onerror=null;this.src='assets/kuromi/hero.svg'"
+          />
+          <img
+            class="kuromi-cutout cutout-b"
+            src="assets/kuromi/scene-01.png"
+            alt=""
+            onerror="this.onerror=null;this.style.display='none'"
+          />
+          <img
+            class="kuromi-cutout cutout-c"
+            src="assets/kuromi/scene-02.png"
+            alt=""
+            onerror="this.onerror=null;this.style.display='none'"
+          />
+        </div>
+        <main class="app-shell">
+          <section class="overview overview-wrap" aria-labelledby="app-title">
+            <div class="overview-copy">
+              <p class="eyebrow" id="app-eyebrow">Habit Day</p>
+              <h1 id="app-title">Today's Habits</h1>
+              <div class="theme-progress-inline" id="themeProgressInline" aria-live="polite">
+                <div class="theme-progress-track">
+                  <span class="theme-progress-fill" id="themeProgressFill"></span>
+                </div>
+                <span class="theme-progress-pct" id="themeProgressPct">0%</span>
+              </div>
+              <p class="summary" id="summaryText">Start small and keep your day moving.</p>
+            </div>
+            <div class="progress-card" id="progressCard" aria-live="polite">
+              <span id="progressPercent">0%</span>
+              <p>Complete</p>
+              <img
+                class="theme-decor theme-decor-kuromi decor-progress"
+                data-src-base="assets/kuromi/progress"
+                src="assets/kuromi/progress.svg"
+                alt=""
+              />
+            </div>
+          </section>
+
+          <section class="composer" aria-label="Add habit">
+            <form id="habitForm">
+              <label for="habitInput">New habit</label>
+              <div class="input-row">
+                <input
+                  id="habitInput"
+                  name="habit"
+                  type="text"
+                  maxlength="32"
+                  placeholder="Example: Drink water"
+                  autocomplete="off"
+                  enterkeyhint="done"
+                />
+                <button type="submit" id="habitAddButton">Add</button>
+              </div>
+            </form>
+          </section>
+
+          <section class="board" aria-label="Habit list">
+            <div class="toolbar">
+              <h2>Checklist</h2>
+              <button class="ghost-button" id="resetToday" type="button">Reset today</button>
+            </div>
+            <ul class="habit-list" id="habitList"></ul>
+            <p class="empty-state has-decor" id="emptyState">
+              <img
+                class="theme-decor theme-decor-kuromi decor-empty"
+                data-src-base="assets/kuromi/empty"
+                src="assets/kuromi/empty.svg"
+                alt=""
+              />
+              No habits yet. Add one above to get started.
+            </p>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <div id="themeCelebration" class="theme-celebration" hidden>
+      <div class="celebration-backdrop"></div>
+      <div class="celebration-fireworks" id="celebrationFireworks" aria-hidden="true"></div>
+      <div class="celebration-panel">
+        <div class="celebration-hero">
+          <div class="celebration-photo-ring" aria-hidden="true">
+            <img
+              class="celebration-photo"
+              src="assets/friends/banner.png"
+              alt=""
+              onerror="this.onerror=null;this.src='assets/friends/hero.svg'"
+            />
+          </div>
+          <p class="celebration-tagline">The bunny approves.</p>
+          <p class="celebration-title">Perfect day</p>
+        </div>
+        <p class="celebration-hint">Tap to close</p>
+      </div>
+    </div>
+
+    <template id="habitTemplate">
+      <li class="habit-item">
+        <button class="check-button" type="button" aria-label="Toggle complete"></button>
+        <div class="habit-copy">
+          <strong></strong>
+          <span></span>
+        </div>
+        <button class="delete-button" type="button" aria-label="Delete">x</button>
+      </li>
+    </template>
+
+    <script src="sidebar.js?v=8"></script>
+    <script src="shared.js?v=8"></script>
+    <script src="user-photos.js?v=8"></script>
+    <script src="fireworks.js?v=8"></script>
+    <script src="app.js?v=8"></script>
+  </body>
+</html>

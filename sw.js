@@ -1,9 +1,23 @@
-const cacheName = "habit-day-v7";
-const mainPage = "./습관바꾸기.html";
+const cacheName = "habit-day-v8";
+const mainPage = "./app.html";
+
+function isCodeRequest(request) {
+  const url = request.url;
+
+  return (
+    request.destination === "script" ||
+    request.destination === "style" ||
+    request.mode === "navigate" ||
+    request.destination === "document" ||
+    /\.(html|js|css|webmanifest)(\?|$)/i.test(url)
+  );
+}
+
 const appShell = [
   "./",
   mainPage,
   "./index.html",
+  "./습관바꾸기.html",
   "./weekly.html",
   "./calendar.html",
   "./photos.html",
@@ -44,15 +58,14 @@ self.addEventListener("fetch", (event) => {
   }
 
   const request = event.request;
-  const isNavigation = request.mode === "navigate" || request.destination === "document";
 
-  if (isNavigation) {
+  if (isCodeRequest(request)) {
     event.respondWith(
       fetch(request)
         .then((response) => {
           if (response && response.ok) {
             const copy = response.clone();
-            caches.open(cacheName).then((cache) => cache.put(request.url, copy));
+            caches.open(cacheName).then((cache) => cache.put(request, copy));
           }
           return response;
         })

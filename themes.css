@@ -377,13 +377,13 @@
 [data-theme="kuromi"] .overview-copy {
   position: relative;
   z-index: 2;
-  max-width: min(420px, 58%);
+  max-width: min(380px, 52%);
   padding: 16px 18px;
   border-radius: var(--radius);
-  background: color-mix(in srgb, var(--card-bg) 88%, transparent);
+  background: color-mix(in srgb, var(--card-bg) 82%, transparent);
   border: 1px solid var(--card-border);
   box-shadow: var(--shadow);
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(4px);
 }
 
 [data-theme="friends"] .composer,
@@ -955,9 +955,23 @@ body.celebration-open {
 
   [data-theme="friends"] .overview-copy,
   [data-theme="kuromi"] .overview-copy {
-    max-width: min(100%, 68%);
+    max-width: min(100%, 62%);
     padding: 14px 16px;
-    background: color-mix(in srgb, var(--card-bg) 92%, transparent);
+    background: color-mix(in srgb, var(--card-bg) 86%, transparent);
+  }
+
+  .friends-scene,
+  .kuromi-scene {
+    z-index: 1;
+  }
+
+  .friends-cutout.cutout-a,
+  .kuromi-cutout.cutout-a {
+    width: min(52vw, 220px) !important;
+    right: 0 !important;
+    top: -4px !important;
+    opacity: 1 !important;
+    filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.28));
   }
 
   [data-theme="friends"] h1,

@@ -1,4 +1,4 @@
-const HOME_HREF = "습관바꾸기.html";
+const HOME_HREF = "app.html";
 
 function renderSidebar() {
   const sidebar = document.getElementById("app-sidebar");

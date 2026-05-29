@@ -2,7 +2,7 @@
   "name": "Habit Day",
   "short_name": "Habit Day",
   "description": "A small daily habit tracker.",
-  "start_url": "./습관바꾸기.html",
+  "start_url": "./app.html",
   "scope": "./",
   "display": "standalone",
   "background_color": "#f6f7f2",

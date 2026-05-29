@@ -23,9 +23,35 @@ if (!habitForm) {
   const celebrationTagline = document.querySelector(".celebration-tagline");
   const celebrationTitle = document.querySelector(".celebration-title");
 
-  let data = loadData();
+  let data = normalizeData(loadData());
   let activeDateKey = getSelectedDate();
   let previousPercent = null;
+
+  function normalizeData(raw) {
+    if (!raw || !Array.isArray(raw.habits)) {
+      return { habits: [], history: {} };
+    }
+
+    return {
+      habits: raw.habits.filter((habit) => habit && habit.id && habit.title),
+      history: raw.history && typeof raw.history === "object" ? raw.history : {},
+    };
+  }
+
+  function persistData() {
+    try {
+      saveData(data);
+      return true;
+    } catch (error) {
+      console.error("Habit Day save failed:", error);
+
+      if (summaryText) {
+        summaryText.textContent = "Could not save on this device. Try Safari/Chrome (not private mode).";
+      }
+
+      return false;
+    }
+  }
 
   const CELEBRATION_COPY = {
     friends: { tagline: "The bunny approves.", title: "Perfect day" },
@@ -238,14 +264,15 @@ if (!habitForm) {
       checkButton.setAttribute("aria-pressed", String(done));
 
       checkButton.addEventListener("click", () => {
-        setHabitDone(data, habit.id, !done, activeDateKey);
+        const currentlyDone = isHabitDone(data, habit.id, activeDateKey);
+        setHabitDone(data, habit.id, !currentlyDone, activeDateKey);
         renderHabits();
       });
 
       deleteButton.addEventListener("click", () => {
         data.habits = data.habits.filter((itemHabit) => itemHabit.id !== habit.id);
         pruneHabitHistory(habit.id);
-        saveData(data);
+        persistData();
         renderHabits();
       });
 
@@ -256,9 +283,7 @@ if (!habitForm) {
     renderProgress();
   }
 
-  habitForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-
+  function addHabitFromInput() {
     const title = habitInput.value.trim();
 
     if (!title) {
@@ -268,16 +293,32 @@ if (!habitForm) {
 
     data.habits = [{ id: makeId(), title }, ...data.habits];
     habitInput.value = "";
-    saveData(data);
-    renderHabits();
-    habitInput.focus();
+
+    if (persistData()) {
+      renderHabits();
+      habitInput.focus();
+    }
+  }
+
+  habitForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    addHabitFromInput();
   });
+
+  const habitAddButton = document.querySelector("#habitAddButton");
+
+  if (habitAddButton) {
+    habitAddButton.addEventListener("click", (event) => {
+      event.preventDefault();
+      addHabitFromInput();
+    });
+  }
 
   if (resetToday) {
     resetToday.addEventListener("click", () => {
       if (data.history[activeDateKey]) {
         delete data.history[activeDateKey];
-        saveData(data);
+        persistData();
       }
 
       renderHabits();
@@ -304,17 +345,17 @@ if (!habitForm) {
 
   function boot() {
     activeDateKey = getSelectedDate();
-    data = loadData();
+    data = normalizeData(loadData());
     renderHabits();
   }
 
+  boot();
+
   if (typeof UserPhotos !== "undefined") {
-    UserPhotos.ready().then(boot).catch(boot);
-  } else {
-    boot();
+    UserPhotos.ready().then(renderHabits).catch(() => {});
   }
 }
 
 if ("serviceWorker" in navigator && location.protocol !== "file:") {
-  navigator.serviceWorker.register("./sw.js").catch(() => {});
+  navigator.serviceWorker.register("./sw.js?v=8").catch(() => {});
 }

@@ -4,25 +4,29 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Habit Day</title>
-    <meta http-equiv="refresh" content="0; url=습관바꾸기.html" />
-    <link rel="canonical" href="습관바꾸기.html" />
+    <link rel="canonical" href="app.html" />
+    <meta http-equiv="refresh" content="0; url=app.html" />
     <script>
       (function () {
-        var main = "습관바꾸기.html";
-
         if ("serviceWorker" in navigator) {
-          navigator.serviceWorker.getRegistrations().then(function (registrations) {
-            registrations.forEach(function (registration) {
-              registration.unregister();
+          navigator.serviceWorker.getRegistrations().then(function (regs) {
+            regs.forEach(function (reg) {
+              reg.unregister();
             });
           });
         }
-
-        location.replace(main);
+        if (window.caches) {
+          caches.keys().then(function (keys) {
+            keys.forEach(function (key) {
+              caches.delete(key);
+            });
+          });
+        }
+        location.replace("app.html");
       })();
     </script>
   </head>
   <body>
-    <p><a href="습관바꾸기.html">Habit Day 열기</a></p>
+    <p><a href="app.html">Habit Day 열기</a></p>
   </body>
 </html>

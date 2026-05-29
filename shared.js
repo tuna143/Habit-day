@@ -68,8 +68,10 @@ function loadData() {
 
     if (parsed.habits && parsed.history) {
       return {
-        habits: parsed.habits,
-        history: parsed.history,
+        habits: Array.isArray(parsed.habits)
+          ? parsed.habits.filter((habit) => habit && habit.id && habit.title)
+          : [],
+        history: parsed.history && typeof parsed.history === "object" ? parsed.history : {},
       };
     }
   } catch {
@@ -163,7 +165,7 @@ function goToMainPage(dateKey) {
     setSelectedDate(dateKey);
   }
 
-  window.location.href = "습관바꾸기.html";
+  window.location.href = "app.html";
 }
 
 const FRIENDS_ASSETS = {
