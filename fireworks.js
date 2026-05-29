@@ -84,6 +84,7 @@ const CelebrationFireworks = (() => {
 
   let activeSchemes = SCHEMES_FRIENDS;
   let heartMode = false;
+  let onBurst = null;
 
   const QUALITY = (() => {
     const mobile = /Android|iPhone|iPad|Mobile/i.test(navigator.userAgent);
@@ -417,6 +418,20 @@ const CelebrationFireworks = (() => {
     }, 60 + Math.random() * 40);
   }
 
+  function notifyBurst(x, y, burstType) {
+    if (!onBurst || !width || !height) {
+      return;
+    }
+
+    onBurst({
+      x,
+      y,
+      w: width,
+      h: height,
+      burstType,
+    });
+  }
+
   function explode(x, y, scheme) {
     const roll = Math.random();
     addSmoke(x, y, 20 + Math.random() * 28);
@@ -425,13 +440,19 @@ const CelebrationFireworks = (() => {
       burstHearts(x, y, 1.1);
     }
 
+    let burstType = "chrysanthemum";
+
     if (roll < 0.34) {
+      burstType = "willow";
       burstWillow(x, y, scheme);
     } else if (roll < 0.68) {
+      burstType = "peony";
       burstPeony(x, y, scheme);
     } else {
       burstChrysanthemum(x, y, scheme);
     }
+
+    notifyBurst(x, y, burstType);
 
     if (Math.random() < 0.24 && canAdd(50)) {
       window.setTimeout(() => {
@@ -455,7 +476,7 @@ const CelebrationFireworks = (() => {
 
     launchCount += 1;
     const scheme = pickScheme();
-    rockets.push({
+    const rocket = {
       x: width * (0.08 + Math.random() * 0.84),
       y: height + 6,
       vx: (Math.random() - 0.5) * 0.4,
@@ -463,7 +484,13 @@ const CelebrationFireworks = (() => {
       targetY: height * (0.12 + Math.random() * 0.38),
       scheme,
       trail: [],
-    });
+    };
+
+    rockets.push(rocket);
+
+    if (Math.random() < 0.38) {
+      notifyBurst(rocket.x, height - 8, "launch");
+    }
   }
 
   function updateRockets(dt) {
@@ -802,6 +829,7 @@ const CelebrationFireworks = (() => {
     burstEnded = false;
     launchCount = 0;
     burstStartTime = 0;
+    onBurst = null;
     if (container) {
       container.innerHTML = "";
     }
@@ -810,5 +838,9 @@ const CelebrationFireworks = (() => {
     ctx = null;
   }
 
-  return { start, stop };
+  function setOnBurst(handler) {
+    onBurst = typeof handler === "function" ? handler : null;
+  }
+
+  return { start, stop, setOnBurst };
 })();

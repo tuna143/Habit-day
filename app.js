@@ -21,7 +21,12 @@ if (!habitForm) {
   const celebrationPhotoRing = document.querySelector(".celebration-photo-ring");
   const celebrationTagline = document.querySelector(".celebration-tagline");
   const celebrationTitle = document.querySelector(".celebration-title");
+  const celebrationPhotoBursts = document.querySelector("#celebrationPhotoBursts");
   const habitCameraInput = document.querySelector("#habitCameraInput");
+
+  const CELEBRATION_BURST_STYLES = ["pop-rise", "pop-spring", "pop-float", "pop-wiggle", "pop-spin", "pop-arc"];
+  let celebrationBurstPool = [];
+  let celebrationBurstCounter = 0;
 
   let data = normalizeData(loadData());
   let activeDateKey = getSelectedDate();
@@ -179,6 +184,107 @@ if (!habitForm) {
     return null;
   }
 
+  function getThemeScenePool(theme) {
+    if (theme === "friends" && typeof FRIENDS_SCENE_POOL !== "undefined") {
+      return [...FRIENDS_SCENE_POOL];
+    }
+
+    if (theme === "kuromi" && typeof KUROMI_SCENE_POOL !== "undefined") {
+      return [...KUROMI_SCENE_POOL];
+    }
+
+    if (theme === "gintama" && typeof GINTAMA_SCENE_POOL !== "undefined") {
+      return [...GINTAMA_SCENE_POOL];
+    }
+
+    if (theme === "toothless" && typeof TOOTHLESS_SCENE_POOL !== "undefined") {
+      return [...TOOTHLESS_SCENE_POOL];
+    }
+
+    return [];
+  }
+
+  function prepareCelebrationBurstPool(theme) {
+    const mainUrl = resolveCelebrationImage(theme);
+    const pool = getThemeScenePool(theme).filter((url) => url !== mainUrl);
+
+    celebrationBurstPool = pool.length ? pool : getThemeScenePool(theme);
+    celebrationBurstCounter = 0;
+  }
+
+  function clearCelebrationBursts() {
+    if (celebrationPhotoBursts) {
+      celebrationPhotoBursts.replaceChildren();
+    }
+
+    celebrationBurstPool = [];
+    celebrationBurstCounter = 0;
+  }
+
+  function pickBurstStyle(burstType, index) {
+    if (burstType === "launch") {
+      return CELEBRATION_BURST_STYLES[index % 2 === 0 ? 0 : 1];
+    }
+
+    if (burstType === "willow") {
+      return "pop-float";
+    }
+
+    if (burstType === "peony") {
+      return "pop-spring";
+    }
+
+    if (burstType === "chrysanthemum") {
+      return "pop-spin";
+    }
+
+    return CELEBRATION_BURST_STYLES[index % CELEBRATION_BURST_STYLES.length];
+  }
+
+  function spawnCelebrationPhotoBurst(detail) {
+    if (!celebrationPhotoBursts || !celebrationBurstPool.length || !detail) {
+      return;
+    }
+
+    const { x, y, w, h, burstType } = detail;
+    const index = celebrationBurstCounter;
+    celebrationBurstCounter += 1;
+    const sizeW = Math.min(76, Math.max(52, w * 0.17));
+    const sizeH = Math.min(92, sizeW * 1.15);
+    const left = Math.max(8, Math.min(w - sizeW - 8, x - sizeW * 0.5));
+    const top =
+      burstType === "launch"
+        ? Math.max(h * 0.72, h - sizeH - 24)
+        : Math.max(48, Math.min(h * 0.72, y - sizeH * 0.55));
+
+    const img = document.createElement("img");
+    const style = pickBurstStyle(burstType, index);
+
+    img.className = `celebration-burst-photo celebration-burst-photo--${style}`;
+    img.src = celebrationBurstPool[index % celebrationBurstPool.length];
+    img.alt = "";
+    img.width = Math.round(sizeW);
+    img.height = Math.round(sizeH);
+    img.style.setProperty("--burst-x", `${left}px`);
+    img.style.setProperty("--burst-y", `${top}px`);
+    img.style.setProperty("--burst-w", `${sizeW}px`);
+    img.style.setProperty("--burst-h", `${sizeH}px`);
+    img.style.left = `${left}px`;
+    img.style.top = `${top}px`;
+    img.style.width = `${sizeW}px`;
+    img.style.height = `${sizeH}px`;
+
+    const remove = () => {
+      if (img.isConnected) {
+        img.remove();
+      }
+    };
+
+    img.addEventListener("animationend", remove, { once: true });
+    window.setTimeout(remove, 3600);
+    celebrationPhotoBursts.append(img);
+  }
+
   function updateCelebrationPanel(theme) {
     const copy = CELEBRATION_COPY[theme] || CELEBRATION_COPY.original;
 
@@ -226,12 +332,37 @@ if (!habitForm) {
 
     const theme = getCelebrationTheme();
     updateCelebrationPanel(theme);
+    prepareCelebrationBurstPool(theme);
+    clearCelebrationBursts();
     themeCelebration.hidden = false;
     themeCelebration.classList.add("is-active");
     document.body.classList.add("celebration-open");
 
-    if (typeof CelebrationFireworks !== "undefined" && celebrationFireworks) {
-      CelebrationFireworks.start(celebrationFireworks, theme);
+    if (typeof CelebrationFireworks !== "undefined") {
+      if (CelebrationFireworks.setOnBurst) {
+        CelebrationFireworks.setOnBurst(spawnCelebrationPhotoBurst);
+      }
+
+      if (celebrationFireworks) {
+        CelebrationFireworks.start(celebrationFireworks, theme);
+      }
+
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+
+      for (let burst = 0; burst < 3; burst += 1) {
+        window.setTimeout(() => {
+          if (!themeCelebration.hidden) {
+            spawnCelebrationPhotoBurst({
+              x: w * (0.18 + burst * 0.28),
+              y: h * (0.42 + burst * 0.06),
+              w,
+              h,
+              burstType: burst === 0 ? "peony" : burst === 1 ? "willow" : "chrysanthemum",
+            });
+          }
+        }, burst * 220);
+      }
     }
   }
 
@@ -243,8 +374,13 @@ if (!habitForm) {
     themeCelebration.hidden = true;
     themeCelebration.classList.remove("is-active");
     document.body.classList.remove("celebration-open");
+    clearCelebrationBursts();
 
     if (typeof CelebrationFireworks !== "undefined") {
+      if (CelebrationFireworks.setOnBurst) {
+        CelebrationFireworks.setOnBurst(null);
+      }
+
       CelebrationFireworks.stop();
     }
   }
