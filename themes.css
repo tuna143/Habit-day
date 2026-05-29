@@ -1426,30 +1426,50 @@
     transform: translate3d(0, 10px, 0) scale(0.32) rotate(var(--burst-rot));
   }
 
-  8% {
+  7% {
     opacity: 1;
     filter: blur(0);
   }
 
-  68% {
+  58% {
     opacity: 1;
     filter: blur(0);
   }
 
-  82% {
-    opacity: 0.72;
-    filter: blur(2px);
+  72% {
+    opacity: 0.97;
+    filter: blur(0.4px);
   }
 
-  92% {
-    opacity: 0.38;
+  80% {
+    opacity: 0.9;
+    filter: blur(1.2px);
+  }
+
+  86% {
+    opacity: 0.78;
+    filter: blur(2.5px);
+  }
+
+  91% {
+    opacity: 0.55;
     filter: blur(5px);
+  }
+
+  95% {
+    opacity: 0.28;
+    filter: blur(9px);
+  }
+
+  98% {
+    opacity: 0.08;
+    filter: blur(14px);
   }
 
   100% {
     opacity: 0;
-    filter: blur(8px);
-    transform: translate3d(var(--burst-dx), min(-68vh, -460px), 0) scale(0.86) rotate(calc(var(--burst-rot) + 3deg));
+    filter: blur(18px);
+    transform: translate3d(var(--burst-dx), min(-68vh, -460px), 0) scale(0.82) rotate(calc(var(--burst-rot) + 3deg));
   }
 }
 
