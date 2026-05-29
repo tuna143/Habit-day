@@ -22,54 +22,50 @@
     />
     <link rel="stylesheet" href="styles.css?v=14" />
     <link rel="stylesheet" href="layout.css?v=14" />
-    <link rel="stylesheet" href="themes.css?v=31" />
+    <link rel="stylesheet" href="themes.css?v=33" />
     <script src="theme.js?v=32"></script>
   </head>
   <body>
     <div class="app-layout">
       <div class="app-content">
-        <div class="friends-scene friends-scene-back theme-decor theme-decor-friends" aria-hidden="true">
+        <div class="theme-collage friends-collage theme-decor theme-decor-friends" aria-hidden="true">
           <img
-            class="friends-cutout cutout-b"
+            class="theme-photo theme-photo-main"
+            src="assets/friends/banner.png"
+            alt=""
+            onerror="this.onerror=null;this.src='assets/friends/hero.svg'"
+          />
+          <img
+            class="theme-photo theme-photo-sub theme-photo-sub--left"
             src="assets/friends/day-04.png"
             alt=""
             onerror="this.onerror=null;this.style.display='none'"
           />
           <img
-            class="friends-cutout cutout-c"
+            class="theme-photo theme-photo-sub theme-photo-sub--right"
             src="assets/friends/day-05.png"
             alt=""
             onerror="this.onerror=null;this.style.display='none'"
           />
         </div>
-        <div class="friends-scene friends-scene-front theme-decor theme-decor-friends" aria-hidden="true">
+        <div class="theme-collage kuromi-collage theme-decor theme-decor-kuromi" aria-hidden="true">
           <img
-            class="friends-cutout cutout-a"
-            src="assets/friends/banner.png"
+            class="theme-photo theme-photo-main"
+            src="assets/kuromi/celebrate.png"
             alt=""
-            onerror="this.onerror=null;this.src='assets/friends/hero.svg'"
+            onerror="this.onerror=null;this.src='assets/kuromi/hero.svg'"
           />
-        </div>
-        <div class="kuromi-scene kuromi-scene-back theme-decor theme-decor-kuromi" aria-hidden="true">
           <img
-            class="kuromi-cutout cutout-b"
+            class="theme-photo theme-photo-sub theme-photo-sub--left"
             src="assets/kuromi/scene-01.png"
             alt=""
             onerror="this.onerror=null;this.style.display='none'"
           />
           <img
-            class="kuromi-cutout cutout-c"
+            class="theme-photo theme-photo-sub theme-photo-sub--right"
             src="assets/kuromi/scene-02.png"
             alt=""
             onerror="this.onerror=null;this.style.display='none'"
-          />
-        </div>
-        <div class="kuromi-scene kuromi-scene-front theme-decor theme-decor-kuromi" aria-hidden="true">
-          <img
-            class="kuromi-cutout cutout-a"
-            src="assets/kuromi/celebrate.png"
-            alt=""
-            onerror="this.onerror=null;this.src='assets/kuromi/hero.svg'"
           />
         </div>
         <main class="app-shell calendar-page">

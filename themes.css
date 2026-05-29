@@ -287,13 +287,15 @@
   pointer-events: none;
 }
 
-[data-theme="kuromi"] .theme-decor-kuromi,
-[data-theme="friends"] .theme-decor-friends {
+[data-theme="kuromi"] .theme-decor-kuromi:not(.theme-collage),
+[data-theme="friends"] .theme-decor-friends:not(.theme-collage) {
   display: block;
 }
 
+[data-theme="friends"] .app-content,
 [data-theme="kuromi"] .app-content {
   position: relative;
+  overflow: visible;
   min-height: calc(100dvh - env(safe-area-inset-top) - 48px);
 }
 
@@ -336,90 +338,81 @@
   align-items: center;
 }
 
-/* Friends / Kuromi — 메인(앞) + 서브 2장(습관 뒤) */
+/* Friends / Kuromi — 상단 콜라주 (그리드, 겹침 없음) */
 
-.friends-scene,
-.kuromi-scene {
+.theme-collage {
   display: none;
   position: absolute;
-  right: max(6px, env(safe-area-inset-right));
-  left: auto;
-  overflow: visible;
+  top: max(52px, calc(44px + env(safe-area-inset-top)));
+  right: max(8px, env(safe-area-inset-right));
+  width: min(46vw, 248px);
+  z-index: 2;
   pointer-events: none;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: clamp(10px, 2.6vw, 14px);
+  align-items: start;
 }
 
-.friends-scene-front,
-.kuromi-scene-front {
-  top: 0;
-  width: min(52vw, 300px);
-  z-index: 3;
+[data-theme="friends"] .friends-collage,
+[data-theme="kuromi"] .kuromi-collage {
+  display: grid;
 }
 
-.friends-scene-back,
-.kuromi-scene-back {
-  top: min(228px, 44vw);
-  width: min(48vw, 260px);
-  z-index: 1;
-}
-
-[data-theme="friends"] .friends-scene-front,
-[data-theme="kuromi"] .kuromi-scene-front {
-  display: block;
-}
-
-[data-theme="friends"] .friends-scene-back,
-[data-theme="kuromi"] .kuromi-scene-back {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: clamp(16px, 4vw, 24px);
-}
-
-.friends-cutout,
-.kuromi-cutout {
-  position: relative;
-  flex-shrink: 0;
+.theme-photo {
   display: block;
   object-fit: cover;
-  object-position: center center;
+  object-position: center top;
   border-radius: 12px;
-  outline: none;
   box-shadow:
     0 0 0 4px #ffffff,
-    0 14px 32px rgba(44, 42, 38, 0.28);
+    0 12px 28px rgba(44, 42, 38, 0.22);
 }
 
-[data-theme="friends"] .friends-cutout,
-[data-theme="kuromi"] .kuromi-cutout {
-  top: auto;
-  right: auto;
-}
-
-[data-theme="friends"] .friends-scene-back .friends-cutout,
-[data-theme="kuromi"] .kuromi-scene-back .kuromi-cutout {
-  opacity: 0.58;
-}
-
-[data-theme="friends"] .friends-scene-front .friends-cutout.cutout-a,
-[data-theme="kuromi"] .kuromi-scene-front .kuromi-cutout.cutout-a {
+.theme-photo-main {
+  grid-column: 1 / -1;
+  justify-self: end;
+  width: min(40vw, 208px);
+  height: min(42vw, 224px);
+  transform: rotate(4deg);
   opacity: 1;
 }
 
-.friends-cutout.cutout-a,
-.kuromi-cutout.cutout-a {
-  width: min(40vw, 220px);
-  height: min(44vw, 240px);
-  aspect-ratio: auto;
-  object-position: center top;
-  align-self: flex-end;
-  transform: rotate(5deg);
-  transform-origin: 50% 50%;
-  z-index: 1;
+[data-theme="friends"] .theme-photo-main {
+  width: min(42vw, 220px);
+  height: min(44vw, 236px);
 }
 
-[data-theme="friends"] .friends-cutout.cutout-a {
-  width: min(42vw, 232px);
-  height: min(46vw, 252px);
+.theme-photo-sub {
+  width: min(20vw, 108px);
+  height: min(20vw, 108px);
+  opacity: 0.55;
+}
+
+.theme-photo-sub--left {
+  justify-self: start;
+  transform: rotate(-5deg);
+}
+
+.theme-photo-sub--right {
+  justify-self: end;
+  transform: rotate(5deg);
+}
+
+.page-home .theme-collage {
+  top: 0;
+  z-index: 2;
+}
+
+.page-home .theme-photo-sub {
+  opacity: 0.52;
+}
+
+[data-theme="friends"] .page-home .board,
+[data-theme="kuromi"] .page-home .board,
+[data-theme="friends"] .page-home .composer {
+  position: relative;
+  z-index: 5;
 }
 
 .cutout-a {
@@ -431,52 +424,6 @@
   object-position: center bottom;
   z-index: 3;
   opacity: 1;
-}
-
-.kuromi-cutout.cutout-a {
-  object-position: center bottom;
-}
-
-.cutout-b {
-  top: 28%;
-  right: 12%;
-  width: min(24vw, 180px);
-  aspect-ratio: 1.1;
-  transform: rotate(6deg);
-  z-index: 2;
-}
-
-[data-theme="friends"] .friends-cutout.cutout-b,
-[data-theme="kuromi"] .kuromi-cutout.cutout-b {
-  width: min(28vw, 148px);
-  height: min(28vw, 148px);
-  aspect-ratio: 1;
-  align-self: flex-start;
-  margin-right: 0;
-  margin-left: 0;
-  transform: rotate(-6deg);
-  transform-origin: 50% 50%;
-  z-index: 2;
-}
-
-.cutout-c {
-  top: 52%;
-  right: 2%;
-  width: min(22vw, 160px);
-  aspect-ratio: 1;
-  transform: rotate(-4deg);
-  z-index: 4;
-}
-
-[data-theme="friends"] .friends-cutout.cutout-c,
-[data-theme="kuromi"] .kuromi-cutout.cutout-c {
-  width: min(28vw, 148px);
-  height: min(28vw, 148px);
-  aspect-ratio: 1;
-  align-self: flex-end;
-  transform: rotate(4deg);
-  transform-origin: 50% 50%;
-  z-index: 4;
 }
 
 .cutout-d {
@@ -507,9 +454,11 @@
   opacity: 0.92;
 }
 
-[data-theme="friends"] .app-shell {
+[data-theme="friends"] .app-shell,
+[data-theme="kuromi"] .app-shell {
   position: relative;
-  z-index: 2;
+  z-index: 3;
+  background: transparent;
 }
 
 [data-theme="friends"] .overview,
@@ -517,8 +466,8 @@
   display: block;
   position: relative;
   margin-bottom: 8px;
-  min-height: min(200px, 38vw);
-  padding-right: min(46vw, 248px);
+  min-height: min(248px, 46vw);
+  padding-right: min(44vw, 236px);
 }
 
 [data-theme="friends"] .progress-card,
@@ -650,15 +599,10 @@
 
 /* Kuromi — 콜라주 장식 */
 
-[data-theme="kuromi"] .kuromi-cutout {
+[data-theme="kuromi"] .theme-photo {
   box-shadow:
     0 0 0 4px #ffffff,
-    0 14px 32px rgba(62, 28, 90, 0.28);
-}
-
-[data-theme="kuromi"] .app-shell {
-  position: relative;
-  z-index: 2;
+    0 12px 28px rgba(62, 28, 90, 0.24);
 }
 
 .kuromi-cutout.cutout-d {
@@ -670,15 +614,7 @@
   opacity: 0.75;
 }
 
-/* 캘린더 · 위클리 — 상단 콜라주 (홈과 동일 레이어) */
-
-[data-theme="friends"] .calendar-page,
-[data-theme="kuromi"] .calendar-page,
-[data-theme="friends"] .weekly-page,
-[data-theme="kuromi"] .weekly-page {
-  position: relative;
-  z-index: 2;
-}
+/* 캘린더 · 위클리 — 상단 콜라주 */
 
 [data-theme="friends"] .calendar-page .subpage-header,
 [data-theme="kuromi"] .calendar-page .subpage-header,
@@ -686,12 +622,12 @@
 [data-theme="kuromi"] .weekly-page .subpage-header {
   position: relative;
   z-index: 4;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   padding: 10px 12px;
-  padding-right: min(46vw, 248px);
-  min-height: min(188px, 36vw);
+  padding-right: min(44vw, 232px);
+  min-height: min(240px, 44vw);
   border-radius: var(--radius);
-  background: color-mix(in srgb, var(--card-bg) 90%, transparent);
+  background: color-mix(in srgb, var(--card-bg) 92%, transparent);
   border: 1px solid var(--card-border);
   box-shadow: var(--shadow);
   backdrop-filter: blur(4px);
@@ -702,17 +638,16 @@
 [data-theme="friends"] .weekly-page .board,
 [data-theme="kuromi"] .weekly-page .board {
   position: relative;
-  z-index: 4;
-  background: color-mix(in srgb, var(--card-bg) 86%, transparent);
+  z-index: 5;
+  background: color-mix(in srgb, var(--card-bg) 88%, transparent);
   border-radius: var(--radius);
   backdrop-filter: blur(6px);
 }
 
-.app-content:has(.calendar-page) .friends-scene-back,
-.app-content:has(.weekly-page) .friends-scene-back,
-.app-content:has(.calendar-page) .kuromi-scene-back,
-.app-content:has(.weekly-page) .kuromi-scene-back {
-  top: min(200px, 40vw);
+.app-content:has(.calendar-page) .theme-collage,
+.app-content:has(.weekly-page) .theme-collage {
+  top: max(52px, calc(44px + env(safe-area-inset-top)));
+  z-index: 2;
 }
 
 .overview-wrap {
@@ -1039,71 +974,33 @@ body.celebration-open {
 }
 
 @media (max-width: 768px) {
-  .friends-scene-back,
-  .kuromi-scene-back {
-    top: min(200px, 42vw);
-    width: min(46vw, 210px);
-    gap: clamp(14px, 3.6vw, 20px);
+  .theme-collage {
+    width: min(48vw, 220px);
+    gap: 10px;
   }
 
-  .friends-scene-front,
-  .kuromi-scene-front {
-    width: min(50vw, 240px);
+  .page-home .theme-collage {
+    top: max(48px, calc(40px + env(safe-area-inset-top)));
+  }
+
+  .theme-photo-main {
+    width: min(40vw, 176px);
+    height: min(42vw, 190px);
+  }
+
+  [data-theme="friends"] .theme-photo-main {
+    width: min(42vw, 184px);
+    height: min(44vw, 198px);
+  }
+
+  .theme-photo-sub {
+    width: min(22vw, 96px);
+    height: min(22vw, 96px);
   }
 
   .decor-hero {
     width: 88px;
     opacity: 1;
-  }
-
-  [data-theme="friends"] .friends-scene-back .friends-cutout,
-  [data-theme="kuromi"] .kuromi-scene-back .kuromi-cutout {
-    opacity: 0.58 !important;
-    box-shadow:
-      0 0 0 3px #ffffff,
-      0 10px 22px rgba(0, 0, 0, 0.2) !important;
-  }
-
-  [data-theme="friends"] .friends-scene-front .friends-cutout.cutout-a {
-    width: min(44vw, 188px) !important;
-    height: min(48vw, 204px) !important;
-    opacity: 1 !important;
-    transform: rotate(5deg) !important;
-    transform-origin: 50% 50% !important;
-  }
-
-  [data-theme="kuromi"] .kuromi-scene-front .kuromi-cutout.cutout-a {
-    width: min(40vw, 172px) !important;
-    height: min(44vw, 188px) !important;
-    opacity: 1 !important;
-    transform: rotate(5deg) !important;
-    transform-origin: 50% 50% !important;
-  }
-
-  [data-theme="friends"] .friends-cutout.cutout-b,
-  [data-theme="friends"] .friends-cutout.cutout-c,
-  [data-theme="kuromi"] .kuromi-cutout.cutout-b,
-  [data-theme="kuromi"] .kuromi-cutout.cutout-c {
-    display: block !important;
-    top: auto !important;
-    right: auto !important;
-  }
-
-  [data-theme="friends"] .friends-cutout.cutout-b,
-  [data-theme="kuromi"] .kuromi-cutout.cutout-b {
-    width: min(30vw, 128px) !important;
-    height: min(30vw, 128px) !important;
-    align-self: flex-start !important;
-    margin-right: 0 !important;
-    transform: rotate(-6deg) !important;
-  }
-
-  [data-theme="friends"] .friends-cutout.cutout-c,
-  [data-theme="kuromi"] .kuromi-cutout.cutout-c {
-    width: min(30vw, 128px) !important;
-    height: min(30vw, 128px) !important;
-    align-self: flex-end !important;
-    transform: rotate(4deg) !important;
   }
 
   .cutout-d,
@@ -1115,9 +1012,16 @@ body.celebration-open {
 
   [data-theme="friends"] .overview,
   [data-theme="kuromi"] .overview {
-    min-height: min(188px, 36vw);
-    margin-bottom: 8px;
-    padding-right: min(46vw, 210px);
+    min-height: min(220px, 42vw);
+    padding-right: min(42vw, 200px);
+  }
+
+  [data-theme="friends"] .calendar-page .subpage-header,
+  [data-theme="kuromi"] .calendar-page .subpage-header,
+  [data-theme="friends"] .weekly-page .subpage-header,
+  [data-theme="kuromi"] .weekly-page .subpage-header {
+    min-height: min(220px, 42vw);
+    padding-right: min(42vw, 200px);
   }
 
   [data-theme="friends"] .overview-copy,
@@ -1140,21 +1044,6 @@ body.celebration-open {
   [data-theme="friends"] .theme-progress-inline,
   [data-theme="kuromi"] .theme-progress-inline {
     margin: 4px 0 2px;
-  }
-
-  [data-theme="friends"] .calendar-page .subpage-header,
-  [data-theme="kuromi"] .calendar-page .subpage-header,
-  [data-theme="friends"] .weekly-page .subpage-header,
-  [data-theme="kuromi"] .weekly-page .subpage-header {
-    padding-right: min(44vw, 200px);
-    min-height: min(168px, 32vw);
-  }
-
-  .app-content:has(.calendar-page) .friends-scene-back,
-  .app-content:has(.weekly-page) .friends-scene-back,
-  .app-content:has(.calendar-page) .kuromi-scene-back,
-  .app-content:has(.weekly-page) .kuromi-scene-back {
-    top: min(176px, 38vw);
   }
 
   [data-theme="kuromi"] .calendar-day.has-photo,
