@@ -345,8 +345,13 @@
 
 .friends-cutout.cutout-a {
   object-fit: contain;
-  object-position: center bottom;
+  object-position: center top;
   background: transparent;
+  aspect-ratio: 0.92;
+  height: min(46vw, 320px);
+  width: min(40vw, 280px);
+  transform: rotate(-7deg) scale(1.06);
+  transform-origin: 92% 0%;
 }
 
 .cutout-a {
@@ -358,6 +363,10 @@
   object-position: center bottom;
   z-index: 3;
   opacity: 1;
+}
+
+.kuromi-cutout.cutout-a {
+  object-position: center bottom;
 }
 
 .cutout-b {
@@ -965,12 +974,23 @@ body.celebration-open {
     opacity: 1;
   }
 
-  .friends-cutout.cutout-a,
   .kuromi-cutout.cutout-a {
     width: min(46vw, 200px) !important;
     right: -4% !important;
     top: 0 !important;
     opacity: 1 !important;
+  }
+
+  .friends-cutout.cutout-a {
+    width: min(44vw, 200px) !important;
+    height: min(50vw, 230px) !important;
+    aspect-ratio: auto !important;
+    right: -2% !important;
+    top: 0 !important;
+    opacity: 1 !important;
+    object-position: center top !important;
+    transform: rotate(-6deg) scale(1.08) !important;
+    transform-origin: 92% top !important;
   }
 
   .cutout-b,
@@ -1000,12 +1020,24 @@ body.celebration-open {
     z-index: 1;
   }
 
-  .friends-cutout.cutout-a,
   .kuromi-cutout.cutout-a {
     width: min(52vw, 220px) !important;
     right: 0 !important;
     top: -4px !important;
     opacity: 1 !important;
+    filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.28));
+  }
+
+  .friends-cutout.cutout-a {
+    width: min(48vw, 210px) !important;
+    height: min(54vw, 240px) !important;
+    aspect-ratio: auto !important;
+    right: 0 !important;
+    top: 0 !important;
+    opacity: 1 !important;
+    object-position: center top !important;
+    transform: rotate(-6deg) scale(1.1) !important;
+    transform-origin: 94% top !important;
     filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.28));
   }
 
