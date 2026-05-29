@@ -36,16 +36,6 @@ function getSnapsForDay(dateKey) {
   return snapsByDate[dateKey] || [];
 }
 
-function getCellPhotoUrl(dateKey, themedPhoto) {
-  const snaps = getSnapsForDay(dateKey);
-
-  if (snaps.length) {
-    return snaps[0].dataUrl;
-  }
-
-  return themedPhoto;
-}
-
 function formatDayPhotosTitle(dateKey) {
   const date = parseDateKey(dateKey);
   const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -150,7 +140,7 @@ async function renderCalendar() {
     cell.className = `calendar-day ${getCalendarDayClass(data, dateKey)}`;
     cell.dataset.date = dateKey;
     cell.title = daySnaps.length
-      ? `${day} · ${percent}% · ${daySnaps.length} photo${daySnaps.length > 1 ? "s" : ""}`
+      ? `${day} · ${percent}% · tap to view ${daySnaps.length} habit photo${daySnaps.length > 1 ? "s" : ""}`
       : `${day} · ${percent}%`;
 
     if (dateKey === getTodayKey()) {
@@ -161,27 +151,24 @@ async function renderCalendar() {
       cell.classList.add("is-selected");
     }
 
-    const themedPhoto = UserPhotos.resolveThemedCalendarPhoto(data, dateKey, getTheme());
-    const photo = getCellPhotoUrl(dateKey, themedPhoto);
+    const photo = UserPhotos.resolveThemedCalendarPhoto(data, dateKey, getTheme());
 
     if (photo) {
       cell.classList.add("has-photo");
-    }
-
-    if (daySnaps.length) {
-      cell.classList.add("has-habit-snaps");
-      cell.dataset.snapCount = String(daySnaps.length);
     }
 
     if (photo && percent === 100) {
       cell.classList.add("is-perfect");
     }
 
+    if (daySnaps.length) {
+      cell.dataset.hasSnaps = "true";
+    }
+
     cell.innerHTML = `
       ${photo ? '<span class="calendar-day-bg" aria-hidden="true"></span>' : ""}
       <span class="calendar-day-number">${day}</span>
       ${themedPhotos && photo ? "" : '<span class="calendar-day-dot" aria-hidden="true"></span>'}
-      ${daySnaps.length ? '<span class="calendar-day-snap-badge" aria-hidden="true"></span>' : ""}
     `;
 
     if (photo) {
