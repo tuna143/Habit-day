@@ -22,8 +22,7 @@ function renderSidebar() {
       <p class="side-block-label">Theme</p>
       <div class="side-themes" role="group" aria-label="Choose theme">
         <button type="button" class="side-theme" data-theme="original" title="Original">Org</button>
-        <button type="button" class="side-theme" data-theme="kuromi" title="Kuromi">Kuro</button>
-        <button type="button" class="side-theme" data-theme="friends" title="Friends TV">Fr</button>
+        <button type="button" class="side-theme" data-theme="friends" title="Friends">Fr</button>
       </div>
       <a class="side-link side-link--pics${page === "photos" ? " is-active" : ""}" href="photos.html" title="My Photos">Pics</a>
     </section>

@@ -1,5 +1,5 @@
 const themeStorageKey = "habit-theme";
-const themes = ["original", "kuromi", "friends"];
+const themes = ["original", "friends"];
 const themeColors = {
   original: "#f6f7f2",
   kuromi: "#ccc6d4",
@@ -9,7 +9,7 @@ const themeColors = {
 function getTheme() {
   const saved = localStorage.getItem(themeStorageKey);
 
-  if (saved === "mid-friends") {
+  if (saved === "mid-friends" || saved === "kuromi") {
     localStorage.setItem(themeStorageKey, "friends");
     return "friends";
   }
