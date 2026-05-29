@@ -426,13 +426,13 @@
   --collage-step-gap: clamp(14px, 3vw, 24px);
   --collage-photo-main-h: min(48vw, 272px);
   --collage-photo-main-w: calc(var(--collage-main-slot) - 10px);
-  --collage-photo-sub-w: min(30vw, 168px);
-  --collage-photo-sub-h: min(28vw, 156px);
+  --collage-photo-sub-w: min(24vw, 128px);
+  --collage-photo-sub-h: min(22vw, 118px);
   left: 0;
   right: 0;
   width: auto;
   overflow: visible;
-  height: calc(var(--collage-photo-main-h) + var(--collage-photo-sub-h) * 0.62);
+  height: calc(var(--collage-photo-main-h) + var(--collage-photo-sub-h) * 0.28);
   min-height: 0;
 }
 
@@ -482,37 +482,36 @@
     0 14px 32px rgba(44, 42, 38, 0.22);
 }
 
-/* 홈 2 — 좌: 제목·메인 사이 대각선, 살짝만 비침 */
+/* 홈 2 — 좌: 화면 밖으로 대부분 숨김, 살짝만 비침 */
 .theme-collage--home .theme-photo-sub--left {
-  top: calc(max(6px, env(safe-area-inset-top)) + var(--collage-photo-main-h) * 0.36);
-  left: clamp(
-    10px,
-    calc(100% - var(--collage-main-slot) - var(--collage-main-gap) - var(--collage-photo-sub-w) * 0.92),
-    calc(100% - var(--collage-photo-sub-w) - 12px)
-  );
+  top: calc(max(6px, env(safe-area-inset-top)) + var(--collage-photo-main-h) * 0.54);
+  left: calc(-1 * var(--collage-photo-sub-w) * 0.72);
   right: auto;
-  width: calc(var(--collage-photo-sub-w) * 0.9);
-  height: calc(var(--collage-photo-sub-h) * 0.9);
-  transform: rotate(-6deg);
-  transform-origin: 0% 40%;
-  opacity: 0.34;
-  z-index: 1;
-}
-
-/* 홈 3 — 우: 메인 아래 겹쳐 빈 공간 메움 */
-.theme-collage--home .theme-photo-sub--right {
-  top: calc(max(6px, env(safe-area-inset-top)) + var(--collage-photo-main-h) * 0.5);
-  right: max(14px, calc(env(safe-area-inset-right) + 12px));
-  left: auto;
   width: var(--collage-photo-sub-w);
   height: var(--collage-photo-sub-h);
-  transform: rotate(5deg);
-  transform-origin: 100% 85%;
-  opacity: 0.52;
-  z-index: 1;
+  transform: rotate(-5deg);
+  transform-origin: 0% 50%;
+  opacity: 0.22;
+  z-index: 0;
   box-shadow:
-    0 0 0 3px #ffffff,
-    0 12px 26px rgba(44, 42, 38, 0.18);
+    0 0 0 2px #ffffff,
+    0 8px 18px rgba(44, 42, 38, 0.12);
+}
+
+/* 홈 3 — 우: 메인 뒤·우하단, 본문 안 가리게 */
+.theme-collage--home .theme-photo-sub--right {
+  top: calc(max(6px, env(safe-area-inset-top)) + var(--collage-photo-main-h) * 0.66);
+  right: max(8px, calc(env(safe-area-inset-right) + 6px));
+  left: auto;
+  width: calc(var(--collage-photo-sub-w) * 0.82);
+  height: calc(var(--collage-photo-sub-h) * 0.82);
+  transform: rotate(4deg);
+  transform-origin: 100% 90%;
+  opacity: 0.24;
+  z-index: 0;
+  box-shadow:
+    0 0 0 2px #ffffff,
+    0 8px 16px rgba(44, 42, 38, 0.1);
 }
 
 .page-home .theme-collage--home {
@@ -555,12 +554,14 @@
 }
 
 .theme-collage--subpage .theme-photo-sub {
-  top: calc(var(--collage-photo-h) + var(--collage-photo-gap));
-  left: 0;
+  top: calc(var(--collage-photo-h) + var(--collage-photo-gap) * 0.5);
+  left: calc(-1 * min(34vw, 168px) * 0.58);
   right: auto;
-  opacity: 0.42;
-  transform: rotate(-7deg);
+  width: min(28vw, 132px);
+  opacity: 0.26;
+  transform: rotate(-5deg);
   transform-origin: 0% 100%;
+  z-index: 0;
 }
 
 [data-theme="friends"] .theme-collage,
@@ -1243,8 +1244,8 @@ body.celebration-open {
     --collage-step-gap: clamp(12px, 2.8vw, 20px);
     --collage-photo-main-h: min(46vw, 248px);
     --collage-photo-main-w: calc(var(--collage-main-slot) - 8px);
-    --collage-photo-sub-w: min(28vw, 152px);
-    --collage-photo-sub-h: min(26vw, 142px);
+    --collage-photo-sub-w: min(22vw, 116px);
+    --collage-photo-sub-h: min(20vw, 108px);
   }
 
   .page-home .theme-collage--home {
@@ -1257,13 +1258,14 @@ body.celebration-open {
   }
 
   .theme-collage--home .theme-photo-sub--left {
-    top: calc(max(6px, env(safe-area-inset-top)) + var(--collage-photo-main-h) * 0.34);
-    opacity: 0.3;
+    top: calc(max(6px, env(safe-area-inset-top)) + var(--collage-photo-main-h) * 0.52);
+    left: calc(-1 * var(--collage-photo-sub-w) * 0.76);
+    opacity: 0.18;
   }
 
   .theme-collage--home .theme-photo-sub--right {
-    top: calc(max(6px, env(safe-area-inset-top)) + var(--collage-photo-main-h) * 0.48);
-    opacity: 0.48;
+    top: calc(max(6px, env(safe-area-inset-top)) + var(--collage-photo-main-h) * 0.64);
+    opacity: 0.2;
   }
 
   .theme-collage--subpage {
@@ -1277,11 +1279,12 @@ body.celebration-open {
   }
 
   .theme-photo-sub {
-    opacity: 0.36;
+    opacity: 0.2;
   }
 
   .theme-collage--subpage .theme-photo-sub {
-    opacity: 0.4;
+    opacity: 0.22;
+    left: calc(-1 * min(32vw, 140px) * 0.62);
   }
 
   .decor-hero {
