@@ -232,7 +232,7 @@ if (!habitForm) {
   }
 
   function getCelebrationMainPhotoSize() {
-    const ring = document.querySelector(".celebration-photo-ring");
+    const ring = celebrationPhotoRing || document.querySelector(".celebration-photo-ring");
 
     if (ring) {
       const rect = ring.getBoundingClientRect();
@@ -263,7 +263,7 @@ if (!habitForm) {
     celebrationBurstCounter += 1;
 
     const mainPhoto = getCelebrationMainPhotoSize();
-    const burstScale = Math.sqrt(0.25) * (0.96 + Math.random() * 0.08);
+    const burstScale = Math.sqrt(0.25) * 1.1 * (0.96 + Math.random() * 0.08);
     const sizeW = Math.round(mainPhoto.w * burstScale);
     const sizeH = Math.round(mainPhoto.h * burstScale);
     const lane = Math.random();
