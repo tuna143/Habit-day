@@ -1,4 +1,4 @@
-/* sidebar.js build 11 */
+/* sidebar.js build 12 */
 const HOME_HREF = "app.html";
 
 function renderSidebar() {
@@ -20,36 +20,24 @@ function renderSidebar() {
         <a class="side-link${page === "calendar" ? " is-active" : ""}" href="calendar.html">Calendar</a>
       </nav>
     </section>
-    <section class="side-block side-block--theme" aria-label="Theme">
+    <section class="side-block side-block--theme" aria-label="Theme and shortcuts">
       <p class="side-block-label">Theme</p>
-      <div class="side-themes" role="group" aria-label="Choose theme">
-        <button type="button" class="side-theme" data-theme="original" title="Original">
-          <span class="side-theme-dot" aria-hidden="true"></span>
-          <span class="side-theme-name">Org</span>
-        </button>
-        <button type="button" class="side-theme" data-theme="kuromi" title="Kuromi">
-          <span class="side-theme-dot" aria-hidden="true"></span>
-          <span class="side-theme-name">Kuro</span>
-        </button>
-        <button type="button" class="side-theme" data-theme="friends" title="Friends">
-          <span class="side-theme-dot" aria-hidden="true"></span>
-          <span class="side-theme-name">Fr</span>
-        </button>
+      <div class="side-toolbar">
+        <div class="side-themes" role="group" aria-label="Choose theme">
+          <button type="button" class="side-theme" data-theme="original" title="Original">Org</button>
+          <button type="button" class="side-theme" data-theme="kuromi" title="Kuromi">Kuro</button>
+          <button type="button" class="side-theme" data-theme="friends" title="Friends">Fr</button>
+        </div>
+        <div class="side-quick">
+          <a class="side-quick-btn side-quick-btn--pics${page === "photos" ? " is-active" : ""}" href="photos.html" title="My Photos">Pics</a>
+          ${
+            isHome
+              ? `<button type="button" class="side-quick-btn side-quick-btn--add" id="sideAddHabit" aria-label="Add habit">+</button>`
+              : ""
+          }
+        </div>
       </div>
       <a class="side-link side-link--pics side-link--pics-desktop${page === "photos" ? " is-active" : ""}" href="photos.html" title="My Photos">Pics</a>
-    </section>
-    <section class="side-block side-block--mobile-bar" aria-label="Quick actions">
-      <div class="side-mobile-bar">
-        <a class="side-link side-link--pics side-link--pics-mobile${page === "photos" ? " is-active" : ""}" href="photos.html" title="My Photos">Pics</a>
-        ${
-          isHome
-            ? `<button type="button" class="side-add-habit" id="sideAddHabit" aria-label="Add a new habit">
-          <span class="side-add-habit-icon" aria-hidden="true">+</span>
-          <span class="side-add-habit-label">Habit</span>
-        </button>`
-            : ""
-        }
-      </div>
     </section>
   `;
 

@@ -153,9 +153,20 @@
 }
 
 [data-theme="friends"] .side-link--pics-desktop.is-active,
-[data-theme="friends"] .side-link--pics-mobile.is-active {
+[data-theme="friends"] .side-quick-btn--pics.is-active {
   background: rgba(255, 255, 255, 0.18);
   border-color: rgba(255, 255, 255, 0.4);
+  color: #fff;
+}
+
+[data-theme="friends"] .side-quick-btn {
+  color: #f5ebe0;
+  border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="friends"] .side-quick-btn--add {
+  border: 0;
   color: #fff;
 }
 
