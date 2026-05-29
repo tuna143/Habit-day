@@ -345,13 +345,13 @@
   position: absolute;
   top: max(52px, calc(44px + env(safe-area-inset-top)));
   right: max(4px, env(safe-area-inset-right));
-  width: min(54vw, 288px);
+  width: min(52vw, 280px);
   z-index: 1;
   pointer-events: none;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto;
-  gap: clamp(12px, 3vw, 18px);
-  align-items: start;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  gap: clamp(14px, 3.2vw, 20px);
+  align-items: end;
 }
 
 [data-theme="friends"] .friends-collage,
@@ -369,24 +369,24 @@
     0 12px 28px rgba(44, 42, 38, 0.22);
 }
 
-.theme-photo-main {
-  grid-column: 1 / -1;
-  justify-self: end;
-  width: min(46vw, 248px);
-  height: min(50vw, 268px);
-  transform: rotate(4deg);
-  opacity: 1;
-}
-
-[data-theme="friends"] .theme-photo-main {
+.theme-photo-main,
+.theme-photo-sub {
   width: min(48vw, 260px);
   height: min(52vw, 280px);
 }
 
+.theme-photo-main {
+  justify-self: end;
+  transform: rotate(4deg);
+  opacity: 1;
+  position: relative;
+  z-index: 2;
+}
+
 .theme-photo-sub {
-  width: min(26vw, 140px);
-  height: min(26vw, 140px);
-  opacity: 0.5;
+  opacity: 0.34;
+  position: relative;
+  z-index: 1;
 }
 
 .theme-photo-sub--left {
@@ -969,27 +969,22 @@ body.celebration-open {
 
 @media (max-width: 768px) {
   .theme-collage {
-    width: min(52vw, 248px);
-    gap: 12px;
+    width: min(50vw, 240px);
+    gap: 14px;
   }
 
   .page-home .theme-collage {
     top: max(48px, calc(40px + env(safe-area-inset-top)));
   }
 
-  .theme-photo-main {
-    width: min(44vw, 200px);
-    height: min(48vw, 216px);
-  }
-
-  [data-theme="friends"] .theme-photo-main {
+  .theme-photo-main,
+  .theme-photo-sub {
     width: min(46vw, 210px);
     height: min(50vw, 226px);
   }
 
   .theme-photo-sub {
-    width: min(26vw, 118px);
-    height: min(26vw, 118px);
+    opacity: 0.32;
   }
 
   .decor-hero {
