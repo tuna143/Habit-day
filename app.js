@@ -11,7 +11,6 @@ if (!habitForm) {
   const emptyState = document.querySelector("#emptyState");
   const summaryText = document.querySelector("#summaryText");
   const progressPercent = document.querySelector("#progressPercent");
-  const toolbarAddHabit = document.querySelector("#toolbarAddHabit");
   const appEyebrow = document.querySelector("#app-eyebrow");
   const appTitle = document.querySelector("#app-title");
   const themeProgressFill = document.querySelector("#themeProgressFill");
@@ -406,16 +405,6 @@ if (!habitForm) {
     }
   }
 
-  function openAddHabit() {
-    const composer = document.querySelector(".composer");
-
-    if (composer) {
-      composer.scrollIntoView({ behavior: "smooth", block: "nearest" });
-    }
-
-    window.setTimeout(() => focusHabitDraft(), 80);
-  }
-
   function addHabitFromInput() {
     const title = readHabitDraft();
 
@@ -446,10 +435,6 @@ if (!habitForm) {
       event.preventDefault();
       addHabitFromInput();
     });
-  }
-
-  if (toolbarAddHabit) {
-    toolbarAddHabit.addEventListener("click", openAddHabit);
   }
 
   if (habitCameraInput) {
