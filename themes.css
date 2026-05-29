@@ -313,38 +313,29 @@
 }
 
 .bottom-bg-fade {
-  position: absolute;
-  inset: 0;
-  z-index: 3;
-  background: linear-gradient(
-    to top,
-    color-mix(in srgb, var(--bg) 96%, transparent) 0%,
-    color-mix(in srgb, var(--bg) 78%, transparent) 28%,
-    color-mix(in srgb, var(--bg) 42%, transparent) 55%,
-    transparent 100%
-  );
+  display: none;
 }
 
 .bottom-photo {
   position: absolute;
   object-fit: cover;
-  object-position: center;
+  object-position: center top;
   border-radius: 14px;
-  opacity: 0.48;
-  filter: saturate(1.05);
+  opacity: 0.95;
+  filter: saturate(1.15) contrast(1.04);
 }
 
 [data-theme="friends"] .bottom-photo {
-  outline: 2px solid rgba(245, 243, 239, 0.55);
+  outline: 3px solid rgba(245, 243, 239, 0.92);
   outline-offset: -1px;
-  box-shadow: 0 12px 28px rgba(44, 42, 38, 0.2);
+  box-shadow: 0 10px 24px rgba(44, 42, 38, 0.28);
 }
 
 [data-theme="kuromi"] .bottom-photo {
-  outline: 2px solid rgba(255, 250, 255, 0.5);
+  outline: 3px solid rgba(255, 250, 255, 0.88);
   outline-offset: -1px;
-  box-shadow: 0 12px 28px rgba(45, 21, 72, 0.22);
-  opacity: 0.44;
+  box-shadow: 0 10px 24px rgba(45, 21, 72, 0.3);
+  opacity: 0.92;
 }
 
 [data-theme="friends"] .bottom-photo-1 {
@@ -380,7 +371,7 @@
   width: 32%;
   height: 42%;
   transform: rotate(-7deg);
-  opacity: 0.36;
+  opacity: 0.88;
   object-position: center top;
 }
 
@@ -413,12 +404,12 @@
 
 [data-theme="friends"] .board,
 [data-theme="kuromi"] .board {
-  background: color-mix(in srgb, var(--panel) 94%, transparent);
+  background: color-mix(in srgb, var(--panel) 97%, transparent);
 }
 
 [data-theme="friends"] .composer,
 [data-theme="kuromi"] .composer {
-  background: color-mix(in srgb, var(--panel) 92%, transparent);
+  background: color-mix(in srgb, var(--panel) 96%, transparent);
 }
 
 [data-theme="kuromi"] .app-content {
