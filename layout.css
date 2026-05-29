@@ -569,7 +569,7 @@ body {
 }
 
 .theme-chip--kuromi .theme-chip-dot {
-  background: linear-gradient(135deg, #141214 0%, #141214 48%, #f5c6e8 52%, #f5c6e8 100%);
+  background: linear-gradient(145deg, #141214, #f5c6e8);
 }
 
 .theme-chip--kuromi.is-active {
@@ -586,7 +586,7 @@ body {
 }
 
 .theme-chip--friends .theme-chip-dot {
-  background: linear-gradient(135deg, #f0c830 0%, #f0c830 44%, #6b4a2a 56%, #6b4a2a 100%);
+  background: linear-gradient(145deg, #f0c830, #6b4a2a);
 }
 
 .theme-chip--friends.is-active {

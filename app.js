@@ -24,7 +24,7 @@ if (!habitForm) {
   const celebrationPhotoBursts = document.querySelector("#celebrationPhotoBursts");
   const habitCameraInput = document.querySelector("#habitCameraInput");
 
-  const CELEBRATION_BURST_STYLES = ["pop-rise", "pop-spring", "pop-float", "pop-wiggle", "pop-spin", "pop-arc"];
+  const CELEBRATION_BURST_STYLES = ["pop-scatter", "pop-scatter-wide", "pop-scatter-sway", "pop-arc"];
   let celebrationBurstPool = [];
   let celebrationBurstCounter = 0;
 
@@ -226,20 +226,16 @@ if (!habitForm) {
   }
 
   function pickBurstStyle(burstType, index) {
-    if (burstType === "launch") {
-      return CELEBRATION_BURST_STYLES[index % 2 === 0 ? 0 : 1];
-    }
-
     if (burstType === "willow") {
-      return "pop-float";
+      return "pop-scatter-sway";
     }
 
     if (burstType === "peony") {
-      return "pop-spring";
+      return "pop-scatter-wide";
     }
 
     if (burstType === "chrysanthemum") {
-      return "pop-spin";
+      return "pop-scatter";
     }
 
     return CELEBRATION_BURST_STYLES[index % CELEBRATION_BURST_STYLES.length];
@@ -250,31 +246,37 @@ if (!habitForm) {
       return;
     }
 
-    const spawnOne = (burstDetail, offsetIndex = 0) => {
-      const { x, y, w, h, burstType } = burstDetail;
-      const index = celebrationBurstCounter + offsetIndex;
-      const sizeW = Math.min(80, Math.max(54, w * 0.18));
-      const sizeH = Math.min(96, sizeW * 1.15);
-      const jitterX = offsetIndex ? (offsetIndex % 2 === 0 ? -1 : 1) * (18 + offsetIndex * 10) : 0;
-      const jitterY = offsetIndex ? -12 - offsetIndex * 6 : 0;
-      const left = Math.max(8, Math.min(w - sizeW - 8, x - sizeW * 0.5 + jitterX));
-      const top =
-        burstType === "launch"
-          ? Math.max(h * 0.7, h - sizeH - 20 + jitterY)
-          : Math.max(40, Math.min(h * 0.74, y - sizeH * 0.5 + jitterY));
+    const { w, h, burstType } = detail;
+    const slotCount = burstType === "launch" ? 1 : Math.random() < 0.28 ? 2 : 1;
+
+    for (let slot = 0; slot < slotCount; slot += 1) {
+      const index = celebrationBurstCounter;
+      celebrationBurstCounter += 1;
+
+      const sizeW = Math.round(Math.min(68, Math.max(44, w * (0.12 + Math.random() * 0.05))));
+      const sizeH = Math.round(sizeW * (1.06 + Math.random() * 0.12));
+      const lane = (index * 0.19 + slot * 0.37 + Math.random() * 0.62) % 1;
+      const left = Math.max(4, Math.min(w - sizeW - 4, w * (0.02 + lane * 0.96) - sizeW / 2));
+      const top = h - sizeH - (4 + Math.random() * 36);
+      const driftX = Math.round((Math.random() - 0.5) * w * (0.2 + Math.random() * 0.12));
+      const driftMidX = Math.round((Math.random() - 0.5) * w * 0.1);
+      const rot = Math.round(-24 + Math.random() * 48);
 
       const img = document.createElement("img");
-      const style = pickBurstStyle(burstType, index);
+      const style = pickBurstStyle(burstType, index + slot);
 
       img.className = `celebration-burst-photo celebration-burst-photo--${style}`;
       img.src = celebrationBurstPool[index % celebrationBurstPool.length];
       img.alt = "";
-      img.width = Math.round(sizeW);
-      img.height = Math.round(sizeH);
+      img.width = sizeW;
+      img.height = sizeH;
       img.style.left = `${left}px`;
       img.style.top = `${top}px`;
       img.style.width = `${sizeW}px`;
       img.style.height = `${sizeH}px`;
+      img.style.setProperty("--burst-dx", `${driftX}px`);
+      img.style.setProperty("--burst-mid-x", `${driftMidX}px`);
+      img.style.setProperty("--burst-rot", `${rot}deg`);
 
       const remove = () => {
         if (img.isConnected) {
@@ -283,17 +285,8 @@ if (!habitForm) {
       };
 
       img.addEventListener("animationend", remove, { once: true });
-      window.setTimeout(remove, 3800);
+      window.setTimeout(remove, 4200);
       celebrationPhotoBursts.append(img);
-    };
-
-    celebrationBurstCounter += 1;
-    spawnOne(detail, 0);
-
-    if (detail.burstType !== "launch") {
-      spawnOne(detail, 1);
-    } else if (Math.random() < 0.45) {
-      spawnOne(detail, 1);
     }
   }
 
@@ -362,18 +355,18 @@ if (!habitForm) {
       const w = window.innerWidth;
       const h = window.innerHeight;
 
-      for (let burst = 0; burst < 5; burst += 1) {
+      for (let burst = 0; burst < 6; burst += 1) {
         window.setTimeout(() => {
           if (!themeCelebration.hidden) {
             spawnCelebrationPhotoBurst({
-              x: w * (0.18 + burst * 0.28),
-              y: h * (0.42 + burst * 0.06),
+              x: w * 0.5,
+              y: h,
               w,
               h,
-              burstType: burst === 0 ? "peony" : burst === 1 ? "willow" : "chrysanthemum",
+              burstType: burst % 3 === 0 ? "peony" : burst % 3 === 1 ? "willow" : "chrysanthemum",
             });
           }
-        }, burst * 220);
+        }, burst * 150 + Math.random() * 140);
       }
     }
   }
