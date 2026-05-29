@@ -123,16 +123,14 @@ if (!habitForm) {
     return `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
   }
 
+  const weekdayShort = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
+
   function formatTitleBoxDate(dateKey) {
     const date = parseDateKey(dateKey);
-    const today = getTodayKey();
-    const formatted = `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
 
-    if (dateKey === today) {
-      return `Today · ${formatted}`;
-    }
-
-    return formatted;
+    return `${month}/${day} ${weekdayShort[date.getDay()]}`;
   }
 
   function getThemeTodayTitle() {
