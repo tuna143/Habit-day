@@ -31,8 +31,14 @@ function applyTheme(theme) {
   window.dispatchEvent(new CustomEvent("habit-theme-change", { detail: { theme } }));
 }
 
+function removeKuromiThemeButton(root = document) {
+  root.querySelectorAll('.side-theme[data-theme="kuromi"]').forEach((button) => {
+    button.remove();
+  });
+}
+
 function syncThemeButtons(theme) {
-  document.querySelectorAll("[data-theme]").forEach((button) => {
+  document.querySelectorAll(".side-theme, .theme-chip").forEach((button) => {
     if (themes.includes(button.dataset.theme)) {
       button.classList.toggle("is-active", button.dataset.theme === theme);
     }
@@ -41,6 +47,8 @@ function syncThemeButtons(theme) {
 
 function initThemeControls(root = document) {
   const current = getTheme();
+
+  removeKuromiThemeButton(root);
 
   root.querySelectorAll(".side-theme, .theme-chip").forEach((button) => {
     button.classList.toggle("is-active", button.dataset.theme === current);
@@ -85,8 +93,11 @@ function initThemeImages() {
 
 applyTheme(getTheme());
 
+removeKuromiThemeButton();
+
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", () => {
+    removeKuromiThemeButton();
     initThemeControls();
     initThemeImages();
   });

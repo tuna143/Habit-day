@@ -1,4 +1,11 @@
+/* sidebar.js build 9 — Org + Fr themes only */
 const HOME_HREF = "app.html";
+
+function removeKuromiThemeButton(root = document) {
+  root.querySelectorAll('.side-theme[data-theme="kuromi"]').forEach((button) => {
+    button.remove();
+  });
+}
 
 function renderSidebar() {
   const sidebar = document.getElementById("app-sidebar");
@@ -31,10 +38,14 @@ function renderSidebar() {
     </div>
   `;
 
+  removeKuromiThemeButton(sidebar);
+
   if (typeof initThemeControls === "function") {
     initThemeControls(sidebar);
   }
 }
+
+removeKuromiThemeButton();
 
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", renderSidebar);
