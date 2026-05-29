@@ -1,21 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Habit Day Friends">
   <rect width="512" height="512" rx="112" fill="#3d3934"/>
-  <g fill="#f5f0e6">
-    <path
-      d="M206 118 L186 72 M306 118 L326 72"
-      fill="none"
-      stroke="#f5f0e6"
-      stroke-width="12"
-      stroke-linecap="round"
-    />
-    <rect x="128" y="158" width="256" height="188" rx="22"/>
-    <rect x="148" y="178" width="216" height="140" rx="14" fill="#5c574f"/>
-    <rect x="162" y="192" width="188" height="112" rx="10" fill="#7a746c"/>
-    <circle cx="372" cy="252" r="14"/>
-    <circle cx="372" cy="286" r="14"/>
-    <rect x="188" y="346" width="28" height="22" rx="5"/>
-    <rect x="296" y="346" width="28" height="22" rx="5"/>
-    <rect x="210" y="368" width="92" height="10" rx="5"/>
+  <g fill="#ffffff" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round">
+    <path fill="none" stroke-width="18" d="M214 186 L198 132 M298 186 L314 132"/>
+    <rect x="170" y="186" width="172" height="118" rx="16" stroke="none"/>
+    <rect x="206" y="296" width="28" height="14" rx="4" stroke="none"/>
+    <rect x="278" y="296" width="28" height="14" rx="4" stroke="none"/>
   </g>
   <circle cx="366" cy="150" r="36" fill="#f0b85f"/>
 </svg>
