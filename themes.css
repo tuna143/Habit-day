@@ -359,14 +359,13 @@
 }
 
 .friends-cutout.cutout-a {
-  object-fit: contain;
+  object-fit: cover;
   object-position: center top;
-  background: transparent;
-  aspect-ratio: 0.92;
-  height: min(46vw, 320px);
-  width: min(40vw, 280px);
-  transform: rotate(-7deg) scale(1.06);
-  transform-origin: 92% 0%;
+  width: min(42vw, 300px);
+  height: min(42vw, 300px);
+  aspect-ratio: 1;
+  transform: rotate(-7deg);
+  transform-origin: 100% 0%;
 }
 
 .cutout-a {
@@ -642,10 +641,10 @@
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 1;
   border-radius: 14px;
   object-fit: cover;
-  object-position: center;
+  object-position: center top;
   border: 3px solid rgba(250, 246, 240, 0.95);
 }
 
@@ -997,15 +996,16 @@ body.celebration-open {
   }
 
   .friends-cutout.cutout-a {
-    width: min(44vw, 200px) !important;
-    height: min(50vw, 230px) !important;
-    aspect-ratio: auto !important;
+    width: min(46vw, 210px) !important;
+    height: min(46vw, 210px) !important;
+    aspect-ratio: 1 !important;
     right: -2% !important;
     top: 0 !important;
     opacity: 1 !important;
+    object-fit: cover !important;
     object-position: center top !important;
-    transform: rotate(-6deg) scale(1.08) !important;
-    transform-origin: 92% top !important;
+    transform: rotate(-6deg) !important;
+    transform-origin: 100% 0% !important;
   }
 
   .cutout-b,
@@ -1044,15 +1044,16 @@ body.celebration-open {
   }
 
   .friends-cutout.cutout-a {
-    width: min(48vw, 210px) !important;
-    height: min(54vw, 240px) !important;
-    aspect-ratio: auto !important;
+    width: min(48vw, 220px) !important;
+    height: min(48vw, 220px) !important;
+    aspect-ratio: 1 !important;
     right: 0 !important;
     top: 0 !important;
     opacity: 1 !important;
+    object-fit: cover !important;
     object-position: center top !important;
-    transform: rotate(-6deg) scale(1.1) !important;
-    transform-origin: 94% top !important;
+    transform: rotate(-6deg) !important;
+    transform-origin: 100% 0% !important;
     filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.28));
   }
 
