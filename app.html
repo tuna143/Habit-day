@@ -11,10 +11,10 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="mobile-web-app-capable" content="yes" />
     <title>Habit Day</title>
-    <link rel="manifest" href="manifest.webmanifest?v=18" />
-    <link rel="icon" href="icon.svg?v=18" type="image/svg+xml" data-theme-icon="true" />
-    <link rel="apple-touch-icon" href="apple-touch-icon.png?v=18" sizes="180x180" data-theme-icon="true" />
-    <link rel="icon" href="icon-192.png?v=18" type="image/png" sizes="192x192" data-theme-icon="true" />
+    <link rel="manifest" href="manifest.webmanifest?v=24" />
+    <link rel="icon" href="icon.svg?v=24" type="image/svg+xml" data-theme-icon="true" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png?v=24" sizes="180x180" data-theme-icon="true" />
+    <link rel="icon" href="icon-192.png?v=24" type="image/png" sizes="192x192" data-theme-icon="true" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="layout.css?v=20" />
     <link rel="stylesheet" href="themes.css?v=23" />
     <script>
-      window.__HABIT_BUILD = "18";
+      window.__HABIT_BUILD = "24";
       (function () {
         if ("serviceWorker" in navigator) {
           navigator.serviceWorker.getRegistrations().then(function (regs) {
@@ -37,7 +37,7 @@
         if (window.caches) {
           caches.keys().then(function (keys) {
             keys.forEach(function (key) {
-              if (key.indexOf("habit-day-v18") === -1) {
+              if (key.indexOf("habit-day-v24") === -1) {
                 caches.delete(key);
               }
             });
@@ -45,7 +45,7 @@
         }
       })();
     </script>
-    <script src="theme.js?v=18"></script>
+    <script src="theme.js?v=24"></script>
   </head>
   <body>
     <div class="app-layout">
@@ -270,11 +270,11 @@
       </li>
     </template>
 
-    <script src="sidebar.js?v=18"></script>
-    <script src="shared.js?v=18"></script>
-    <script src="user-photos.js?v=18"></script>
-    <script src="habit-photos.js?v=18"></script>
-    <script src="fireworks.js?v=18"></script>
+    <script src="sidebar.js?v=24"></script>
+    <script src="shared.js?v=24"></script>
+    <script src="user-photos.js?v=24"></script>
+    <script src="habit-photos.js?v=24"></script>
+    <script src="fireworks.js?v=24"></script>
     <script src="app.js?v=23"></script>
   </body>
 </html>

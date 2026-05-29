@@ -1,6 +1,6 @@
 const themeStorageKey = "habit-theme";
 const themes = ["original", "kuromi", "friends"];
-const ICON_BUST = "18";
+const ICON_BUST = "24";
 
 const themeBranding = {
   original: {

@@ -1,13 +1,23 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Habit Day Kuromi">
   <rect width="512" height="512" rx="112" fill="#2d1548"/>
-  <circle cx="256" cy="256" r="148" fill="#ffffff"/>
-  <path
-    d="M178 262l54 54 102-118"
-    fill="none"
-    stroke="#ffffff"
-    stroke-width="44"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-  />
-  <circle cx="366" cy="150" r="36" fill="#f48fb8"/>
+  <g fill="#ffffff">
+    <ellipse cx="188" cy="168" rx="34" ry="44" transform="rotate(-18 188 168)"/>
+    <ellipse cx="324" cy="168" rx="34" ry="44" transform="rotate(18 324 168)"/>
+    <ellipse cx="256" cy="268" rx="122" ry="112"/>
+    <path d="M196 248c-8-28 24-48 60-40-4 36-28 56-60 40z"/>
+    <path d="M316 248c8-28-24-48-60-40 4 36 28 56 60 40z"/>
+    <ellipse cx="214" cy="278" rx="24" ry="28" fill="#2d1548"/>
+    <ellipse cx="298" cy="278" rx="24" ry="28" fill="#2d1548"/>
+    <ellipse cx="256" cy="318" rx="12" ry="10" fill="#2d1548"/>
+    <path
+      d="M228 332c14 18 42 18 56 0"
+      fill="none"
+      stroke="#2d1548"
+      stroke-width="6"
+      stroke-linecap="round"
+    />
+    <ellipse cx="196" cy="302" rx="14" ry="10" fill="#f48fb8" opacity="0.9"/>
+    <ellipse cx="316" cy="302" rx="14" ry="10" fill="#f48fb8" opacity="0.9"/>
+  </g>
+  <circle cx="366" cy="150" r="36" fill="#f0b85f"/>
 </svg>
