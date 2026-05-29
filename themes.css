@@ -810,12 +810,22 @@
 [data-theme="kuromi"] .overview-copy .overview-date,
 [data-theme="gintama"] .overview-copy .overview-date,
 [data-theme="toothless"] .overview-copy .overview-date {
-  margin-left: 0.22em;
-  font-size: clamp(10px, 2.4vw, 12px);
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  color: color-mix(in srgb, var(--ink) 62%, var(--muted));
-  line-height: 1.1;
+  margin-left: 0.35em;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, "Times New Roman", serif;
+  font-size: clamp(12px, 3vw, 15px);
+  font-weight: 600;
+  font-style: normal;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.05em;
+  color: color-mix(in srgb, var(--ink) 58%, var(--muted));
+  line-height: 1.15;
+}
+
+[data-theme="friends"] .overview-title.is-habit-glued .overview-date,
+[data-theme="kuromi"] .overview-title.is-habit-glued .overview-date,
+[data-theme="gintama"] .overview-title.is-habit-glued .overview-date,
+[data-theme="toothless"] .overview-title.is-habit-glued .overview-date {
+  margin-left: 0.62em;
 }
 
 [data-theme="friends"] .overview-title.is-habit-glued .overview-title-habit,

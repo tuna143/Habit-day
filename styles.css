@@ -105,15 +105,17 @@ input {
 }
 
 .overview-title.is-habit-glued .overview-date {
-  margin-left: 0.22em;
+  margin-left: 0.55em;
 }
 
 .overview-date {
   color: var(--muted);
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, "Times New Roman", serif;
   font-size: clamp(14px, 3.2vw, 20px);
   font-weight: 600;
-  letter-spacing: 0.02em;
-  line-height: inherit;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+  line-height: 1.15;
 }
 
 h1,
