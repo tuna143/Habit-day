@@ -1,4 +1,4 @@
-const cacheName = "habit-day-v1";
+const cacheName = "habit-day-v2";
 const appShell = [
   "./",
   "./index.html",
@@ -29,13 +29,44 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
+  const request = event.request;
+  const isNavigation =
+    request.mode === "navigate" || request.destination === "document";
+
+  if (isNavigation) {
+    event.respondWith(
+      fetch(request)
+        .then((response) => {
+          const copy = response.clone();
+          caches.open(cacheName).then((cache) => cache.put("./index.html", copy));
+          return response;
+        })
+        .catch(() =>
+          caches.match("./index.html").then((cached) => cached || caches.match(request))
+        )
+    );
+    return;
+  }
+
   event.respondWith(
-    caches.match(event.request).then((cached) =>
-      cached || fetch(event.request).then((response) => {
-        const copy = response.clone();
-        caches.open(cacheName).then((cache) => cache.put(event.request, copy));
+    caches.match(request).then((cached) => {
+      if (cached) {
+        fetch(request)
+          .then((response) => {
+            if (response && response.ok) {
+              caches.open(cacheName).then((cache) => cache.put(request, response.clone()));
+            }
+          })
+          .catch(() => {});
+        return cached;
+      }
+
+      return fetch(request).then((response) => {
+        if (response && response.ok) {
+          caches.open(cacheName).then((cache) => cache.put(request, response.clone()));
+        }
         return response;
-      })
-    )
+      });
+    })
   );
 });
