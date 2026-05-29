@@ -11,7 +11,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="mobile-web-app-capable" content="yes" />
     <title>Habit Day</title>
-    <link rel="manifest" href="manifest.webmanifest?v=12" />
+    <link rel="manifest" href="manifest.webmanifest?v=13" />
     <link rel="icon" href="icon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="icon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -20,11 +20,11 @@
       href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Outfit:wght@600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=12" />
-    <link rel="stylesheet" href="layout.css?v=12" />
-    <link rel="stylesheet" href="themes.css?v=12" />
+    <link rel="stylesheet" href="styles.css?v=13" />
+    <link rel="stylesheet" href="layout.css?v=13" />
+    <link rel="stylesheet" href="themes.css?v=13" />
     <script>
-      window.__HABIT_BUILD = "12";
+      window.__HABIT_BUILD = "13";
       (function () {
         if ("serviceWorker" in navigator) {
           navigator.serviceWorker.getRegistrations().then(function (regs) {
@@ -36,7 +36,7 @@
         if (window.caches) {
           caches.keys().then(function (keys) {
             keys.forEach(function (key) {
-              if (key.indexOf("habit-day-v12") === -1) {
+              if (key.indexOf("habit-day-v13") === -1) {
                 caches.delete(key);
               }
             });
@@ -44,7 +44,7 @@
         }
       })();
     </script>
-    <script src="theme.js?v=12"></script>
+    <script src="theme.js?v=13"></script>
   </head>
   <body>
     <div class="app-layout">
@@ -147,7 +147,7 @@
                 src="assets/kuromi/empty.svg"
                 alt=""
               />
-              No habits yet. Tap <strong>+ Habit</strong> below to add one.
+              No habits yet. Tap <strong>⋯</strong> (top right) → <strong>Add habit</strong>.
             </p>
           </section>
         </main>
@@ -208,10 +208,10 @@
       </li>
     </template>
 
-    <script src="sidebar.js?v=12"></script>
-    <script src="shared.js?v=12"></script>
-    <script src="user-photos.js?v=12"></script>
-    <script src="fireworks.js?v=12"></script>
-    <script src="app.js?v=12"></script>
+    <script src="sidebar.js?v=13"></script>
+    <script src="shared.js?v=13"></script>
+    <script src="user-photos.js?v=13"></script>
+    <script src="fireworks.js?v=13"></script>
+    <script src="app.js?v=13"></script>
   </body>
 </html>
