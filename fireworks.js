@@ -488,7 +488,7 @@ const CelebrationFireworks = (() => {
 
     rockets.push(rocket);
 
-    if (Math.random() < 0.38) {
+    if (Math.random() < 0.52) {
       notifyBurst(rocket.x, height - 8, "launch");
     }
   }

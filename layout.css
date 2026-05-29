@@ -569,7 +569,7 @@ body {
 }
 
 .theme-chip--kuromi .theme-chip-dot {
-  background: linear-gradient(135deg, #f4c8ff 0%, #f4c8ff 46%, #4a2878 54%, #4a2878 100%);
+  background: linear-gradient(135deg, #141214 0%, #141214 48%, #f5c6e8 52%, #f5c6e8 100%);
 }
 
 .theme-chip--kuromi.is-active {
@@ -586,7 +586,7 @@ body {
 }
 
 .theme-chip--friends .theme-chip-dot {
-  background: linear-gradient(135deg, #f2d070 0%, #f2d070 44%, #5a5248 56%, #5a5248 100%);
+  background: linear-gradient(135deg, #f0c830 0%, #f0c830 44%, #6b4a2a 56%, #6b4a2a 100%);
 }
 
 .theme-chip--friends.is-active {
@@ -628,11 +628,6 @@ body {
   border-color: rgba(155, 201, 74, 0.4);
   color: #f4f7fa;
   box-shadow: 0 4px 14px rgba(20, 22, 24, 0.24);
-}
-
-.theme-chip--toothless .theme-chip-copy strong {
-  font-size: 12px;
-  letter-spacing: -0.03em;
 }
 
 body.app-menu-open::before {

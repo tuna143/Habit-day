@@ -59,11 +59,11 @@ if (!habitForm) {
     }
   }
 
-  const THEME_TODAY_HEADINGS = {
-    friends: { eyebrow: "Friends", title: "Friend's Habit" },
-    kuromi: { eyebrow: "Kuromi", title: "Kromi's Habit" },
-    gintama: { eyebrow: "Gintama", title: "Gintoki's habit" },
-    toothless: { eyebrow: "투슬리스", title: "오늘의 습관" },
+  const THEME_TODAY_TITLES = {
+    friends: "Friend's Habit",
+    kuromi: "Kromi's Habit",
+    gintama: "Gintoki's habit",
+    toothless: "Dragon's habit",
   };
 
   const CELEBRATION_COPY = {
@@ -116,23 +116,23 @@ if (!habitForm) {
     return `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
   }
 
-  function getThemeTodayHeading() {
+  function getThemeTodayTitle() {
     const theme = document.documentElement.dataset.theme || "original";
 
-    return THEME_TODAY_HEADINGS[theme] || null;
+    return THEME_TODAY_TITLES[theme] || null;
   }
 
   function updateDateHeading() {
     const label = formatDisplayDate(activeDateKey);
     const isToday = activeDateKey === getTodayKey();
-    const themeHeading = isToday ? getThemeTodayHeading() : null;
+    const themeTitle = isToday ? getThemeTodayTitle() : null;
 
     if (appEyebrow) {
-      appEyebrow.textContent = themeHeading?.eyebrow || (isToday ? "Habit Day" : label);
+      appEyebrow.textContent = themeTitle || (isToday ? "Habit Day" : label);
     }
 
     if (appTitle) {
-      appTitle.textContent = themeHeading?.title || (isToday ? "Today's Habits" : `Habits for ${label}`);
+      appTitle.textContent = themeTitle || (isToday ? "Today's Habits" : `Habits for ${label}`);
     }
   }
 
@@ -212,13 +212,17 @@ if (!habitForm) {
     celebrationBurstCounter = 0;
   }
 
-  function clearCelebrationBursts() {
+  function clearCelebrationBurstPhotos() {
     if (celebrationPhotoBursts) {
       celebrationPhotoBursts.replaceChildren();
     }
 
-    celebrationBurstPool = [];
     celebrationBurstCounter = 0;
+  }
+
+  function clearCelebrationBursts() {
+    clearCelebrationBurstPhotos();
+    celebrationBurstPool = [];
   }
 
   function pickBurstStyle(burstType, index) {
@@ -246,43 +250,51 @@ if (!habitForm) {
       return;
     }
 
-    const { x, y, w, h, burstType } = detail;
-    const index = celebrationBurstCounter;
-    celebrationBurstCounter += 1;
-    const sizeW = Math.min(76, Math.max(52, w * 0.17));
-    const sizeH = Math.min(92, sizeW * 1.15);
-    const left = Math.max(8, Math.min(w - sizeW - 8, x - sizeW * 0.5));
-    const top =
-      burstType === "launch"
-        ? Math.max(h * 0.72, h - sizeH - 24)
-        : Math.max(48, Math.min(h * 0.72, y - sizeH * 0.55));
+    const spawnOne = (burstDetail, offsetIndex = 0) => {
+      const { x, y, w, h, burstType } = burstDetail;
+      const index = celebrationBurstCounter + offsetIndex;
+      const sizeW = Math.min(80, Math.max(54, w * 0.18));
+      const sizeH = Math.min(96, sizeW * 1.15);
+      const jitterX = offsetIndex ? (offsetIndex % 2 === 0 ? -1 : 1) * (18 + offsetIndex * 10) : 0;
+      const jitterY = offsetIndex ? -12 - offsetIndex * 6 : 0;
+      const left = Math.max(8, Math.min(w - sizeW - 8, x - sizeW * 0.5 + jitterX));
+      const top =
+        burstType === "launch"
+          ? Math.max(h * 0.7, h - sizeH - 20 + jitterY)
+          : Math.max(40, Math.min(h * 0.74, y - sizeH * 0.5 + jitterY));
 
-    const img = document.createElement("img");
-    const style = pickBurstStyle(burstType, index);
+      const img = document.createElement("img");
+      const style = pickBurstStyle(burstType, index);
 
-    img.className = `celebration-burst-photo celebration-burst-photo--${style}`;
-    img.src = celebrationBurstPool[index % celebrationBurstPool.length];
-    img.alt = "";
-    img.width = Math.round(sizeW);
-    img.height = Math.round(sizeH);
-    img.style.setProperty("--burst-x", `${left}px`);
-    img.style.setProperty("--burst-y", `${top}px`);
-    img.style.setProperty("--burst-w", `${sizeW}px`);
-    img.style.setProperty("--burst-h", `${sizeH}px`);
-    img.style.left = `${left}px`;
-    img.style.top = `${top}px`;
-    img.style.width = `${sizeW}px`;
-    img.style.height = `${sizeH}px`;
+      img.className = `celebration-burst-photo celebration-burst-photo--${style}`;
+      img.src = celebrationBurstPool[index % celebrationBurstPool.length];
+      img.alt = "";
+      img.width = Math.round(sizeW);
+      img.height = Math.round(sizeH);
+      img.style.left = `${left}px`;
+      img.style.top = `${top}px`;
+      img.style.width = `${sizeW}px`;
+      img.style.height = `${sizeH}px`;
 
-    const remove = () => {
-      if (img.isConnected) {
-        img.remove();
-      }
+      const remove = () => {
+        if (img.isConnected) {
+          img.remove();
+        }
+      };
+
+      img.addEventListener("animationend", remove, { once: true });
+      window.setTimeout(remove, 3800);
+      celebrationPhotoBursts.append(img);
     };
 
-    img.addEventListener("animationend", remove, { once: true });
-    window.setTimeout(remove, 3600);
-    celebrationPhotoBursts.append(img);
+    celebrationBurstCounter += 1;
+    spawnOne(detail, 0);
+
+    if (detail.burstType !== "launch") {
+      spawnOne(detail, 1);
+    } else if (Math.random() < 0.45) {
+      spawnOne(detail, 1);
+    }
   }
 
   function updateCelebrationPanel(theme) {
@@ -332,8 +344,8 @@ if (!habitForm) {
 
     const theme = getCelebrationTheme();
     updateCelebrationPanel(theme);
+    clearCelebrationBurstPhotos();
     prepareCelebrationBurstPool(theme);
-    clearCelebrationBursts();
     themeCelebration.hidden = false;
     themeCelebration.classList.add("is-active");
     document.body.classList.add("celebration-open");
@@ -350,7 +362,7 @@ if (!habitForm) {
       const w = window.innerWidth;
       const h = window.innerHeight;
 
-      for (let burst = 0; burst < 3; burst += 1) {
+      for (let burst = 0; burst < 5; burst += 1) {
         window.setTimeout(() => {
           if (!themeCelebration.hidden) {
             spawnCelebrationPhotoBurst({
