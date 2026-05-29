@@ -1,4 +1,4 @@
-const cacheName = "habit-day-v4";
+const cacheName = "habit-day-v1";
 const appShell = [
   "./",
   "./index.html",
@@ -48,7 +48,7 @@ self.addEventListener("fetch", (event) => {
       if (cached) {
         fetch(request)
           .then((response) => {
-            if (response.ok) {
+            if (response && response.ok) {
               caches.open(cacheName).then((cache) => cache.put(request, response.clone()));
             }
           })
@@ -57,7 +57,7 @@ self.addEventListener("fetch", (event) => {
       }
 
       return fetch(request).then((response) => {
-        if (response.ok) {
+        if (response && response.ok) {
           caches.open(cacheName).then((cache) => cache.put(request, response.clone()));
         }
         return response;
