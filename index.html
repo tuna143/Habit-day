@@ -1,71 +1,28 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="theme-color" content="#26735b" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-    <meta name="apple-mobile-web-app-title" content="Habit Day" />
     <title>Habit Day</title>
-    <link rel="manifest" href="manifest.webmanifest" />
-    <link rel="icon" href="icon.svg" type="image/svg+xml" />
-    <link rel="apple-touch-icon" href="icon.svg" />
-    <link rel="stylesheet" href="styles.css" />
+    <meta http-equiv="refresh" content="0; url=습관바꾸기.html" />
+    <link rel="canonical" href="습관바꾸기.html" />
+    <script>
+      (function () {
+        var main = "습관바꾸기.html";
+
+        if ("serviceWorker" in navigator) {
+          navigator.serviceWorker.getRegistrations().then(function (registrations) {
+            registrations.forEach(function (registration) {
+              registration.unregister();
+            });
+          });
+        }
+
+        location.replace(main);
+      })();
+    </script>
   </head>
   <body>
-    <main class="app-shell">
-      <section class="hero" aria-labelledby="app-title">
-        <div>
-          <p class="eyebrow">Habit Day</p>
-          <h1 id="app-title">Today's Habits</h1>
-          <p class="summary" id="summaryText">Start small and keep your day moving.</p>
-        </div>
-        <div class="progress-card" aria-live="polite">
-          <span id="progressPercent">0%</span>
-          <p>Complete</p>
-        </div>
-      </section>
-
-      <section class="install-panel" id="installPanel" hidden>
-        <div>
-          <strong>Install Habit Day</strong>
-          <p>Open it from your phone home screen like a regular app.</p>
-        </div>
-        <button id="installButton" type="button">Install</button>
-      </section>
-
-      <section class="composer" aria-label="Add habit">
-        <form id="habitForm">
-          <label for="habitInput">New habit</label>
-          <div class="input-row">
-            <input id="habitInput" name="habit" type="text" maxlength="32" placeholder="Example: Drink water" autocomplete="off" />
-            <button type="submit">Add</button>
-          </div>
-        </form>
-      </section>
-
-      <section class="board" aria-label="Habit list">
-        <div class="toolbar">
-          <h2>Checklist</h2>
-          <button class="ghost-button" id="resetToday" type="button">Reset today</button>
-        </div>
-        <ul class="habit-list" id="habitList"></ul>
-        <p class="empty-state" id="emptyState">No habits yet. Add one above to get started.</p>
-      </section>
-    </main>
-
-    <template id="habitTemplate">
-      <li class="habit-item">
-        <button class="check-button" type="button" aria-label="Toggle complete"></button>
-        <div class="habit-copy">
-          <strong></strong>
-          <span></span>
-        </div>
-        <button class="delete-button" type="button" aria-label="Delete">x</button>
-      </li>
-    </template>
-
-    <script src="app.js"></script>
+    <p><a href="습관바꾸기.html">Habit Day 열기</a></p>
   </body>
 </html>

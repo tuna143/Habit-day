@@ -290,19 +290,26 @@
   position: absolute;
   object-fit: cover;
   border-radius: 14px;
-  outline: 3px solid rgba(245, 243, 239, 0.9);
+  outline: 3px solid rgba(245, 243, 239, 0.95);
   outline-offset: -1px;
-  filter: drop-shadow(0 16px 32px rgba(44, 42, 38, 0.3)) drop-shadow(0 4px 10px rgba(44, 42, 38, 0.15));
+  filter: drop-shadow(0 16px 32px rgba(44, 42, 38, 0.35)) drop-shadow(0 4px 10px rgba(44, 42, 38, 0.2));
+}
+
+.friends-cutout.cutout-a {
+  object-fit: contain;
+  object-position: center bottom;
+  background: transparent;
 }
 
 .cutout-a {
   top: 0;
-  right: -4%;
-  width: min(38vw, 280px);
+  right: -2%;
+  width: min(42vw, 300px);
   aspect-ratio: 1;
   transform: rotate(-7deg);
-  object-position: center 10%;
+  object-position: center bottom;
   z-index: 3;
+  opacity: 1;
 }
 
 .cutout-b {
@@ -370,12 +377,13 @@
 [data-theme="kuromi"] .overview-copy {
   position: relative;
   z-index: 2;
-  max-width: min(520px, 72%);
+  max-width: min(420px, 58%);
   padding: 16px 18px;
   border-radius: var(--radius);
-  background: var(--card-bg);
+  background: color-mix(in srgb, var(--card-bg) 88%, transparent);
   border: 1px solid var(--card-border);
   box-shadow: var(--shadow);
+  backdrop-filter: blur(6px);
 }
 
 [data-theme="friends"] .composer,
@@ -383,7 +391,8 @@
 [data-theme="kuromi"] .composer,
 [data-theme="kuromi"] .board {
   position: relative;
-  z-index: 2;
+  z-index: 4;
+  pointer-events: auto;
 }
 
 [data-theme="kuromi"] h1 {
@@ -464,18 +473,22 @@
   position: absolute;
   object-fit: cover;
   border-radius: 14px;
-  outline: 3px solid rgba(255, 250, 255, 0.88);
+  outline: 3px solid rgba(255, 250, 255, 0.92);
   outline-offset: -1px;
-  filter: drop-shadow(0 14px 28px rgba(62, 28, 90, 0.28));
+  filter: drop-shadow(0 14px 28px rgba(62, 28, 90, 0.32));
 }
 
 .kuromi-cutout.cutout-a {
-  top: 2%;
+  top: 0;
   right: -2%;
-  width: min(36vw, 260px);
+  width: min(40vw, 280px);
   aspect-ratio: 1;
   transform: rotate(-6deg);
   z-index: 3;
+  opacity: 1;
+  object-fit: contain;
+  object-position: center bottom;
+  background: transparent;
 }
 
 .kuromi-cutout.cutout-b {
@@ -909,57 +922,47 @@ body.celebration-open {
   .friends-scene,
   .kuromi-scene {
     pointer-events: none;
+    opacity: 1;
   }
 
   .decor-hero {
     width: 88px;
-    opacity: 0.85;
+    opacity: 1;
   }
 
-  .cutout-a {
-    width: min(38vw, 160px);
-    right: -12%;
-    top: 2%;
-    opacity: 0.85;
+  .friends-cutout.cutout-a,
+  .kuromi-cutout.cutout-a {
+    width: min(46vw, 200px) !important;
+    right: -4% !important;
+    top: 0 !important;
+    opacity: 1 !important;
   }
 
   .cutout-b,
-  .cutout-c {
-    width: min(28vw, 110px);
-    opacity: 0.65;
+  .cutout-c,
+  .kuromi-cutout.cutout-b,
+  .kuromi-cutout.cutout-c {
+    width: min(30vw, 120px) !important;
+    opacity: 0.92 !important;
   }
 
   .cutout-d,
   .cutout-e,
-  .cutout-f {
+  .cutout-f,
+  .kuromi-cutout.cutout-d {
     display: none;
   }
 
   [data-theme="friends"] .overview-copy,
   [data-theme="kuromi"] .overview-copy {
-    max-width: 100%;
+    max-width: min(100%, 68%);
     padding: 14px 16px;
+    background: color-mix(in srgb, var(--card-bg) 92%, transparent);
   }
 
   [data-theme="friends"] h1,
   [data-theme="kuromi"] h1 {
     font-size: clamp(30px, 9vw, 52px);
-  }
-
-  .kuromi-cutout.cutout-a {
-    width: min(36vw, 150px);
-    right: -10%;
-    opacity: 0.8;
-  }
-
-  .kuromi-cutout.cutout-b,
-  .kuromi-cutout.cutout-c {
-    width: min(26vw, 100px);
-    opacity: 0.6;
-  }
-
-  .kuromi-cutout.cutout-d {
-    display: none;
   }
 
   [data-theme="kuromi"] .weekly-page .subpage-header {

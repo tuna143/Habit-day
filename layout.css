@@ -688,28 +688,16 @@ body {
 }
 
 @media (max-width: 768px) {
-  [data-theme="friends"] .overview-copy,
-  [data-theme="kuromi"] .overview-copy {
-    max-width: 100%;
-    margin-right: 0;
+  [data-theme="friends"] .overview,
+  [data-theme="kuromi"] .overview {
+    min-height: clamp(200px, 42vw, 280px);
   }
 
-  [data-theme="friends"] .friends-scene,
-  [data-theme="kuromi"] .kuromi-scene {
-    opacity: 0.55;
-  }
-
-  .cutout-a {
-    width: min(32vw, 120px) !important;
-    right: -8% !important;
-  }
-
-  .cutout-b,
-  .cutout-c,
-  .kuromi-cutout.cutout-b,
-  .kuromi-cutout.cutout-c {
-    width: min(22vw, 80px) !important;
-    opacity: 0.45 !important;
+  [data-theme="friends"] .composer,
+  [data-theme="friends"] .board,
+  [data-theme="kuromi"] .composer,
+  [data-theme="kuromi"] .board {
+    z-index: 5;
   }
 }
 
