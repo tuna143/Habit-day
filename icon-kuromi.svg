@@ -2,24 +2,16 @@
   <rect width="512" height="512" rx="112" fill="#2d1548"/>
   <g fill="#ffffff">
     <path
-      d="M206 186 C198 182 182 118 172 78 C166 58 148 48 128 62 C138 76 152 88 164 108 C176 138 188 168 198 182 Z"
+      d="M192 210 L178 198 L158 108 L148 58 L124 78 L142 118 L168 178 L186 202 Z"
     />
     <path
-      d="M306 186 C314 182 330 118 340 78 C346 58 364 48 384 62 C374 76 360 88 348 108 C336 138 324 168 314 182 Z"
+      d="M320 210 L334 198 L354 108 L364 58 L388 78 L370 118 L344 178 L326 202 Z"
     />
-    <ellipse cx="256" cy="286" rx="90" ry="86"/>
-    <ellipse cx="220" cy="280" rx="14" ry="18" fill="#2d1548"/>
-    <ellipse cx="292" cy="280" rx="14" ry="18" fill="#2d1548"/>
-    <ellipse cx="256" cy="310" rx="6" ry="5" fill="#2d1548"/>
-    <path
-      d="M238 322c10 12 26 12 36 0"
-      fill="none"
-      stroke="#2d1548"
-      stroke-width="5"
-      stroke-linecap="round"
-    />
-    <ellipse cx="204" cy="300" rx="11" ry="8" fill="#f5a8c8"/>
-    <ellipse cx="308" cy="300" rx="11" ry="8" fill="#f5a8c8"/>
+    <ellipse cx="256" cy="302" rx="112" ry="104"/>
+    <circle cx="256" cy="250" r="24" fill="#f5a8c8"/>
+    <ellipse cx="214" cy="298" rx="17" ry="21" fill="#2d1548"/>
+    <ellipse cx="298" cy="298" rx="17" ry="21" fill="#2d1548"/>
+    <ellipse cx="256" cy="334" rx="8" ry="7" fill="#2d1548"/>
   </g>
   <circle cx="366" cy="150" r="36" fill="#f0b85f"/>
 </svg>
