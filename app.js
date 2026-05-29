@@ -58,6 +58,7 @@ if (!habitForm) {
     friends: "Friend's Habit",
     kuromi: "Kromi's Habit",
     gintama: "Gintoki's habit",
+    toothless: "Toothless's habit",
   };
 
   const CELEBRATION_COPY = {
@@ -73,6 +74,10 @@ if (!habitForm) {
     },
     gintama: {
       tagline: "All habits done. The strawberry panties salute your discipline. Truly silver soul energy.",
+      title: "Perfect day",
+    },
+    toothless: {
+      tagline: "Every habit done — Night Fury approved. Those green eyes are very proud of you.",
       title: "Perfect day",
     },
     original: { tagline: "You did it — every habit checked off. Keep this streak going.", title: "Perfect day" },
@@ -129,7 +134,7 @@ if (!habitForm) {
   function shouldCelebrate() {
     const theme = document.documentElement.dataset.theme || "original";
 
-    if (theme === "friends" || theme === "kuromi" || theme === "gintama") {
+    if (theme === "friends" || theme === "kuromi" || theme === "gintama" || theme === "toothless") {
       return true;
     }
 
@@ -139,7 +144,7 @@ if (!habitForm) {
   function getCelebrationTheme() {
     const theme = document.documentElement.dataset.theme || "original";
 
-    if (theme === "friends" || theme === "kuromi" || theme === "gintama") {
+    if (theme === "friends" || theme === "kuromi" || theme === "gintama" || theme === "toothless") {
       return theme;
     }
 
@@ -167,6 +172,10 @@ if (!habitForm) {
       return GINTAMA_ASSETS.celebrate;
     }
 
+    if (theme === "toothless") {
+      return TOOTHLESS_ASSETS.celebrate;
+    }
+
     return null;
   }
 
@@ -182,9 +191,15 @@ if (!habitForm) {
     }
 
     if (celebrationPhotoRing) {
-      celebrationPhotoRing.classList.remove("is-friends", "is-kuromi", "is-gintama");
+      celebrationPhotoRing.classList.remove("is-friends", "is-kuromi", "is-gintama", "is-toothless");
       celebrationPhotoRing.classList.add(
-        theme === "kuromi" ? "is-kuromi" : theme === "gintama" ? "is-gintama" : "is-friends"
+        theme === "kuromi"
+          ? "is-kuromi"
+          : theme === "gintama"
+            ? "is-gintama"
+            : theme === "toothless"
+              ? "is-toothless"
+              : "is-friends"
       );
     }
 
@@ -192,6 +207,7 @@ if (!habitForm) {
       const url = resolveCelebrationImage(theme);
       celebrationPhoto.classList.toggle("is-kuromi-art", theme === "kuromi");
       celebrationPhoto.classList.toggle("is-gintama-art", theme === "gintama");
+      celebrationPhoto.classList.toggle("is-toothless-art", theme === "toothless");
 
       if (url) {
         celebrationPhoto.src = url;

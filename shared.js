@@ -353,3 +353,36 @@ function getGintamaSceneImage(dateKey, salt = 0) {
   const index = getFriendsSceneHash(dateKey, salt) % GINTAMA_SCENE_POOL.length;
   return GINTAMA_SCENE_POOL[index];
 }
+
+const TOOTHLESS_ASSETS = {
+  hero: "assets/toothless/banner.png",
+  celebrate: "assets/toothless/celebrate.png",
+};
+
+const TOOTHLESS_SCENE_POOL = [
+  "assets/toothless/scene-01.png",
+  "assets/toothless/scene-02.png",
+  "assets/toothless/scene-03.png",
+  "assets/toothless/scene-04.png",
+  "assets/toothless/scene-05.png",
+  "assets/toothless/scene-06.png",
+  "assets/toothless/scene-07.png",
+  "assets/toothless/scene-08.png",
+  "assets/toothless/scene-09.png",
+  "assets/toothless/scene-10.png",
+  "assets/toothless/scene-11.png",
+  "assets/toothless/scene-12.png",
+  "assets/toothless/scene-13.png",
+  "assets/toothless/scene-14.png",
+  "assets/toothless/scene-15.png",
+  "assets/toothless/scene-16.png",
+  "assets/toothless/scene-17.png",
+  "assets/toothless/scene-18.png",
+  "assets/toothless/scene-19.png",
+  "assets/toothless/scene-20.png",
+];
+
+function getToothlessSceneImage(dateKey, salt = 0) {
+  const index = getFriendsSceneHash(dateKey, salt) % TOOTHLESS_SCENE_POOL.length;
+  return TOOTHLESS_SCENE_POOL[index];
+}

@@ -1,4 +1,4 @@
-/* themes.css — original / kuromi / friends / gintama */
+/* themes.css — original / kuromi / friends / gintama / toothless */
 
 [data-theme="original"] {
   color-scheme: light;
@@ -160,7 +160,48 @@
   --side-theme-border: rgba(255, 255, 255, 0.12);
 }
 
+[data-theme="toothless"] {
+  color-scheme: light;
+  --bg: #e6eaef;
+  --ink: #141618;
+  --muted: #4e545c;
+  --line: #c5cad2;
+  --panel: #f2f5f8;
+  --surface: #e8ecf1;
+  --accent: #2a2d32;
+  --accent-strong: #141618;
+  --accent-mid: #4a4f56;
+  --accent-soft: rgba(42, 45, 50, 0.1);
+  --accent-border: rgba(42, 45, 50, 0.3);
+  --accent-ring: rgba(42, 45, 50, 0.16);
+  --accent-today: rgba(42, 45, 50, 0.42);
+  --accent-selected: rgba(42, 45, 50, 0.14);
+  --warm: #9bc94a;
+  --danger: #8a4a58;
+  --danger-soft: rgba(138, 74, 88, 0.1);
+  --shadow: 0 18px 50px rgba(20, 22, 24, 0.14);
+  --card-bg: rgba(242, 245, 248, 0.94);
+  --card-border: rgba(197, 202, 210, 0.95);
+  --bg-gradient-a: rgba(42, 45, 50, 0.06);
+  --bg-gradient-b: rgba(155, 201, 74, 0.1);
+  --check-border: #b0b6be;
+  --bar-track: #d5dae2;
+  --dot-muted: #b0b6be;
+  --dot-none: #cdd2da;
+  --empty-border: #c5cad2;
+  --ghost-hover-border: #a8aeb6;
+  --radius: 10px;
+  --font-main: "Segoe UI", "Malgun Gothic", sans-serif;
+  --font-title: "Segoe UI", "Malgun Gothic", sans-serif;
+  --sidebar-bg: rgba(20, 22, 24, 0.96);
+  --side-pages-bg: rgba(255, 255, 255, 0.1);
+  --side-pages-border: rgba(255, 255, 255, 0.22);
+  --side-theme-bg: rgba(0, 0, 0, 0.18);
+  --side-theme-border: rgba(255, 255, 255, 0.12);
+}
+
 [data-theme="gintama"] .app-sidebar,
+[data-theme="toothless"] .app-sidebar,
 [data-theme="friends"] .app-sidebar {
   color: #f5ebe0;
 }
@@ -296,7 +337,17 @@
     var(--bg);
 }
 
-[data-theme="gintama"] .habit-snap {
+[data-theme="toothless"] body {
+  background:
+    radial-gradient(circle at 88% 8%, rgba(42, 45, 50, 0.08), transparent 34%),
+    radial-gradient(circle at 8% 90%, rgba(155, 201, 74, 0.08), transparent 30%),
+    linear-gradient(135deg, var(--bg-gradient-a), transparent 40%),
+    linear-gradient(315deg, var(--bg-gradient-b), transparent 42%),
+    var(--bg);
+}
+
+[data-theme="gintama"] .habit-snap,
+[data-theme="toothless"] .habit-snap {
   border-radius: 4px;
   outline-color: rgba(240, 242, 246, 0.95);
   box-shadow:
@@ -305,7 +356,8 @@
   transform: rotate(-3deg);
 }
 
-[data-theme="gintama"] .eyebrow {
+[data-theme="gintama"] .eyebrow,
+[data-theme="toothless"] .eyebrow {
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
@@ -354,13 +406,18 @@
 
 [data-theme="kuromi"] .theme-decor-kuromi:not(.theme-collage),
 [data-theme="friends"] .theme-decor-friends:not(.theme-collage),
+[data-theme="toothless"] .theme-decor-toothless:not(.theme-collage) {
+  display: none;
+}
+
 [data-theme="gintama"] .theme-decor-gintama:not(.theme-collage) {
   display: block;
 }
 
 [data-theme="friends"] .app-content,
 [data-theme="kuromi"] .app-content,
-[data-theme="gintama"] .app-content {
+[data-theme="gintama"] .app-content,
+[data-theme="toothless"] .app-content {
   position: relative;
   overflow: visible;
   min-height: calc(100dvh - env(safe-area-inset-top) - 48px);
@@ -438,7 +495,8 @@
 
 [data-theme="friends"] .friends-collage,
 [data-theme="kuromi"] .kuromi-collage,
-[data-theme="gintama"] .gintama-collage {
+[data-theme="gintama"] .gintama-collage,
+[data-theme="toothless"] .toothless-collage {
   display: block;
 }
 
@@ -526,7 +584,8 @@
 
 .page-home [data-theme="friends"] .overview-copy,
 .page-home [data-theme="kuromi"] .overview-copy,
-.page-home [data-theme="gintama"] .overview-copy {
+.page-home [data-theme="gintama"] .overview-copy,
+.page-home [data-theme="toothless"] .overview-copy {
   max-width: 100%;
   width: 100%;
 }
@@ -566,7 +625,8 @@
 
 [data-theme="friends"] .theme-collage,
 [data-theme="kuromi"] .theme-collage,
-[data-theme="gintama"] .theme-collage {
+[data-theme="gintama"] .theme-collage,
+[data-theme="toothless"] .theme-collage {
   z-index: 1;
 }
 
@@ -611,7 +671,8 @@
 
 [data-theme="friends"] .app-shell,
 [data-theme="kuromi"] .app-shell,
-[data-theme="gintama"] .app-shell {
+[data-theme="gintama"] .app-shell,
+[data-theme="toothless"] .app-shell {
   position: relative;
   z-index: 2;
   background: transparent;
@@ -619,7 +680,8 @@
 
 [data-theme="friends"] .overview,
 [data-theme="kuromi"] .overview,
-[data-theme="gintama"] .overview {
+[data-theme="gintama"] .overview,
+[data-theme="toothless"] .overview {
   display: block;
   position: relative;
   margin-bottom: 8px;
@@ -629,13 +691,15 @@
 
 [data-theme="friends"] .progress-card,
 [data-theme="kuromi"] .progress-card,
-[data-theme="gintama"] .progress-card {
+[data-theme="gintama"] .progress-card,
+[data-theme="toothless"] .progress-card {
   display: none;
 }
 
 [data-theme="friends"] .overview-copy,
 [data-theme="kuromi"] .overview-copy,
-[data-theme="gintama"] .overview-copy {
+[data-theme="gintama"] .overview-copy,
+[data-theme="toothless"] .overview-copy {
   position: relative;
   z-index: 3;
   width: 100%;
@@ -650,7 +714,8 @@
 
 [data-theme="friends"] .overview-copy .eyebrow,
 [data-theme="kuromi"] .overview-copy .eyebrow,
-[data-theme="gintama"] .overview-copy .eyebrow {
+[data-theme="gintama"] .overview-copy .eyebrow,
+[data-theme="toothless"] .overview-copy .eyebrow {
   margin: 0 0 1px;
   font-size: 11px;
   letter-spacing: 0.06em;
@@ -658,7 +723,8 @@
 
 [data-theme="friends"] .overview-copy .summary,
 [data-theme="kuromi"] .overview-copy .summary,
-[data-theme="gintama"] .overview-copy .summary {
+[data-theme="gintama"] .overview-copy .summary,
+[data-theme="toothless"] .overview-copy .summary {
   margin-top: 4px;
   font-size: 13px;
   line-height: 1.4;
@@ -669,7 +735,9 @@
 [data-theme="kuromi"] .composer,
 [data-theme="kuromi"] .board,
 [data-theme="gintama"] .composer,
-[data-theme="gintama"] .board {
+[data-theme="gintama"] .board,
+[data-theme="toothless"] .composer,
+[data-theme="toothless"] .board {
   position: relative;
   z-index: 3;
   pointer-events: auto;
@@ -677,7 +745,8 @@
 
 [data-theme="friends"] .board,
 [data-theme="kuromi"] .board,
-[data-theme="gintama"] .board {
+[data-theme="gintama"] .board,
+[data-theme="toothless"] .board {
   background: color-mix(in srgb, var(--card-bg) 78%, transparent);
   border-radius: var(--radius);
   backdrop-filter: blur(8px);
@@ -685,7 +754,8 @@
 
 [data-theme="friends"] .habit-item,
 [data-theme="kuromi"] .habit-item,
-[data-theme="gintama"] .habit-item {
+[data-theme="gintama"] .habit-item,
+[data-theme="toothless"] .habit-item {
   background: color-mix(in srgb, var(--card-bg) 88%, transparent);
 }
 
@@ -706,7 +776,8 @@
 
 [data-theme="friends"] .theme-progress-inline,
 [data-theme="kuromi"] .theme-progress-inline,
-[data-theme="gintama"] .theme-progress-inline {
+[data-theme="gintama"] .theme-progress-inline,
+[data-theme="toothless"] .theme-progress-inline {
   display: flex;
 }
 
@@ -740,7 +811,8 @@
 }
 
 [data-theme="friends"] h1,
-[data-theme="gintama"] h1 {
+[data-theme="gintama"] h1,
+[data-theme="toothless"] h1 {
   font-size: clamp(20px, 5vw, 36px);
   letter-spacing: -0.02em;
   margin: 0;
@@ -749,20 +821,23 @@
 
 [data-theme="friends"] .subpage-header h1,
 [data-theme="kuromi"] .subpage-header h1,
-[data-theme="gintama"] .subpage-header h1 {
+[data-theme="gintama"] .subpage-header h1,
+[data-theme="toothless"] .subpage-header h1 {
   font-size: clamp(20px, 5.5vw, 34px);
   margin-bottom: 2px;
 }
 
 [data-theme="friends"] .subpage-header,
 [data-theme="kuromi"] .subpage-header,
-[data-theme="gintama"] .subpage-header {
+[data-theme="gintama"] .subpage-header,
+[data-theme="toothless"] .subpage-header {
   margin-bottom: 12px;
 }
 
 [data-theme="friends"] .subpage-header .summary,
 [data-theme="kuromi"] .subpage-header .summary,
-[data-theme="gintama"] .subpage-header .summary {
+[data-theme="gintama"] .subpage-header .summary,
+[data-theme="toothless"] .subpage-header .summary {
   font-size: 13px;
   line-height: 1.4;
 }
@@ -789,9 +864,11 @@
 [data-theme="friends"] .calendar-page .subpage-header,
 [data-theme="kuromi"] .calendar-page .subpage-header,
 [data-theme="gintama"] .calendar-page .subpage-header,
+[data-theme="toothless"] .calendar-page .subpage-header,
 [data-theme="friends"] .weekly-page .subpage-header,
 [data-theme="kuromi"] .weekly-page .subpage-header,
-[data-theme="gintama"] .weekly-page .subpage-header {
+[data-theme="gintama"] .weekly-page .subpage-header,
+[data-theme="toothless"] .weekly-page .subpage-header {
   position: relative;
   z-index: 3;
   width: 100%;
@@ -809,9 +886,11 @@
 [data-theme="friends"] .calendar-page .board,
 [data-theme="kuromi"] .calendar-page .board,
 [data-theme="gintama"] .calendar-page .board,
+[data-theme="toothless"] .calendar-page .board,
 [data-theme="friends"] .weekly-page .board,
 [data-theme="kuromi"] .weekly-page .board,
-[data-theme="gintama"] .weekly-page .board {
+[data-theme="gintama"] .weekly-page .board,
+[data-theme="toothless"] .weekly-page .board {
   position: relative;
   z-index: 3;
   margin-top: 0;
@@ -946,6 +1025,66 @@
 }
 
 [data-theme="gintama"] .calendar-day.has-photo.is-selected {
+  box-shadow: inset 0 0 0 2px #fff, 0 0 0 3px var(--accent);
+}
+
+/* Toothless 달력 */
+
+[data-theme="toothless"] .calendar-day.has-photo {
+  position: relative;
+  overflow: hidden;
+  min-height: 64px;
+  padding: 0;
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+[data-theme="toothless"] .calendar-day.has-photo .calendar-day-bg {
+  position: absolute;
+  inset: 0;
+  background-image: var(--day-photo);
+  background-size: cover;
+  background-position: center top;
+}
+
+[data-theme="toothless"] .calendar-day.has-photo .calendar-day-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.55) 100%);
+}
+
+[data-theme="toothless"] .calendar-day.has-photo.is-perfect {
+  box-shadow: inset 0 0 0 2px var(--warm), 0 0 12px rgba(155, 201, 74, 0.35);
+}
+
+[data-theme="toothless"] .calendar-day.has-photo.is-perfect .calendar-day-bg::after {
+  background: linear-gradient(
+    180deg,
+    rgba(155, 201, 74, 0.18) 0%,
+    rgba(0, 0, 0, 0.65) 100%
+  );
+}
+
+[data-theme="toothless"] .calendar-day.has-photo .calendar-day-number {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+  min-height: 64px;
+  padding: 6px 8px;
+  color: #fff;
+  font-size: 15px;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.85);
+}
+
+[data-theme="toothless"] .calendar-day.has-photo.is-today {
+  box-shadow: inset 0 0 0 2px var(--warm), 0 0 0 2px var(--accent-selected);
+}
+
+[data-theme="toothless"] .calendar-day.has-photo.is-selected {
   box-shadow: inset 0 0 0 2px #fff, 0 0 0 3px var(--accent);
 }
 
@@ -1181,6 +1320,34 @@
   object-fit: cover;
   object-position: center center;
   background: #1a2233;
+}
+
+.celebration-photo-ring.is-toothless {
+  background: linear-gradient(
+    145deg,
+    rgba(244, 247, 250, 0.55) 0%,
+    rgba(42, 45, 50, 0.45) 50%,
+    rgba(232, 168, 192, 0.28) 100%
+  );
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.12),
+    0 16px 48px rgba(0, 0, 0, 0.5),
+    0 0 56px rgba(155, 201, 74, 0.2);
+}
+
+.celebration-photo-ring.is-toothless::before {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  border-radius: 8px;
+  background: radial-gradient(ellipse at center, rgba(155, 201, 74, 0.14) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.celebration-photo.is-toothless-art {
+  object-fit: cover;
+  object-position: center 22%;
+  background: #141618;
 }
 
 .celebration-tagline {

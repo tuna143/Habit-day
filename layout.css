@@ -187,6 +187,19 @@ body {
   box-shadow: 0 3px 10px rgba(26, 34, 51, 0.24);
 }
 
+.side-theme[data-theme="toothless"] {
+  background: linear-gradient(160deg, #f4f7fa 0%, #dce2ea 100%);
+  border-color: rgba(42, 45, 50, 0.22);
+  color: #141618;
+}
+
+.side-theme[data-theme="toothless"].is-active {
+  background: linear-gradient(160deg, #4a4f56 0%, #141618 100%);
+  border-color: rgba(155, 201, 74, 0.45);
+  color: #f4f7fa;
+  box-shadow: 0 3px 10px rgba(20, 22, 24, 0.24);
+}
+
 .side-quick {
   display: none;
   align-items: center;
@@ -439,7 +452,7 @@ body {
 }
 
 .theme-row-icon {
-  background: linear-gradient(135deg, #2f8f72 0%, #7b52a8 38%, #5c574f 68%, #e85a82 100%);
+  background: linear-gradient(135deg, #2f8f72 0%, #7b52a8 28%, #5c574f 52%, #4a5f82 72%, #9bc94a 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -571,6 +584,23 @@ body {
   border-color: rgba(200, 90, 114, 0.38);
   color: #f6f8fb;
   box-shadow: 0 4px 14px rgba(18, 21, 28, 0.24);
+}
+
+.theme-chip--toothless {
+  background: linear-gradient(145deg, #f6f8fb 0%, #dce2ea 100%);
+  border-color: rgba(42, 45, 50, 0.24);
+  color: #141618;
+}
+
+.theme-chip--toothless .theme-chip-dot {
+  background: linear-gradient(145deg, #9bc94a, #e8a8c0);
+}
+
+.theme-chip--toothless.is-active {
+  background: linear-gradient(145deg, #4a4f56 0%, #141618 100%);
+  border-color: rgba(155, 201, 74, 0.4);
+  color: #f4f7fa;
+  box-shadow: 0 4px 14px rgba(20, 22, 24, 0.24);
 }
 
 body.app-menu-open::before {

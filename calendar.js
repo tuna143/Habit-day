@@ -31,6 +31,10 @@ function isGintamaTheme() {
   return getTheme() === "gintama";
 }
 
+function isToothlessTheme() {
+  return getTheme() === "toothless";
+}
+
 function getHabitTitle(habitId) {
   const habit = data.habits.find((item) => item.id === habitId);
   return habit?.title || "Habit";
@@ -123,6 +127,7 @@ async function renderCalendar() {
     isFriendsTheme() ||
     isKuromiTheme() ||
     isGintamaTheme() ||
+    isToothlessTheme() ||
     UserPhotos.usesUserPhotos() ||
     Boolean(UserPhotos.getStarredPerfectUrl());
 

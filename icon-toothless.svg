@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Habit Day Toothless">
+  <rect width="512" height="512" rx="112" fill="#141618"/>
+  <circle cx="256" cy="256" r="148" fill="#f4f7fa"/>
+  <path
+    d="M178 262l54 54 102-118"
+    fill="none"
+    stroke="#9bc94a"
+    stroke-width="46"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <circle cx="366" cy="150" r="38" fill="#e8a8c0"/>
+</svg>
