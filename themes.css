@@ -1060,7 +1060,8 @@
 [data-theme="gintama"] .calendar-day.has-photo {
   position: relative;
   overflow: hidden;
-  min-height: 64px;
+  min-height: 0;
+  aspect-ratio: 1;
   padding: 0;
   border-color: rgba(255, 255, 255, 0.35);
 }
@@ -1070,7 +1071,8 @@
   inset: 0;
   background-image: var(--day-photo);
   background-size: cover;
-  background-position: center top;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 
 [data-theme="gintama"] .calendar-day.has-photo .calendar-day-bg::after {
@@ -1752,7 +1754,12 @@ body.celebration-open {
 
   [data-theme="friends"] .calendar-day.has-photo,
   [data-theme="friends"] .calendar-day.has-photo .calendar-day-number {
-    min-height: 48px;
+    min-height: 0;
+  }
+
+  [data-theme="gintama"] .calendar-day.has-photo,
+  [data-theme="gintama"] .calendar-day.has-photo .calendar-day-number {
+    min-height: 0;
   }
 
   .theme-celebration {

@@ -185,9 +185,8 @@ async function renderCalendar() {
       const bg = cell.querySelector(".calendar-day-bg");
 
       if (bg) {
+        bg.style.setProperty("--day-photo", `url("${photo}")`);
         bg.style.backgroundImage = `url("${photo}")`;
-        bg.style.backgroundSize = "cover";
-        bg.style.backgroundPosition = "center";
       }
     }
 
