@@ -17,7 +17,7 @@ if (!habitForm && !habitFormMobile) {
   const emptyState = document.querySelector("#emptyState");
   const summaryText = document.querySelector("#summaryText");
   const progressPercent = document.querySelector("#progressPercent");
-  const resetToday = document.querySelector("#resetToday");
+  const toolbarAddHabit = document.querySelector("#toolbarAddHabit");
   const appEyebrow = document.querySelector("#app-eyebrow");
   const appTitle = document.querySelector("#app-title");
   const themeProgressFill = document.querySelector("#themeProgressFill");
@@ -107,9 +107,6 @@ if (!habitForm && !habitFormMobile) {
       appTitle.textContent = isToday ? "Today's Habits" : `Habits for ${label}`;
     }
 
-    if (resetToday) {
-      resetToday.textContent = isToday ? "Reset today" : "Reset this day";
-    }
   }
 
   function shouldCelebrate() {
@@ -395,6 +392,20 @@ if (!habitForm && !habitFormMobile) {
     }
   }
 
+  function openAddHabit() {
+    const useSheet = window.matchMedia("(max-width: 768px)").matches || !habitForm;
+
+    if (useSheet) {
+      openHabitSheet();
+      return;
+    }
+
+    if (habitInput) {
+      habitInput.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      window.setTimeout(() => habitInput.focus(), 80);
+    }
+  }
+
   function closeHabitSheet() {
     if (!habitAddSheet) {
       return;
@@ -444,8 +455,12 @@ if (!habitForm && !habitFormMobile) {
     });
   }
 
+  if (toolbarAddHabit) {
+    toolbarAddHabit.addEventListener("click", openAddHabit);
+  }
+
   if (sideAddHabit) {
-    sideAddHabit.addEventListener("click", openHabitSheet);
+    sideAddHabit.addEventListener("click", openAddHabit);
   }
 
   if (habitAddClose) {
@@ -486,21 +501,6 @@ if (!habitForm && !habitFormMobile) {
           summaryText.textContent = error.message || "Could not save that photo.";
         }
       }
-    });
-  }
-
-  if (resetToday) {
-    resetToday.addEventListener("click", () => {
-      if (data.history[activeDateKey]) {
-        delete data.history[activeDateKey];
-        persistData();
-      }
-
-      if (typeof HabitPhotos !== "undefined") {
-        HabitPhotos.removeSnapsForDate(activeDateKey).catch(() => {});
-      }
-
-      renderHabits();
     });
   }
 
