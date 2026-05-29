@@ -263,8 +263,9 @@ if (!habitForm) {
     celebrationBurstCounter += 1;
 
     const mainPhoto = getCelebrationMainPhotoSize();
-    const sizeW = Math.round(mainPhoto.w * 0.25 * (0.96 + Math.random() * 0.08));
-    const sizeH = Math.round(mainPhoto.h * 0.25 * (0.96 + Math.random() * 0.08));
+    const burstScale = Math.sqrt(0.25) * (0.96 + Math.random() * 0.08);
+    const sizeW = Math.round(mainPhoto.w * burstScale);
+    const sizeH = Math.round(mainPhoto.h * burstScale);
     const lane = Math.random();
     const left = Math.max(6, Math.min(w - sizeW - 6, w * (0.05 + lane * 0.9) - sizeW / 2));
     const top = h - sizeH - (8 + Math.random() * 32);
