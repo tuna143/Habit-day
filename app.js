@@ -231,6 +231,25 @@ if (!habitForm) {
     return CELEBRATION_BURST_STYLES[index % CELEBRATION_BURST_STYLES.length];
   }
 
+  function getCelebrationMainPhotoSize() {
+    const ring = document.querySelector(".celebration-photo-ring");
+
+    if (ring) {
+      const rect = ring.getBoundingClientRect();
+
+      if (rect.width > 0 && rect.height > 0) {
+        return { w: rect.width, h: rect.height };
+      }
+    }
+
+    const viewportW = window.innerWidth;
+
+    return {
+      w: Math.min(200, viewportW * 0.52),
+      h: Math.min(220, viewportW * 0.56),
+    };
+  }
+
   function spawnCelebrationPhotoPop(w, h) {
     if (!celebrationPhotoBursts || !celebrationBurstPool.length || !w || !h) {
       return;
@@ -243,8 +262,9 @@ if (!habitForm) {
     const index = celebrationBurstCounter;
     celebrationBurstCounter += 1;
 
-    const sizeW = Math.round(Math.min(84, Math.max(56, w * (0.14 + Math.random() * 0.05))));
-    const sizeH = Math.round(sizeW * (1.06 + Math.random() * 0.1));
+    const mainPhoto = getCelebrationMainPhotoSize();
+    const sizeW = Math.round(mainPhoto.w * 0.25 * (0.96 + Math.random() * 0.08));
+    const sizeH = Math.round(mainPhoto.h * 0.25 * (0.96 + Math.random() * 0.08));
     const lane = Math.random();
     const left = Math.max(6, Math.min(w - sizeW - 6, w * (0.05 + lane * 0.9) - sizeW / 2));
     const top = h - sizeH - (8 + Math.random() * 32);
