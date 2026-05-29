@@ -13,6 +13,7 @@ if (!habitForm) {
   const progressPercent = document.querySelector("#progressPercent");
   const appEyebrow = document.querySelector("#app-eyebrow");
   const appTitle = document.querySelector("#app-title");
+  const appDate = document.querySelector("#app-date");
   const themeProgressFill = document.querySelector("#themeProgressFill");
   const themeProgressPct = document.querySelector("#themeProgressPct");
   const themeCelebration = document.querySelector("#themeCelebration");
@@ -109,6 +110,8 @@ if (!habitForm) {
     }
   }
 
+  const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
   function formatDisplayDate(dateKey) {
     const date = parseDateKey(dateKey);
     const today = getTodayKey();
@@ -117,8 +120,19 @@ if (!habitForm) {
       return "Today";
     }
 
-    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     return `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+  }
+
+  function formatTitleBoxDate(dateKey) {
+    const date = parseDateKey(dateKey);
+    const today = getTodayKey();
+    const formatted = `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+
+    if (dateKey === today) {
+      return `Today · ${formatted}`;
+    }
+
+    return formatted;
   }
 
   function getThemeTodayTitle() {
@@ -142,6 +156,11 @@ if (!habitForm) {
 
     if (appTitle) {
       appTitle.textContent = themeTitle || (isToday ? "Today's Habits" : `Habits for ${label}`);
+    }
+
+    if (appDate) {
+      appDate.textContent = formatTitleBoxDate(activeDateKey);
+      appDate.dateTime = activeDateKey;
     }
   }
 

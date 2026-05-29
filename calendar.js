@@ -5,9 +5,8 @@ const calendarNext = document.querySelector("#calendarNext");
 const dayPhotosOverlay = document.querySelector("#calendarDayPhotos");
 const dayPhotosTitle = document.querySelector("#calendarDayPhotosTitle");
 const dayPhotosGrid = document.querySelector("#calendarDayPhotosGrid");
-const dayPhotosClose = document.querySelector("#calendarDayPhotosClose");
 const dayPhotosBackdrop = document.querySelector(".calendar-day-photos-backdrop");
-const dayPhotosOpen = document.querySelector("#calendarDayPhotosOpen");
+const dayPhotosPanel = document.querySelector(".calendar-day-photos-panel");
 
 let data = loadData();
 const selectedDate = getSelectedDate();
@@ -225,19 +224,13 @@ calendarNext.addEventListener("click", () => {
   renderCalendar();
 });
 
-if (dayPhotosClose) {
-  dayPhotosClose.addEventListener("click", closeDayPhotos);
-}
-
 if (dayPhotosBackdrop) {
   dayPhotosBackdrop.addEventListener("click", closeDayPhotos);
 }
 
-if (dayPhotosOpen) {
-  dayPhotosOpen.addEventListener("click", () => {
-    if (viewerDateKey) {
-      goToMainPage(viewerDateKey);
-    }
+if (dayPhotosPanel) {
+  dayPhotosPanel.addEventListener("click", (event) => {
+    event.stopPropagation();
   });
 }
 

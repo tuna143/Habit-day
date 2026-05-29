@@ -21,8 +21,8 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css?v=14" />
-    <link rel="stylesheet" href="layout.css?v=50" />
-    <link rel="stylesheet" href="themes.css?v=73" />
+    <link rel="stylesheet" href="layout.css?v=53" />
+    <link rel="stylesheet" href="themes.css?v=74" />
     <script src="theme.js?v=50"></script>
     <script>
       (function () {
@@ -136,15 +136,14 @@
 
     <div id="calendarDayPhotos" class="calendar-day-photos" hidden>
       <div class="calendar-day-photos-backdrop" aria-hidden="true"></div>
-      <div class="calendar-day-photos-panel" role="dialog" aria-modal="true" aria-labelledby="calendarDayPhotosTitle">
-        <header class="calendar-day-photos-header">
-          <h2 id="calendarDayPhotosTitle">Day photos</h2>
-          <button type="button" class="ghost-button" id="calendarDayPhotosClose" aria-label="Close">×</button>
-        </header>
+      <div
+        class="calendar-day-photos-panel"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="calendarDayPhotosTitle"
+      >
+        <h2 id="calendarDayPhotosTitle" class="calendar-day-photos-title">Day photos</h2>
         <div class="calendar-day-photos-grid" id="calendarDayPhotosGrid"></div>
-        <button type="button" class="primary-button calendar-day-photos-open" id="calendarDayPhotosOpen">
-          Open this day on home
-        </button>
       </div>
     </div>
 
@@ -152,6 +151,6 @@
     <script src="shared.js?v=39"></script>
     <script src="user-photos.js?v=14"></script>
     <script src="habit-photos.js?v=36"></script>
-    <script src="calendar.js?v=18"></script>
+    <script src="calendar.js?v=19"></script>
   </body>
 </html>
