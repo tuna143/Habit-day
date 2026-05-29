@@ -1276,6 +1276,8 @@
   opacity: 0;
   --burst-dx: 0px;
   --burst-mid-x: 0px;
+  --burst-hop1: -64px;
+  --burst-hop2: -28px;
   --burst-rot: 0deg;
   box-shadow:
     0 0 0 3px #ffffff,
@@ -1284,87 +1286,106 @@
   transform-origin: center bottom;
 }
 
-.celebration-burst-photo--pop-scatter {
-  animation: burst-pop-scatter 3.2s cubic-bezier(0.28, 1.08, 0.38, 1) forwards;
+.celebration-burst-photo--pop-bounce {
+  animation: burst-pop-bounce 3.4s cubic-bezier(0.33, 1.02, 0.45, 1) forwards;
 }
 
-.celebration-burst-photo--pop-scatter-wide {
-  animation: burst-pop-scatter-wide 3.5s cubic-bezier(0.26, 1.05, 0.4, 1) forwards;
+.celebration-burst-photo--pop-bounce-soft {
+  animation: burst-pop-bounce-soft 3.6s cubic-bezier(0.34, 1.04, 0.46, 1) forwards;
 }
 
-.celebration-burst-photo--pop-scatter-sway {
-  animation: burst-pop-scatter-sway 3.3s cubic-bezier(0.3, 1.1, 0.42, 1) forwards;
+.celebration-burst-photo--pop-bounce-tilt {
+  animation: burst-pop-bounce-tilt 3.5s cubic-bezier(0.32, 1.06, 0.44, 1) forwards;
 }
 
-@keyframes burst-pop-scatter {
+@keyframes burst-pop-bounce {
   0% {
     opacity: 0;
-    transform: translate(0, 10px) scale(0.16) rotate(var(--burst-rot));
+    transform: translate(0, 6px) scale(0.22) rotate(var(--burst-rot));
   }
 
-  10% {
-    opacity: 0.9;
-    transform: translate(calc(var(--burst-mid-x) * 0.35), -18px) scale(0.82) rotate(calc(var(--burst-rot) + 5deg));
-  }
-
-  24% {
+  9% {
     opacity: 1;
-    transform: translate(calc(var(--burst-dx) * 0.22), -52px) scale(1.02) rotate(calc(var(--burst-rot) - 4deg));
+    transform: translate(calc(var(--burst-mid-x) * 0.25), var(--burst-hop1)) scale(1.06)
+      rotate(calc(var(--burst-rot) + 5deg));
   }
 
-  48% {
-    transform: translate(calc(var(--burst-dx) * 0.58), -210px) scale(0.94) rotate(calc(var(--burst-rot) + 3deg));
-  }
-
-  100% {
-    opacity: 0;
-    transform: translate(var(--burst-dx), min(-70vh, -480px)) scale(0.76) rotate(calc(var(--burst-rot) + 8deg));
-  }
-}
-
-@keyframes burst-pop-scatter-wide {
-  0% {
-    opacity: 0;
-    transform: translate(0, 14px) scale(0.14) rotate(var(--burst-rot));
-  }
-
-  12% {
-    opacity: 1;
-    transform: translate(calc(var(--burst-mid-x) * 0.5), -26px) scale(0.9) rotate(calc(var(--burst-rot) - 6deg));
-  }
-
-  30% {
-    transform: translate(calc(var(--burst-dx) * 0.32), -68px) scale(1.04) rotate(calc(var(--burst-rot) + 5deg));
-  }
-
-  100% {
-    opacity: 0;
-    transform: translate(calc(var(--burst-dx) * 1.12), min(-74vh, -520px)) scale(0.74) rotate(calc(var(--burst-rot) - 5deg));
-  }
-}
-
-@keyframes burst-pop-scatter-sway {
-  0% {
-    opacity: 0;
-    transform: translate(0, 8px) scale(0.18) rotate(var(--burst-rot));
-  }
-
-  14% {
-    opacity: 1;
-    transform: translate(calc(var(--burst-mid-x) * -0.4), -32px) scale(0.96) rotate(calc(var(--burst-rot) + 8deg));
+  20% {
+    transform: translate(calc(var(--burst-dx) * 0.08), var(--burst-hop2)) scale(0.9) rotate(calc(var(--burst-rot) - 4deg));
   }
 
   32% {
-    transform: translate(calc(var(--burst-dx) * 0.18), -88px) scale(1) rotate(calc(var(--burst-rot) - 6deg));
+    transform: translate(calc(var(--burst-dx) * 0.16), calc(var(--burst-hop1) * 1.35)) scale(1.02)
+      rotate(calc(var(--burst-rot) + 3deg));
   }
 
-  56% {
-    transform: translate(calc(var(--burst-dx) * 0.72), -240px) scale(0.92) rotate(calc(var(--burst-rot) + 4deg));
+  44% {
+    transform: translate(calc(var(--burst-dx) * 0.28), calc(var(--burst-hop1) * 1.05)) scale(0.96)
+      rotate(calc(var(--burst-rot) - 2deg));
+  }
+
+  62% {
+    opacity: 1;
+    transform: translate(calc(var(--burst-dx) * 0.5), -220px) scale(0.94) rotate(calc(var(--burst-rot) + 2deg));
   }
 
   100% {
     opacity: 0;
-    transform: translate(calc(var(--burst-dx) * 0.88), min(-68vh, -460px)) scale(0.78) rotate(calc(var(--burst-rot) + 10deg));
+    transform: translate(var(--burst-dx), min(-62vh, -420px)) scale(0.8) rotate(calc(var(--burst-rot) + 5deg));
+  }
+}
+
+@keyframes burst-pop-bounce-soft {
+  0% {
+    opacity: 0;
+    transform: translate(0, 8px) scale(0.2) rotate(var(--burst-rot));
+  }
+
+  11% {
+    opacity: 1;
+    transform: translate(calc(var(--burst-mid-x) * 0.18), calc(var(--burst-hop1) * 0.92)) scale(1.04)
+      rotate(calc(var(--burst-rot) - 5deg));
+  }
+
+  24% {
+    transform: translate(calc(var(--burst-dx) * 0.1), calc(var(--burst-hop2) * 0.85)) scale(0.88)
+      rotate(calc(var(--burst-rot) + 4deg));
+  }
+
+  38% {
+    transform: translate(calc(var(--burst-dx) * 0.22), calc(var(--burst-hop1) * 1.2)) scale(1) rotate(calc(var(--burst-rot) - 3deg));
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(calc(var(--burst-dx) * 0.92), min(-58vh, -400px)) scale(0.78) rotate(calc(var(--burst-rot) + 7deg));
+  }
+}
+
+@keyframes burst-pop-bounce-tilt {
+  0% {
+    opacity: 0;
+    transform: translate(0, 5px) scale(0.24) rotate(var(--burst-rot));
+  }
+
+  10% {
+    opacity: 1;
+    transform: translate(calc(var(--burst-mid-x) * 0.32), var(--burst-hop1)) scale(1.08)
+      rotate(calc(var(--burst-rot) - 8deg));
+  }
+
+  22% {
+    transform: translate(calc(var(--burst-dx) * 0.12), var(--burst-hop2)) scale(0.86) rotate(calc(var(--burst-rot) + 10deg));
+  }
+
+  36% {
+    transform: translate(calc(var(--burst-dx) * 0.24), calc(var(--burst-hop1) * 1.28)) scale(0.98)
+      rotate(calc(var(--burst-rot) - 6deg));
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(calc(var(--burst-dx) * 1.05), min(-64vh, -440px)) scale(0.76) rotate(calc(var(--burst-rot) + 9deg));
   }
 }
 
@@ -1523,6 +1544,9 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .celebration-burst-photo--pop-bounce,
+  .celebration-burst-photo--pop-bounce-soft,
+  .celebration-burst-photo--pop-bounce-tilt,
   .celebration-burst-photo--pop-scatter,
   .celebration-burst-photo--pop-scatter-wide,
   .celebration-burst-photo--pop-scatter-sway,
@@ -1532,7 +1556,7 @@
   .celebration-burst-photo--pop-wiggle,
   .celebration-burst-photo--pop-spin,
   .celebration-burst-photo--pop-arc {
-    animation: burst-pop-scatter 1.6s ease-out forwards;
+    animation: burst-pop-bounce 1.5s ease-out forwards;
   }
 }
 
