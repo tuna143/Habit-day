@@ -441,54 +441,6 @@
   transform: rotate(-4deg);
 }
 
-[data-theme="friends"] .habit-camera-badge,
-[data-theme="kuromi"] .habit-camera-badge,
-[data-theme="gintama"] .habit-camera-badge,
-[data-theme="toothless"] .habit-camera-badge {
-  display: block;
-}
-
-[data-theme="kuromi"] .habit-camera-badge {
-  font-size: clamp(26px, 7vw, 34px);
-}
-
-[data-theme="kuromi"] .habit-camera-badge::before {
-  content: "♥";
-}
-
-[data-theme="friends"] .habit-camera-badge {
-  font-size: clamp(28px, 7.5vw, 36px);
-}
-
-[data-theme="friends"] .habit-camera-badge::before {
-  content: "🥕";
-}
-
-[data-theme="gintama"] .habit-camera-badge {
-  font-size: clamp(26px, 7vw, 34px);
-}
-
-[data-theme="gintama"] .habit-camera-badge::before {
-  content: "🍓";
-}
-
-[data-theme="toothless"] .habit-camera-badge {
-  width: clamp(26px, 7vw, 34px);
-  height: clamp(30px, 8vw, 40px);
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 28' fill='none'%3E%3Cpath d='M12 24V11' stroke='%239bc94a' stroke-width='1.6' stroke-linecap='round'/%3E%3Cellipse cx='12' cy='8.2' rx='2.4' ry='3.4' fill='%23e8dcfa'/%3E%3Cellipse cx='8.6' cy='10.4' rx='2.1' ry='3' fill='%23cfc0ee'/%3E%3Cellipse cx='15.4' cy='10.4' rx='2.1' ry='3' fill='%23cfc0ee'/%3E%3Cellipse cx='10.2' cy='12.8' rx='1.9' ry='2.7' fill='%23b8a4e4'/%3E%3Cellipse cx='13.8' cy='12.8' rx='1.9' ry='2.7' fill='%23b8a4e4'/%3E%3Ccircle cx='12' cy='6.6' r='1.1' fill='%23f4f0fc'/%3E%3C/svg%3E")
-    center / contain no-repeat;
-}
-
-[data-theme="toothless"] .habit-camera-badge::before {
-  content: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .habit-camera-badge {
-    animation: none !important;
-  }
-}
-
 [data-theme="kuromi"] .habit-snap {
   border-radius: 4px;
   outline-color: rgba(235, 230, 244, 0.95);
