@@ -37,7 +37,7 @@
         if (window.caches) {
           caches.keys().then(function (keys) {
             keys.forEach(function (key) {
-              if (key.indexOf("habit-day-v35") === -1) {
+              if (key !== "habit-day-v48") {
                 caches.delete(key);
               }
             });
@@ -45,7 +45,7 @@
         }
       })();
     </script>
-    <script src="theme.js?v=43"></script>
+    <script src="theme.js?v=44"></script>
   </head>
   <body>
     <div class="app-layout">
@@ -251,7 +251,7 @@
       </li>
     </template>
 
-    <script src="sidebar.js?v=36"></script>
+    <script src="sidebar.js?v=37"></script>
     <script src="shared.js?v=38"></script>
     <script src="user-photos.js?v=35"></script>
     <script src="habit-photos.js?v=36"></script>

@@ -1,5 +1,11 @@
-const cacheName = "habit-day-v47";
+const cacheName = "habit-day-v48";
 const mainPage = "./app.html";
+
+const toothlessAssets = [
+  "./assets/toothless/banner.png",
+  "./assets/toothless/celebrate.png",
+  ...Array.from({ length: 20 }, (_, index) => `./assets/toothless/scene-${String(index + 1).padStart(2, "0")}.png`),
+];
 
 function isCodeRequest(request) {
   const url = request.url;
@@ -56,6 +62,7 @@ const appShell = [
   "./apple-touch-icon-friends.png",
   "./apple-touch-icon-gintama.png",
   "./apple-touch-icon-toothless.png",
+  ...toothlessAssets,
 ];
 
 self.addEventListener("install", (event) => {

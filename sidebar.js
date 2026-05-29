@@ -1,4 +1,4 @@
-/* sidebar.js build 14 — single top-right ⋯ menu (mobile) + desktop sidebar */
+/* sidebar.js build 37 — single top-right ⋯ menu (mobile) + desktop sidebar */
 const HOME_HREF = "app.html";
 
 function renderSidebar() {
@@ -96,7 +96,7 @@ function renderSidebar() {
                 <button type="button" class="theme-chip theme-chip--toothless" data-theme="toothless">
                   <span class="theme-chip-dot" aria-hidden="true"></span>
                   <span class="theme-chip-copy">
-                    <strong>Toothless</strong>
+                    <strong>투슬리스</strong>
                     <small>Night Fury</small>
                   </span>
                 </button>
@@ -123,7 +123,7 @@ function renderSidebar() {
           <button type="button" class="side-theme" data-theme="kuromi" title="Kuromi">Kuro</button>
           <button type="button" class="side-theme" data-theme="friends" title="Friends">Fr</button>
           <button type="button" class="side-theme" data-theme="gintama" title="Gintama">Gi</button>
-          <button type="button" class="side-theme" data-theme="toothless" title="Toothless">To</button>
+          <button type="button" class="side-theme" data-theme="toothless" title="투슬리스">투</button>
         </div>
         <a class="side-link side-link--pics side-link--pics-desktop${page === "photos" ? " is-active" : ""}" href="photos.html" title="My Photos">Pics</a>
       </section>
