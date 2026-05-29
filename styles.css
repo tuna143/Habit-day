@@ -79,14 +79,20 @@ input {
   white-space: nowrap;
 }
 
-/* Lucy's / Kromi's on line 1 — habit + date together on line 2 */
+/* Line 1: Name's — line 2: habit + small date (never one cramped line) */
+.overview-title.is-habit-glued {
+  display: block;
+}
+
 .overview-title.is-habit-glued .overview-title-prefix {
   display: block;
+  width: 100%;
 }
 
 .overview-title.is-habit-glued .overview-title-tail {
   display: block;
-  margin-top: 1px;
+  width: 100%;
+  margin-top: 2px;
   white-space: nowrap;
 }
 

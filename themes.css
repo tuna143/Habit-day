@@ -935,8 +935,17 @@
 }
 
 [data-theme="friends"] .overview-copy .overview-title,
-[data-theme="gintama"] .overview-copy .overview-title {
-  display: inline-flex;
+[data-theme="kuromi"] .overview-copy .overview-title,
+[data-theme="gintama"] .overview-copy .overview-title,
+[data-theme="toothless"] .overview-copy .overview-title {
+  display: block;
+}
+
+[data-theme="friends"] .overview-title.is-habit-glued,
+[data-theme="kuromi"] .overview-title.is-habit-glued,
+[data-theme="gintama"] .overview-title.is-habit-glued,
+[data-theme="toothless"] .overview-title.is-habit-glued {
+  display: block;
 }
 
 [data-theme="toothless"] .overview-copy h1,
