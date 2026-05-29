@@ -538,21 +538,21 @@
 }
 
 .theme-collage--home {
-  --collage-main-slot: min(44vw, 252px);
-  --collage-main-gap: clamp(12px, 3vw, 18px);
-  --collage-step-gap: clamp(12px, 2.8vw, 20px);
-  --collage-photo-main-h: min(44vw, 248px);
+  --collage-main-slot: min(40vw, 232px);
+  --collage-main-gap: clamp(14px, 3.2vw, 20px);
+  --collage-step-gap: clamp(14px, 3vw, 22px);
+  --collage-photo-main-h: min(40vw, 228px);
   --collage-photo-main-w: calc(var(--collage-main-slot) - 8px);
-  --collage-photo-sub-w: min(30vw, 168px);
-  --collage-photo-sub-h: min(28vw, 156px);
-  --collage-sub-split: clamp(14px, 4vw, 28px);
+  --collage-photo-sub-w: min(28vw, 152px);
+  --collage-photo-sub-h: min(26vw, 142px);
+  --collage-sub-split: clamp(16px, 4vw, 28px);
   left: 0;
   right: 0;
   width: auto;
   overflow: visible;
   height: auto;
-  min-height: calc(var(--collage-photo-main-h) + var(--collage-photo-sub-h) * 0.2);
-  padding-bottom: calc(var(--collage-photo-sub-h) + var(--collage-sub-split));
+  min-height: calc(var(--collage-photo-main-h) + var(--collage-photo-sub-h) * 0.55);
+  padding-bottom: calc(var(--collage-photo-sub-h) * 0.2);
 }
 
 [data-theme="friends"] .friends-collage,
@@ -602,36 +602,36 @@
     0 14px 32px rgba(44, 42, 38, 0.22);
 }
 
-/* 홈 2 — 왼쪽 하단 (메인·오른쪽 서브와 분리) */
+/* 홈 2 — 왼쪽 중단 (제목·메인 아래 비지 않는 구역) */
 .theme-collage--home .theme-photo-sub--left {
-  top: auto;
-  bottom: max(10px, env(safe-area-inset-bottom));
+  top: calc(max(6px, env(safe-area-inset-top)) + var(--collage-photo-main-h) * 0.42);
+  bottom: auto;
   left: max(6px, env(safe-area-inset-left));
   right: auto;
-  width: min(var(--collage-photo-sub-w), calc(50% - var(--collage-sub-split)));
+  width: var(--collage-photo-sub-w);
   height: var(--collage-photo-sub-h);
-  max-width: 168px;
-  transform: rotate(-5deg);
-  transform-origin: 0% 100%;
-  opacity: 0.44;
+  max-width: calc(46% - var(--collage-sub-split));
+  transform: rotate(-6deg);
+  transform-origin: 0% 50%;
+  opacity: 0.42;
   z-index: 0;
   box-shadow:
     0 0 0 4px #ffffff,
     0 14px 30px rgba(44, 42, 38, 0.2);
 }
 
-/* 홈 3 — 오른쪽 하단 (왼쪽 서브와 가운데 간격) */
+/* 홈 3 — 메인 바로 아래 우측 */
 .theme-collage--home .theme-photo-sub--right {
-  top: auto;
-  bottom: max(14px, env(safe-area-inset-bottom));
+  top: calc(max(6px, env(safe-area-inset-top)) + var(--collage-photo-main-h) + var(--collage-sub-split));
+  bottom: auto;
   right: max(8px, env(safe-area-inset-right));
   left: auto;
-  width: min(var(--collage-photo-sub-w), calc(50% - var(--collage-sub-split)));
+  width: var(--collage-photo-sub-w);
   height: var(--collage-photo-sub-h);
-  max-width: 164px;
-  transform: rotate(6deg);
-  transform-origin: 100% 100%;
-  opacity: 0.46;
+  max-width: calc(44% - var(--collage-sub-split));
+  transform: rotate(5deg);
+  transform-origin: 100% 0%;
+  opacity: 0.45;
   z-index: 1;
   box-shadow:
     0 0 0 4px #ffffff,
@@ -644,8 +644,8 @@
 
 .page-home .overview-wrap {
   padding-right: calc(var(--collage-main-slot) + var(--collage-main-gap));
-  min-height: calc(var(--collage-photo-main-h) + var(--collage-photo-sub-h) * 0.15);
-  padding-bottom: calc(var(--collage-photo-sub-h) * 0.35);
+  min-height: calc(var(--collage-photo-main-h) + var(--collage-photo-sub-h) * 0.35);
+  padding-bottom: calc(var(--collage-photo-sub-h) * 0.22);
   box-sizing: border-box;
 }
 
@@ -654,7 +654,7 @@
 .page-home [data-theme="gintama"] .overview-copy,
 .page-home [data-theme="toothless"] .overview-copy {
   width: fit-content;
-  max-width: min(45vw, 214px);
+  max-width: min(54vw, 252px);
 }
 
 /* 위클리 · 캘린더 — 메인 우상단 + 서브 균형 */
@@ -667,8 +667,8 @@
   right: 0;
   width: auto;
   height: auto;
-  min-height: calc(var(--collage-photo-h) + var(--collage-photo-sub-h) * 0.45);
-  padding-bottom: calc(var(--collage-photo-sub-h) * 0.18);
+  min-height: calc(var(--collage-photo-h) + var(--collage-photo-sub-h) + var(--collage-photo-gap));
+  padding-bottom: calc(var(--collage-photo-sub-h) * 0.12);
 }
 
 .theme-collage--subpage .theme-photo {
@@ -686,15 +686,15 @@
 }
 
 .theme-collage--subpage .theme-photo-sub {
-  top: auto;
-  bottom: 0;
-  left: max(8px, env(safe-area-inset-left));
-  right: auto;
-  width: var(--collage-photo-sub-w);
-  height: var(--collage-photo-sub-h);
+  top: calc(var(--collage-photo-h) + var(--collage-photo-gap));
+  bottom: auto;
+  left: auto;
+  right: max(6px, env(safe-area-inset-right));
+  width: min(var(--collage-photo-sub-w), 30vw);
+  height: min(var(--collage-photo-sub-h), 28vw);
   opacity: 0.44;
-  transform: rotate(-5deg);
-  transform-origin: 0% 100%;
+  transform: rotate(5deg);
+  transform-origin: 100% 0%;
   z-index: 0;
   box-shadow:
     0 0 0 4px #ffffff,
@@ -781,8 +781,8 @@
   position: relative;
   z-index: 3;
   width: fit-content;
-  max-width: min(46vw, 224px);
-  padding: 6px 8px;
+  max-width: min(54vw, 252px);
+  padding: 8px 12px;
   border-radius: calc(var(--radius) - 2px);
   background: color-mix(in srgb, var(--card-bg) 88%, transparent);
   border: 1px solid var(--card-border);
@@ -839,7 +839,7 @@
 
 [data-theme="kuromi"] .overview-copy h1,
 [data-theme="kuromi"] .subpage-header h1 {
-  font-size: clamp(11px, 2.5vw, 15px);
+  font-size: clamp(12px, 2.9vw, 17px);
   font-weight: 800;
   letter-spacing: -0.03em;
   margin: 0;
@@ -894,7 +894,7 @@
 [data-theme="friends"] .subpage-header h1,
 [data-theme="gintama"] .overview-copy h1,
 [data-theme="gintama"] .subpage-header h1 {
-  font-size: clamp(11px, 2.5vw, 17px);
+  font-size: clamp(12px, 3vw, 19px);
   font-weight: 800;
   letter-spacing: -0.02em;
   margin: 0;
@@ -905,7 +905,7 @@
 
 [data-theme="toothless"] .overview-copy h1,
 [data-theme="toothless"] .subpage-header h1 {
-  font-size: clamp(10px, 2.4vw, 15px);
+  font-size: clamp(11px, 2.8vw, 17px);
   font-weight: 800;
   letter-spacing: -0.02em;
   margin: 0;
@@ -959,10 +959,10 @@
   position: relative;
   z-index: 3;
   width: fit-content;
-  max-width: min(46vw, 214px);
-  margin-bottom: 8px;
-  padding: 6px 8px;
-  min-height: min(118px, 22vw);
+  max-width: min(54vw, 248px);
+  margin-bottom: 10px;
+  padding: 8px 12px;
+  min-height: min(128px, 24vw);
   border-radius: calc(var(--radius) - 2px);
   background: color-mix(in srgb, var(--card-bg) 88%, transparent);
   border: 1px solid var(--card-border);
@@ -1642,21 +1642,22 @@ body.celebration-open {
   .page-home [data-theme="kuromi"] .overview-copy,
   .page-home [data-theme="gintama"] .overview-copy,
   .page-home [data-theme="toothless"] .overview-copy {
-    max-width: min(50vw, 192px);
-    padding: 6px 9px;
+    max-width: min(56vw, 236px);
+    padding: 8px 11px;
   }
 
   .theme-collage--home .theme-photo-sub--left {
-    top: calc(max(6px, env(safe-area-inset-top)) + var(--collage-photo-main-h) + clamp(14px, 4vw, 26px));
+    top: calc(max(6px, env(safe-area-inset-top)) + var(--collage-photo-main-h) * 0.38);
     left: max(4px, env(safe-area-inset-left));
-    right: auto;
-    transform: rotate(-5deg);
-    opacity: 0.42;
+    max-width: calc(44% - 10px);
+    opacity: 0.4;
   }
 
   .theme-collage--home .theme-photo-sub--right {
-    bottom: max(10px, env(safe-area-inset-bottom));
-    opacity: 0.44;
+    top: calc(max(6px, env(safe-area-inset-top)) + var(--collage-photo-main-h) + 14px);
+    bottom: auto;
+    max-width: calc(42% - 10px);
+    opacity: 0.42;
   }
 
   .theme-collage--subpage {
@@ -1672,8 +1673,9 @@ body.celebration-open {
 
   .theme-collage--subpage .theme-photo-sub {
     opacity: 0.42;
-    left: max(4px, env(safe-area-inset-left));
-    right: auto;
+    top: calc(var(--collage-photo-h) + var(--collage-photo-gap));
+    left: auto;
+    right: max(4px, env(safe-area-inset-right));
   }
 
   .decor-hero {
@@ -1699,7 +1701,7 @@ body.celebration-open {
   [data-theme="kuromi"] .overview-copy,
   [data-theme="gintama"] .overview-copy,
   [data-theme="toothless"] .overview-copy {
-    max-width: min(51vw, 186px);
+    max-width: min(56vw, 230px);
   }
 
   [data-theme="friends"] .calendar-page .subpage-header,
@@ -1710,9 +1712,9 @@ body.celebration-open {
   [data-theme="kuromi"] .weekly-page .subpage-header,
   [data-theme="gintama"] .weekly-page .subpage-header,
   [data-theme="toothless"] .weekly-page .subpage-header {
-    max-width: min(51vw, 192px);
-    min-height: min(106px, 21vw);
-    padding: 6px 9px;
+    max-width: min(56vw, 236px);
+    min-height: min(116px, 22vw);
+    padding: 8px 11px;
   }
 
   [data-theme="friends"] .overview-copy .summary,
@@ -1731,12 +1733,12 @@ body.celebration-open {
   [data-theme="gintama"] .subpage-header h1,
   [data-theme="toothless"] .overview-copy h1,
   [data-theme="toothless"] .subpage-header h1 {
-    font-size: clamp(10px, 3.2vw, 15px);
+    font-size: clamp(11px, 3.4vw, 17px);
   }
 
   [data-theme="toothless"] .overview-copy h1,
   [data-theme="toothless"] .subpage-header h1 {
-    font-size: clamp(9px, 2.9vw, 14px);
+    font-size: clamp(10px, 3.1vw, 16px);
   }
 
   [data-theme="friends"] .theme-progress-inline,
