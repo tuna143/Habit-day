@@ -1,4 +1,4 @@
-/* sidebar.js build 37 — single top-right ⋯ menu (mobile) + desktop sidebar */
+/* sidebar.js build 38 — single top-right ⋯ menu (mobile) + desktop sidebar */
 const HOME_HREF = "app.html";
 
 function renderSidebar() {
@@ -45,7 +45,11 @@ function renderSidebar() {
               <div class="app-menu-divider" role="separator"></div>
               <div class="app-menu-section app-menu-section--tools">
                 <button type="button" class="app-menu-row app-menu-row--sub" data-open-layer="themes">
-                  <span class="app-menu-row-icon theme-row-icon" aria-hidden="true">◆</span>
+                  <span class="app-menu-row-icon theme-row-icon" aria-hidden="true">
+                    <span class="theme-swatch theme-swatch--a"></span>
+                    <span class="theme-swatch theme-swatch--b"></span>
+                    <span class="theme-swatch theme-swatch--c"></span>
+                  </span>
                   <span class="app-menu-row-text">Theme</span>
                   <span class="app-menu-chevron" aria-hidden="true">›</span>
                 </button>

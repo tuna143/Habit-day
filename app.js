@@ -59,11 +59,11 @@ if (!habitForm) {
     }
   }
 
-  const THEME_TODAY_TITLES = {
-    friends: "Friend's Habit",
-    kuromi: "Kromi's Habit",
-    gintama: "Gintoki's habit",
-    toothless: "Toothless's habit",
+  const THEME_TODAY_HEADINGS = {
+    friends: { eyebrow: "Friends", title: "Friend's Habit" },
+    kuromi: { eyebrow: "Kuromi", title: "Kromi's Habit" },
+    gintama: { eyebrow: "Gintama", title: "Gintoki's habit" },
+    toothless: { eyebrow: "투슬리스", title: "오늘의 습관" },
   };
 
   const CELEBRATION_COPY = {
@@ -116,23 +116,23 @@ if (!habitForm) {
     return `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
   }
 
-  function getThemeTodayTitle() {
+  function getThemeTodayHeading() {
     const theme = document.documentElement.dataset.theme || "original";
 
-    return THEME_TODAY_TITLES[theme] || null;
+    return THEME_TODAY_HEADINGS[theme] || null;
   }
 
   function updateDateHeading() {
     const label = formatDisplayDate(activeDateKey);
     const isToday = activeDateKey === getTodayKey();
-    const themeTitle = isToday ? getThemeTodayTitle() : null;
+    const themeHeading = isToday ? getThemeTodayHeading() : null;
 
     if (appEyebrow) {
-      appEyebrow.textContent = themeTitle || (isToday ? "Habit Day" : label);
+      appEyebrow.textContent = themeHeading?.eyebrow || (isToday ? "Habit Day" : label);
     }
 
     if (appTitle) {
-      appTitle.textContent = themeTitle || (isToday ? "Today's Habits" : `Habits for ${label}`);
+      appTitle.textContent = themeHeading?.title || (isToday ? "Today's Habits" : `Habits for ${label}`);
     }
   }
 

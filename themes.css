@@ -369,7 +369,8 @@
 
 [data-theme="kuromi"] .habit-item.done .check-button,
 [data-theme="friends"] .habit-item.done .check-button,
-[data-theme="gintama"] .habit-item.done .check-button {
+[data-theme="gintama"] .habit-item.done .check-button,
+[data-theme="toothless"] .habit-item.done .check-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -390,6 +391,12 @@
 
 [data-theme="gintama"] .habit-item.done .check-button::after {
   content: "🍓";
+  font-size: 18px;
+  line-height: 1;
+}
+
+[data-theme="toothless"] .habit-item.done .check-button::after {
+  content: "🪽";
   font-size: 18px;
   line-height: 1;
 }
@@ -842,7 +849,13 @@
   font-size: clamp(20px, 5vw, 36px);
   letter-spacing: -0.02em;
   margin: 0;
-  line-height: 1.1;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+  word-break: keep-all;
+}
+
+[data-theme="toothless"] h1 {
+  font-size: clamp(18px, 4.6vw, 30px);
 }
 
 [data-theme="friends"] .subpage-header h1,
@@ -1685,7 +1698,9 @@ body.celebration-open {
   }
 
   [data-theme="friends"] .overview-copy,
-  [data-theme="kuromi"] .overview-copy {
+  [data-theme="kuromi"] .overview-copy,
+  [data-theme="gintama"] .overview-copy,
+  [data-theme="toothless"] .overview-copy {
     max-width: calc(100% - min(50vw, 220px));
   }
 
@@ -1704,8 +1719,14 @@ body.celebration-open {
   }
 
   [data-theme="friends"] h1,
-  [data-theme="kuromi"] h1 {
+  [data-theme="kuromi"] h1,
+  [data-theme="gintama"] h1,
+  [data-theme="toothless"] h1 {
     font-size: clamp(18px, 5.8vw, 28px);
+  }
+
+  [data-theme="toothless"] h1 {
+    font-size: clamp(17px, 5.2vw, 26px);
   }
 
   [data-theme="friends"] .overview-copy .summary,
