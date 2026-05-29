@@ -338,19 +338,19 @@
   align-items: center;
 }
 
-/* Friends / Kuromi — 상단 콜라주 (그리드, 겹침 없음) */
+/* Friends / Kuromi — 상단 콜라주 (내용 뒤, 반투명 겹침 허용) */
 
 .theme-collage {
   display: none;
   position: absolute;
   top: max(52px, calc(44px + env(safe-area-inset-top)));
-  right: max(8px, env(safe-area-inset-right));
-  width: min(46vw, 248px);
-  z-index: 4;
+  right: max(4px, env(safe-area-inset-right));
+  width: min(54vw, 288px);
+  z-index: 1;
   pointer-events: none;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto auto;
-  gap: clamp(10px, 2.6vw, 14px);
+  gap: clamp(12px, 3vw, 18px);
   align-items: start;
 }
 
@@ -372,21 +372,21 @@
 .theme-photo-main {
   grid-column: 1 / -1;
   justify-self: end;
-  width: min(40vw, 208px);
-  height: min(42vw, 224px);
+  width: min(46vw, 248px);
+  height: min(50vw, 268px);
   transform: rotate(4deg);
   opacity: 1;
 }
 
 [data-theme="friends"] .theme-photo-main {
-  width: min(42vw, 220px);
-  height: min(44vw, 236px);
+  width: min(48vw, 260px);
+  height: min(52vw, 280px);
 }
 
 .theme-photo-sub {
-  width: min(20vw, 108px);
-  height: min(20vw, 108px);
-  opacity: 0.55;
+  width: min(26vw, 140px);
+  height: min(26vw, 140px);
+  opacity: 0.5;
 }
 
 .theme-photo-sub--left {
@@ -403,15 +403,9 @@
   top: 0;
 }
 
-.page-home .theme-photo-sub {
-  opacity: 0.52;
-}
-
-[data-theme="friends"] .page-home .board,
-[data-theme="kuromi"] .page-home .board,
-[data-theme="friends"] .page-home .composer {
-  position: relative;
-  z-index: 5;
+[data-theme="friends"] .theme-collage,
+[data-theme="kuromi"] .theme-collage {
+  z-index: 1;
 }
 
 .cutout-a {
@@ -456,7 +450,7 @@
 [data-theme="friends"] .app-shell,
 [data-theme="kuromi"] .app-shell {
   position: relative;
-  z-index: 3;
+  z-index: 2;
   background: transparent;
 }
 
@@ -465,7 +459,7 @@
   display: block;
   position: relative;
   margin-bottom: 8px;
-  min-height: min(360px, 62vw);
+  min-height: min(180px, 34vw);
   padding-right: 0;
 }
 
@@ -477,9 +471,9 @@
 [data-theme="friends"] .overview-copy,
 [data-theme="kuromi"] .overview-copy {
   position: relative;
-  z-index: 5;
+  z-index: 3;
   width: 100%;
-  max-width: calc(100% - min(44vw, 236px));
+  max-width: calc(100% - min(48vw, 252px));
   padding: 10px 12px;
   border-radius: var(--radius);
   background: color-mix(in srgb, var(--card-bg) 90%, transparent);
@@ -507,20 +501,20 @@
 [data-theme="kuromi"] .composer,
 [data-theme="kuromi"] .board {
   position: relative;
-  z-index: 4;
+  z-index: 3;
   pointer-events: auto;
 }
 
 [data-theme="friends"] .board,
 [data-theme="kuromi"] .board {
-  background: color-mix(in srgb, var(--card-bg) 86%, transparent);
+  background: color-mix(in srgb, var(--card-bg) 78%, transparent);
   border-radius: var(--radius);
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(8px);
 }
 
 [data-theme="friends"] .habit-item,
 [data-theme="kuromi"] .habit-item {
-  background: color-mix(in srgb, var(--card-bg) 94%, transparent);
+  background: color-mix(in srgb, var(--card-bg) 88%, transparent);
 }
 
 [data-theme="kuromi"] h1 {
@@ -620,9 +614,9 @@
 [data-theme="friends"] .weekly-page .subpage-header,
 [data-theme="kuromi"] .weekly-page .subpage-header {
   position: relative;
-  z-index: 5;
+  z-index: 3;
   width: 100%;
-  max-width: calc(100% - min(44vw, 232px));
+  max-width: calc(100% - min(48vw, 248px));
   margin-bottom: 10px;
   padding: 10px 12px;
   min-height: 0;
@@ -638,18 +632,11 @@
 [data-theme="friends"] .weekly-page .board,
 [data-theme="kuromi"] .weekly-page .board {
   position: relative;
-  z-index: 5;
-  margin-top: min(12px, 2vw);
-  background: color-mix(in srgb, var(--card-bg) 88%, transparent);
+  z-index: 3;
+  margin-top: 0;
+  background: color-mix(in srgb, var(--card-bg) 78%, transparent);
   border-radius: var(--radius);
-  backdrop-filter: blur(6px);
-}
-
-[data-theme="friends"] .calendar-page .calendar-section,
-[data-theme="kuromi"] .calendar-page .calendar-section,
-[data-theme="friends"] .weekly-page .stats-section,
-[data-theme="kuromi"] .weekly-page .stats-section {
-  margin-top: min(252px, 44vw);
+  backdrop-filter: blur(8px);
 }
 
 .app-content:has(.calendar-page) .theme-collage,
@@ -982,8 +969,8 @@ body.celebration-open {
 
 @media (max-width: 768px) {
   .theme-collage {
-    width: min(48vw, 220px);
-    gap: 10px;
+    width: min(52vw, 248px);
+    gap: 12px;
   }
 
   .page-home .theme-collage {
@@ -991,18 +978,18 @@ body.celebration-open {
   }
 
   .theme-photo-main {
-    width: min(40vw, 176px);
-    height: min(42vw, 190px);
+    width: min(44vw, 200px);
+    height: min(48vw, 216px);
   }
 
   [data-theme="friends"] .theme-photo-main {
-    width: min(42vw, 184px);
-    height: min(44vw, 198px);
+    width: min(46vw, 210px);
+    height: min(50vw, 226px);
   }
 
   .theme-photo-sub {
-    width: min(22vw, 96px);
-    height: min(22vw, 96px);
+    width: min(26vw, 118px);
+    height: min(26vw, 118px);
   }
 
   .decor-hero {
@@ -1019,14 +1006,7 @@ body.celebration-open {
 
   [data-theme="friends"] .overview,
   [data-theme="kuromi"] .overview {
-    min-height: min(320px, 58vw);
-  }
-
-  [data-theme="friends"] .calendar-page .calendar-section,
-  [data-theme="kuromi"] .calendar-page .calendar-section,
-  [data-theme="friends"] .weekly-page .stats-section,
-  [data-theme="kuromi"] .weekly-page .stats-section {
-    margin-top: min(228px, 40vw);
+    min-height: min(160px, 30vw);
   }
 
   [data-theme="friends"] .overview-copy,
@@ -1035,7 +1015,7 @@ body.celebration-open {
   [data-theme="kuromi"] .calendar-page .subpage-header,
   [data-theme="friends"] .weekly-page .subpage-header,
   [data-theme="kuromi"] .weekly-page .subpage-header {
-    max-width: calc(100% - min(42vw, 200px));
+    max-width: calc(100% - min(46vw, 210px));
   }
 
   [data-theme="friends"] .overview-copy,
