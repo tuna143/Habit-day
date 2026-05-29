@@ -24,10 +24,11 @@ if (!habitForm) {
   const celebrationPhotoBursts = document.querySelector("#celebrationPhotoBursts");
   const habitCameraInput = document.querySelector("#habitCameraInput");
 
-  const CELEBRATION_BURST_STYLES = ["pop-bounce", "pop-bounce-soft", "pop-bounce-tilt"];
+  const CELEBRATION_BURST_STYLES = ["pop-rise", "pop-spring", "pop-float"];
+  const CELEBRATION_BURST_TARGET = 5;
+  const CELEBRATION_BURST_MAX = 14;
   let celebrationBurstPool = [];
   let celebrationBurstCounter = 0;
-  let lastCelebrationBurstAt = 0;
 
   let data = normalizeData(loadData());
   let activeDateKey = getSelectedDate();
@@ -226,61 +227,33 @@ if (!habitForm) {
     celebrationBurstPool = [];
   }
 
-  function pickBurstStyle(burstType, index) {
-    if (burstType === "willow") {
-      return "pop-bounce-soft";
-    }
-
-    if (burstType === "peony") {
-      return "pop-bounce";
-    }
-
-    if (burstType === "chrysanthemum") {
-      return "pop-bounce-tilt";
-    }
-
+  function pickBurstStyle(index) {
     return CELEBRATION_BURST_STYLES[index % CELEBRATION_BURST_STYLES.length];
   }
 
-  function spawnCelebrationPhotoBurst(detail) {
-    if (!celebrationPhotoBursts || !celebrationBurstPool.length || !detail) {
+  function spawnCelebrationPhotoPop(w, h) {
+    if (!celebrationPhotoBursts || !celebrationBurstPool.length || !w || !h) {
       return;
     }
 
-    const now = performance.now();
-    const minGap = detail.burstType === "launch" ? 420 : 360;
-
-    if (now - lastCelebrationBurstAt < minGap) {
+    if (celebrationBurstCounter >= CELEBRATION_BURST_MAX) {
       return;
     }
 
-    if (detail.burstType !== "launch" && Math.random() > 0.58) {
-      return;
-    }
-
-    if (detail.burstType === "launch" && Math.random() > 0.4) {
-      return;
-    }
-
-    lastCelebrationBurstAt = now;
-
-    const { w, h, burstType } = detail;
     const index = celebrationBurstCounter;
     celebrationBurstCounter += 1;
 
-    const sizeW = Math.round(Math.min(66, Math.max(46, w * (0.11 + Math.random() * 0.04))));
-    const sizeH = Math.round(sizeW * (1.05 + Math.random() * 0.1));
-    const lane = (index * 0.27 + Math.random() * 0.58) % 1;
-    const left = Math.max(4, Math.min(w - sizeW - 4, w * (0.04 + lane * 0.92) - sizeW / 2));
-    const top = h - sizeH - (6 + Math.random() * 28);
-    const driftX = Math.round((Math.random() - 0.5) * w * 0.16);
-    const driftMidX = Math.round((Math.random() - 0.5) * w * 0.06);
-    const hop1 = Math.round(-58 - Math.random() * 36);
-    const hop2 = Math.round(-24 - Math.random() * 18);
-    const rot = Math.round(-18 + Math.random() * 36);
+    const sizeW = Math.round(Math.min(72, Math.max(50, w * (0.12 + Math.random() * 0.05))));
+    const sizeH = Math.round(sizeW * (1.06 + Math.random() * 0.1));
+    const lane = Math.random();
+    const left = Math.max(6, Math.min(w - sizeW - 6, w * (0.05 + lane * 0.9) - sizeW / 2));
+    const top = h - sizeH - (8 + Math.random() * 32);
+    const driftX = Math.round((Math.random() - 0.5) * w * 0.2);
+    const driftMidX = Math.round((Math.random() - 0.5) * w * 0.08);
+    const rot = Math.round(-20 + Math.random() * 40);
 
     const img = document.createElement("img");
-    const style = pickBurstStyle(burstType, index);
+    const style = pickBurstStyle(index);
 
     img.className = `celebration-burst-photo celebration-burst-photo--${style}`;
     img.src = celebrationBurstPool[index % celebrationBurstPool.length];
@@ -293,8 +266,6 @@ if (!habitForm) {
     img.style.height = `${sizeH}px`;
     img.style.setProperty("--burst-dx", `${driftX}px`);
     img.style.setProperty("--burst-mid-x", `${driftMidX}px`);
-    img.style.setProperty("--burst-hop1", `${hop1}px`);
-    img.style.setProperty("--burst-hop2", `${hop2}px`);
     img.style.setProperty("--burst-rot", `${rot}deg`);
 
     const remove = () => {
@@ -304,8 +275,39 @@ if (!habitForm) {
     };
 
     img.addEventListener("animationend", remove, { once: true });
-    window.setTimeout(remove, 4000);
+    window.setTimeout(remove, 3600);
     celebrationPhotoBursts.append(img);
+  }
+
+  function spawnCelebrationPhotoBurst(detail) {
+    if (!detail || celebrationBurstCounter >= CELEBRATION_BURST_MAX) {
+      return;
+    }
+
+    if (detail.burstType === "launch") {
+      if (Math.random() > 0.18) {
+        return;
+      }
+    } else if (Math.random() > 0.22) {
+      return;
+    }
+
+    spawnCelebrationPhotoPop(detail.w, detail.h);
+  }
+
+  function launchCelebrationPhotoPops() {
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+
+    for (let burst = 0; burst < CELEBRATION_BURST_TARGET; burst += 1) {
+      window.setTimeout(() => {
+        if (!themeCelebration || themeCelebration.hidden) {
+          return;
+        }
+
+        spawnCelebrationPhotoPop(w, h);
+      }, burst * 200 + Math.random() * 160);
+    }
   }
 
   function updateCelebrationPanel(theme) {
@@ -357,7 +359,6 @@ if (!habitForm) {
     updateCelebrationPanel(theme);
     clearCelebrationBurstPhotos();
     prepareCelebrationBurstPool(theme);
-    lastCelebrationBurstAt = 0;
     themeCelebration.hidden = false;
     themeCelebration.classList.add("is-active");
     document.body.classList.add("celebration-open");
@@ -371,22 +372,7 @@ if (!habitForm) {
         CelebrationFireworks.start(celebrationFireworks, theme);
       }
 
-      const w = window.innerWidth;
-      const h = window.innerHeight;
-
-      for (let burst = 0; burst < 3; burst += 1) {
-        window.setTimeout(() => {
-          if (!themeCelebration.hidden) {
-            spawnCelebrationPhotoBurst({
-              x: w * 0.5,
-              y: h,
-              w,
-              h,
-              burstType: burst === 0 ? "peony" : burst === 1 ? "willow" : "chrysanthemum",
-            });
-          }
-        }, burst * 280 + Math.random() * 120);
-      }
+      launchCelebrationPhotoPops();
     }
   }
 
