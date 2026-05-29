@@ -61,14 +61,17 @@ function getMainTheme() {
   return mainThemeOptions.includes(saved) ? saved : null;
 }
 
+function getStartupTheme() {
+  return getMainTheme() || getTheme();
+}
+
 function setMainTheme(theme) {
   if (!mainThemeOptions.includes(theme)) {
     return;
   }
 
   localStorage.setItem(mainThemeStorageKey, theme);
-  syncMainThemeUi();
-  window.dispatchEvent(new CustomEvent("habit-profile-change"));
+  applyTheme(theme);
 }
 
 function formatUserHabitTitle(name) {
@@ -303,7 +306,7 @@ function initThemeImages() {
   });
 }
 
-applyTheme(getTheme());
+applyTheme(getStartupTheme());
 
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", initThemeImages);
