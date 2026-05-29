@@ -471,12 +471,12 @@
   display: none;
   position: absolute;
   top: 0;
-  right: 0;
-  left: 0;
-  height: min(200px, 36vw);
-  max-height: 220px;
+  right: max(0px, env(safe-area-inset-right));
+  left: auto;
+  width: min(34vw, 172px);
+  height: min(34vw, 172px);
   z-index: 1;
-  overflow: hidden;
+  overflow: visible;
   pointer-events: none;
 }
 
@@ -497,12 +497,17 @@
   object-fit: cover;
   object-position: center top;
   top: 0;
-  right: 0;
-  width: min(34vw, 200px);
-  height: min(34vw, 200px);
+  right: 4px;
+  width: 100%;
+  height: 100%;
   aspect-ratio: 1;
-  transform: rotate(-6deg);
+  transform: rotate(-5deg);
   transform-origin: 100% 0%;
+}
+
+[data-theme="friends"] .friends-cutout.cutout-b,
+[data-theme="friends"] .friends-cutout.cutout-c {
+  display: none;
 }
 
 .cutout-a {
@@ -597,11 +602,11 @@
 
 [data-theme="friends"] .overview,
 [data-theme="kuromi"] .overview {
-  grid-template-columns: 1fr;
-  align-items: start;
-  gap: 10px;
-  margin-bottom: 12px;
-  min-height: clamp(120px, 28vw, 168px);
+  display: block;
+  position: relative;
+  margin-bottom: 8px;
+  min-height: 0;
+  padding-right: min(36vw, 180px);
 }
 
 [data-theme="friends"] .progress-card,
@@ -613,10 +618,11 @@
 [data-theme="kuromi"] .overview-copy {
   position: relative;
   z-index: 2;
-  max-width: min(340px, 62%);
-  padding: 12px 14px;
+  width: 100%;
+  max-width: none;
+  padding: 10px 12px;
   border-radius: var(--radius);
-  background: color-mix(in srgb, var(--card-bg) 88%, transparent);
+  background: color-mix(in srgb, var(--card-bg) 90%, transparent);
   border: 1px solid var(--card-border);
   box-shadow: var(--shadow);
   backdrop-filter: blur(4px);
@@ -624,15 +630,16 @@
 
 [data-theme="friends"] .overview-copy .eyebrow,
 [data-theme="kuromi"] .overview-copy .eyebrow {
-  margin-bottom: 2px;
-  font-size: 12px;
+  margin: 0 0 1px;
+  font-size: 11px;
+  letter-spacing: 0.06em;
 }
 
 [data-theme="friends"] .overview-copy .summary,
 [data-theme="kuromi"] .overview-copy .summary {
-  margin-top: 6px;
-  font-size: 14px;
-  line-height: 1.45;
+  margin-top: 4px;
+  font-size: 13px;
+  line-height: 1.4;
 }
 
 [data-theme="friends"] .composer,
@@ -645,18 +652,18 @@
 }
 
 [data-theme="kuromi"] h1 {
-  font-size: clamp(26px, 6vw, 44px);
+  font-size: clamp(20px, 4.8vw, 34px);
   font-weight: 800;
   letter-spacing: -0.03em;
-  margin: 0 0 2px;
-  line-height: 1.08;
+  margin: 0;
+  line-height: 1.1;
 }
 
 .theme-progress-inline {
   display: none;
   align-items: center;
-  gap: 12px;
-  margin: 8px 0 6px;
+  gap: 8px;
+  margin: 6px 0 4px;
 }
 
 [data-theme="friends"] .theme-progress-inline,
@@ -686,23 +693,35 @@
 }
 
 .theme-progress-pct {
-  min-width: 40px;
+  min-width: 36px;
   color: var(--accent-strong);
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 800;
   text-align: right;
 }
 
 [data-theme="friends"] h1 {
-  font-size: clamp(26px, 6.5vw, 46px);
+  font-size: clamp(20px, 5vw, 36px);
   letter-spacing: -0.02em;
-  margin: 0 0 2px;
-  line-height: 1.08;
+  margin: 0;
+  line-height: 1.1;
 }
 
 [data-theme="friends"] .subpage-header h1,
 [data-theme="kuromi"] .subpage-header h1 {
-  font-size: clamp(24px, 6.5vw, 40px);
+  font-size: clamp(20px, 5.5vw, 34px);
+  margin-bottom: 2px;
+}
+
+[data-theme="friends"] .subpage-header,
+[data-theme="kuromi"] .subpage-header {
+  margin-bottom: 12px;
+}
+
+[data-theme="friends"] .subpage-header .summary,
+[data-theme="kuromi"] .subpage-header .summary {
+  font-size: 13px;
+  line-height: 1.4;
 }
 
 /* Kuromi — 콜라주 장식 */
@@ -711,12 +730,12 @@
   display: none;
   position: absolute;
   top: 0;
-  right: 0;
-  left: 0;
-  height: min(200px, 36vw);
-  max-height: 220px;
+  right: max(0px, env(safe-area-inset-right));
+  left: auto;
+  width: min(34vw, 172px);
+  height: min(34vw, 172px);
   z-index: 1;
-  overflow: hidden;
+  overflow: visible;
   pointer-events: none;
 }
 
@@ -740,11 +759,11 @@
 
 .kuromi-cutout.cutout-a {
   top: 0;
-  right: 0;
-  width: min(34vw, 200px);
-  height: min(34vw, 200px);
+  right: 4px;
+  width: 100%;
+  height: 100%;
   aspect-ratio: 1;
-  transform: rotate(-6deg);
+  transform: rotate(-5deg);
   transform-origin: 100% 0;
   z-index: 3;
   opacity: 1;
@@ -752,30 +771,9 @@
   object-position: center top;
 }
 
-.kuromi-cutout.cutout-b {
-  top: 6px;
-  right: min(30vw, 168px);
-  width: min(16vw, 88px);
-  height: min(16vw, 88px);
-  aspect-ratio: 1;
-  object-fit: cover;
-  object-position: center top;
-  transform: rotate(8deg);
-  z-index: 2;
-  opacity: 0.92;
-}
-
-.kuromi-cutout.cutout-c {
-  top: min(72px, 14vw);
-  right: min(22vw, 120px);
-  width: min(14vw, 76px);
-  height: min(14vw, 76px);
-  aspect-ratio: 1;
-  object-fit: cover;
-  object-position: center top;
-  transform: rotate(-5deg);
-  z-index: 2;
-  opacity: 0.88;
+[data-theme="kuromi"] .kuromi-cutout.cutout-b,
+[data-theme="kuromi"] .kuromi-cutout.cutout-c {
+  display: none;
 }
 
 .kuromi-cutout.cutout-d {
@@ -792,12 +790,13 @@
 .friends-weekly-photo {
   display: none;
   position: absolute;
-  right: clamp(8px, 3vw, 24px);
-  top: clamp(48px, 10vw, 72px);
+  right: max(8px, env(safe-area-inset-right));
+  top: 0;
   left: auto;
   z-index: 3;
   margin: 0;
-  width: clamp(88px, 22vw, 120px);
+  width: min(34vw, 172px);
+  height: min(34vw, 172px);
   pointer-events: none;
   transform: rotate(5deg);
   filter: drop-shadow(0 12px 24px rgba(44, 28, 18, 0.18));
@@ -810,13 +809,14 @@
 .kuromi-weekly-photo {
   display: none;
   position: absolute;
-  right: clamp(8px, 3vw, 24px);
-  top: clamp(48px, 10vw, 72px);
+  right: max(8px, env(safe-area-inset-right));
+  top: 0;
   z-index: 3;
   margin: 0;
-  width: clamp(88px, 22vw, 120px);
+  width: min(34vw, 172px);
+  height: min(34vw, 172px);
   pointer-events: none;
-  transform: rotate(-6deg);
+  transform: rotate(-5deg);
   filter: drop-shadow(0 12px 24px rgba(62, 28, 90, 0.2));
 }
 
@@ -834,8 +834,8 @@
 }
 
 [data-theme="kuromi"] .weekly-page .subpage-header {
-  padding-right: clamp(0px, 18vw, 160px);
-  min-height: clamp(56px, 14vw, 96px);
+  padding-right: min(34vw, 180px);
+  min-height: 0;
 }
 
 .friends-weekly-photo img {
@@ -851,8 +851,8 @@
 
 [data-theme="friends"] .weekly-page .subpage-header {
   padding-left: 0;
-  padding-right: clamp(0px, 18vw, 160px);
-  min-height: clamp(56px, 14vw, 96px);
+  padding-right: min(34vw, 180px);
+  min-height: 0;
 }
 
 .overview-wrap {
@@ -1184,8 +1184,8 @@ body.celebration-open {
     pointer-events: none;
     opacity: 1;
     z-index: 1;
-    height: min(168px, 32vw);
-    max-height: 180px;
+    width: min(32vw, 132px);
+    height: min(32vw, 132px);
   }
 
   .decor-hero {
@@ -1195,36 +1195,13 @@ body.celebration-open {
 
   .friends-cutout.cutout-a,
   .kuromi-cutout.cutout-a {
-    width: min(40vw, 168px) !important;
-    height: min(40vw, 168px) !important;
-    right: 0 !important;
+    right: 2px !important;
     top: 0 !important;
     object-fit: cover !important;
     object-position: center top !important;
-    transform: rotate(-5deg) !important;
+    transform: rotate(-4deg) !important;
     transform-origin: 100% 0 !important;
-    filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.22));
-  }
-
-  [data-theme="friends"] .friends-cutout.cutout-b,
-  [data-theme="friends"] .friends-cutout.cutout-c,
-  [data-theme="kuromi"] .kuromi-cutout.cutout-b,
-  [data-theme="kuromi"] .kuromi-cutout.cutout-c {
-    width: min(22vw, 72px) !important;
-    height: min(22vw, 72px) !important;
-    opacity: 0.9 !important;
-  }
-
-  [data-theme="friends"] .friends-cutout.cutout-b,
-  [data-theme="kuromi"] .kuromi-cutout.cutout-b {
-    right: min(36vw, 148px) !important;
-    top: 2px !important;
-  }
-
-  [data-theme="friends"] .friends-cutout.cutout-c,
-  [data-theme="kuromi"] .kuromi-cutout.cutout-c {
-    right: min(26vw, 108px) !important;
-    top: min(56px, 12vw) !important;
+    filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.2));
   }
 
   .cutout-d,
@@ -1236,34 +1213,48 @@ body.celebration-open {
 
   [data-theme="friends"] .overview,
   [data-theme="kuromi"] .overview {
-    min-height: clamp(108px, 26vw, 148px);
-    margin-bottom: 10px;
+    min-height: 0;
+    margin-bottom: 8px;
+    padding-right: min(34vw, 140px);
   }
 
   [data-theme="friends"] .overview-copy,
   [data-theme="kuromi"] .overview-copy {
-    max-width: min(100%, 58%);
-    padding: 10px 12px;
-    background: color-mix(in srgb, var(--card-bg) 90%, transparent);
+    padding: 8px 10px;
+    background: color-mix(in srgb, var(--card-bg) 92%, transparent);
   }
 
   [data-theme="friends"] h1,
   [data-theme="kuromi"] h1 {
-    font-size: clamp(22px, 7vw, 34px);
+    font-size: clamp(18px, 5.8vw, 28px);
+  }
+
+  [data-theme="friends"] .overview-copy .summary,
+  [data-theme="kuromi"] .overview-copy .summary {
+    font-size: 12px;
+    margin-top: 3px;
+  }
+
+  [data-theme="friends"] .theme-progress-inline,
+  [data-theme="kuromi"] .theme-progress-inline {
+    margin: 4px 0 2px;
   }
 
   [data-theme="kuromi"] .weekly-page .subpage-header {
-    padding-right: 0;
-    padding-top: clamp(88px, 24vw, 120px);
+    padding-right: min(34vw, 140px);
+    padding-top: 0;
     min-height: 0;
   }
 
   .kuromi-weekly-photo {
-    left: auto;
-    right: 8px;
-    top: max(52px, calc(44px + env(safe-area-inset-top)));
-    transform: rotate(-4deg);
-    width: min(100px, 32vw);
+    right: max(8px, env(safe-area-inset-right));
+    top: max(48px, calc(40px + env(safe-area-inset-top)));
+    width: min(88px, 28vw);
+    height: min(88px, 28vw);
+  }
+
+  .kuromi-weekly-photo img {
+    height: 100%;
   }
 
   [data-theme="kuromi"] .calendar-day.has-photo,
@@ -1272,17 +1263,20 @@ body.celebration-open {
   }
 
   [data-theme="friends"] .weekly-page .subpage-header {
-    padding-left: 0;
-    padding-top: clamp(88px, 24vw, 120px);
+    padding-right: min(34vw, 140px);
+    padding-top: 0;
     min-height: 0;
   }
 
   .friends-weekly-photo {
-    left: auto;
-    right: 8px;
-    top: max(52px, calc(44px + env(safe-area-inset-top)));
-    transform: rotate(3deg);
-    width: min(100px, 32vw);
+    right: max(8px, env(safe-area-inset-right));
+    top: max(48px, calc(40px + env(safe-area-inset-top)));
+    width: min(88px, 28vw);
+    height: min(88px, 28vw);
+  }
+
+  .friends-weekly-photo img {
+    height: 100%;
   }
 
   .friends-bottom-scene,
