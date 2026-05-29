@@ -538,20 +538,20 @@
 }
 
 .theme-collage--home {
-  --collage-main-slot: min(48vw, 276px);
-  --collage-main-gap: clamp(14px, 3.5vw, 22px);
-  --collage-step-gap: clamp(14px, 3vw, 24px);
-  --collage-photo-main-h: min(48vw, 272px);
-  --collage-photo-main-w: calc(var(--collage-main-slot) - 10px);
-  --collage-photo-sub-w: min(36vw, 198px);
-  --collage-photo-sub-h: min(34vw, 182px);
+  --collage-main-slot: min(44vw, 252px);
+  --collage-main-gap: clamp(12px, 3vw, 18px);
+  --collage-step-gap: clamp(12px, 2.8vw, 20px);
+  --collage-photo-main-h: min(44vw, 248px);
+  --collage-photo-main-w: calc(var(--collage-main-slot) - 8px);
+  --collage-photo-sub-w: min(34vw, 186px);
+  --collage-photo-sub-h: min(32vw, 172px);
   left: 0;
   right: 0;
   width: auto;
   overflow: visible;
   height: auto;
-  min-height: calc(var(--collage-photo-main-h) + var(--collage-photo-sub-h) * 0.42);
-  padding-bottom: calc(var(--collage-photo-sub-h) * 0.28);
+  min-height: calc(var(--collage-photo-main-h) + var(--collage-photo-sub-h) * 0.38);
+  padding-bottom: calc(var(--collage-photo-sub-h) * 0.24);
 }
 
 [data-theme="friends"] .friends-collage,
@@ -603,12 +603,12 @@
 
 /* 홈 2 — 중앙 왼쪽 (배경 장식) */
 .theme-collage--home .theme-photo-sub--left {
-  top: calc(max(52px, env(safe-area-inset-top)) + var(--collage-photo-main-h) * 0.34);
-  left: max(8px, env(safe-area-inset-left));
+  top: calc(max(48px, env(safe-area-inset-top)) + var(--collage-photo-main-h) * 0.28);
+  left: max(6px, env(safe-area-inset-left));
   right: auto;
   width: var(--collage-photo-sub-w);
   height: var(--collage-photo-sub-h);
-  transform: translateY(-38%) rotate(-7deg);
+  transform: translateY(-42%) rotate(-6deg);
   transform-origin: 0% 55%;
   opacity: 0.44;
   z-index: 0;
@@ -620,12 +620,12 @@
 /* 홈 3 — 오른쪽 하단 (균형) */
 .theme-collage--home .theme-photo-sub--right {
   top: auto;
-  bottom: max(4px, env(safe-area-inset-bottom));
-  right: max(10px, env(safe-area-inset-right));
+  bottom: max(6px, env(safe-area-inset-bottom));
+  right: max(8px, env(safe-area-inset-right));
   left: auto;
-  width: calc(var(--collage-photo-sub-w) * 1.04);
-  height: calc(var(--collage-photo-sub-h) * 1.04);
-  transform: rotate(8deg);
+  width: calc(var(--collage-photo-sub-w) * 1.02);
+  height: calc(var(--collage-photo-sub-h) * 1.02);
+  transform: rotate(7deg);
   transform-origin: 100% 100%;
   opacity: 0.46;
   z-index: 1;
@@ -640,7 +640,7 @@
 
 .page-home .overview-wrap {
   padding-right: calc(var(--collage-main-slot) + var(--collage-main-gap));
-  min-height: calc(var(--collage-photo-main-h) + var(--collage-photo-sub-h) * 0.35);
+  min-height: calc(var(--collage-photo-main-h) + var(--collage-photo-sub-h) * 0.3);
   box-sizing: border-box;
 }
 
@@ -648,22 +648,22 @@
 .page-home [data-theme="kuromi"] .overview-copy,
 .page-home [data-theme="gintama"] .overview-copy,
 .page-home [data-theme="toothless"] .overview-copy {
-  max-width: 100%;
-  width: 100%;
+  width: fit-content;
+  max-width: min(56vw, 268px);
 }
 
 /* 위클리 · 캘린더 — 메인 우상단 + 서브 균형 */
 .theme-collage--subpage {
-  --collage-photo-h: min(34vw, 172px);
-  --collage-photo-gap: clamp(16px, 4vw, 28px);
-  --collage-photo-sub-w: min(32vw, 168px);
-  --collage-photo-sub-h: min(30vw, 158px);
+  --collage-photo-h: min(32vw, 160px);
+  --collage-photo-gap: clamp(14px, 3.5vw, 24px);
+  --collage-photo-sub-w: min(30vw, 156px);
+  --collage-photo-sub-h: min(28vw, 148px);
   left: 0;
   right: 0;
   width: auto;
   height: auto;
-  min-height: calc(var(--collage-photo-h) + var(--collage-photo-sub-h) * 0.5);
-  padding-bottom: calc(var(--collage-photo-sub-h) * 0.22);
+  min-height: calc(var(--collage-photo-h) + var(--collage-photo-sub-h) * 0.45);
+  padding-bottom: calc(var(--collage-photo-sub-h) * 0.18);
 }
 
 .theme-collage--subpage .theme-photo {
@@ -775,13 +775,13 @@
 [data-theme="toothless"] .overview-copy {
   position: relative;
   z-index: 3;
-  width: 100%;
-  max-width: calc(100% - min(48vw, 276px) - 20px);
-  padding: 10px 12px;
-  border-radius: var(--radius);
-  background: color-mix(in srgb, var(--card-bg) 90%, transparent);
+  width: fit-content;
+  max-width: min(58vw, 280px);
+  padding: 7px 10px;
+  border-radius: calc(var(--radius) - 2px);
+  background: color-mix(in srgb, var(--card-bg) 88%, transparent);
   border: 1px solid var(--card-border);
-  box-shadow: var(--shadow);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
   backdrop-filter: blur(4px);
 }
 
@@ -789,18 +789,18 @@
 [data-theme="kuromi"] .overview-copy .eyebrow,
 [data-theme="gintama"] .overview-copy .eyebrow,
 [data-theme="toothless"] .overview-copy .eyebrow {
-  margin: 0 0 1px;
-  font-size: 11px;
-  letter-spacing: 0.06em;
+  margin: 0;
+  font-size: 10px;
+  letter-spacing: 0.05em;
 }
 
 [data-theme="friends"] .overview-copy .summary,
 [data-theme="kuromi"] .overview-copy .summary,
 [data-theme="gintama"] .overview-copy .summary,
 [data-theme="toothless"] .overview-copy .summary {
-  margin-top: 4px;
-  font-size: 13px;
-  line-height: 1.4;
+  margin-top: 3px;
+  font-size: 12px;
+  line-height: 1.35;
 }
 
 [data-theme="friends"] .composer,
@@ -833,18 +833,18 @@
 }
 
 [data-theme="kuromi"] h1 {
-  font-size: clamp(20px, 4.8vw, 34px);
+  font-size: clamp(18px, 4.2vw, 28px);
   font-weight: 800;
   letter-spacing: -0.03em;
   margin: 0;
-  line-height: 1.1;
+  line-height: 1.12;
 }
 
 .theme-progress-inline {
   display: none;
   align-items: center;
-  gap: 8px;
-  margin: 6px 0 4px;
+  gap: 6px;
+  margin: 4px 0 2px;
 }
 
 [data-theme="friends"] .theme-progress-inline,
@@ -856,7 +856,8 @@
 
 .theme-progress-track {
   flex: 1;
-  height: 6px;
+  min-width: 0;
+  height: 5px;
   border-radius: 999px;
   background: var(--bar-track);
   overflow: hidden;
@@ -876,9 +877,9 @@
 }
 
 .theme-progress-pct {
-  min-width: 36px;
+  min-width: 32px;
   color: var(--accent-strong);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 800;
   text-align: right;
 }
@@ -886,16 +887,16 @@
 [data-theme="friends"] h1,
 [data-theme="gintama"] h1,
 [data-theme="toothless"] h1 {
-  font-size: clamp(20px, 5vw, 36px);
+  font-size: clamp(18px, 4.4vw, 30px);
   letter-spacing: -0.02em;
   margin: 0;
-  line-height: 1.15;
+  line-height: 1.12;
   overflow-wrap: anywhere;
   word-break: keep-all;
 }
 
 [data-theme="toothless"] h1 {
-  font-size: clamp(18px, 4.6vw, 30px);
+  font-size: clamp(17px, 4.1vw, 28px);
 }
 
 [data-theme="friends"] .subpage-header h1,
@@ -950,15 +951,15 @@
 [data-theme="toothless"] .weekly-page .subpage-header {
   position: relative;
   z-index: 3;
-  width: 100%;
-  max-width: calc(100% - min(38vw, 176px));
+  width: fit-content;
+  max-width: min(58vw, 268px);
   margin-bottom: 10px;
-  padding: 10px 12px;
-  min-height: min(180px, 32vw);
-  border-radius: var(--radius);
-  background: color-mix(in srgb, var(--card-bg) 92%, transparent);
+  padding: 7px 10px;
+  min-height: min(148px, 28vw);
+  border-radius: calc(var(--radius) - 2px);
+  background: color-mix(in srgb, var(--card-bg) 88%, transparent);
   border: 1px solid var(--card-border);
-  box-shadow: var(--shadow);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
   backdrop-filter: blur(4px);
 }
 
@@ -1609,13 +1610,13 @@ body.celebration-open {
 
 @media (max-width: 768px) {
   .theme-collage--home {
-    --collage-main-slot: min(46vw, 252px);
-    --collage-main-gap: clamp(12px, 3vw, 18px);
-    --collage-step-gap: clamp(12px, 2.8vw, 20px);
-    --collage-photo-main-h: min(46vw, 248px);
-    --collage-photo-main-w: calc(var(--collage-main-slot) - 8px);
-    --collage-photo-sub-w: min(34vw, 178px);
-    --collage-photo-sub-h: min(32vw, 164px);
+    --collage-main-slot: min(42vw, 228px);
+    --collage-main-gap: clamp(10px, 2.8vw, 16px);
+    --collage-step-gap: clamp(10px, 2.6vw, 18px);
+    --collage-photo-main-h: min(42vw, 224px);
+    --collage-photo-main-w: calc(var(--collage-main-slot) - 6px);
+    --collage-photo-sub-w: min(32vw, 168px);
+    --collage-photo-sub-h: min(30vw, 158px);
   }
 
   .page-home .theme-collage--home {
@@ -1624,18 +1625,26 @@ body.celebration-open {
 
   .page-home .overview-wrap {
     padding-right: calc(var(--collage-main-slot) + var(--collage-main-gap));
-    min-height: calc(var(--collage-photo-main-h) + var(--collage-photo-sub-h) * 0.32);
+    min-height: calc(var(--collage-photo-main-h) + var(--collage-photo-sub-h) * 0.28);
+  }
+
+  .page-home [data-theme="friends"] .overview-copy,
+  .page-home [data-theme="kuromi"] .overview-copy,
+  .page-home [data-theme="gintama"] .overview-copy,
+  .page-home [data-theme="toothless"] .overview-copy {
+    max-width: min(62vw, 240px);
+    padding: 6px 9px;
   }
 
   .theme-collage--home .theme-photo-sub--left {
-    top: calc(max(48px, env(safe-area-inset-top)) + var(--collage-photo-main-h) * 0.3);
+    top: calc(max(44px, env(safe-area-inset-top)) + var(--collage-photo-main-h) * 0.26);
     left: max(4px, env(safe-area-inset-left));
     right: auto;
     opacity: 0.42;
   }
 
   .theme-collage--home .theme-photo-sub--right {
-    bottom: max(2px, env(safe-area-inset-bottom));
+    bottom: max(4px, env(safe-area-inset-bottom));
     opacity: 0.44;
   }
 
@@ -1669,51 +1678,57 @@ body.celebration-open {
   }
 
   [data-theme="friends"] .overview,
-  [data-theme="kuromi"] .overview {
-    min-height: min(180px, 34vw);
+  [data-theme="kuromi"] .overview,
+  [data-theme="gintama"] .overview,
+  [data-theme="toothless"] .overview {
+    min-height: min(160px, 30vw);
   }
 
   [data-theme="friends"] .overview-copy,
   [data-theme="kuromi"] .overview-copy,
   [data-theme="gintama"] .overview-copy,
   [data-theme="toothless"] .overview-copy {
-    max-width: calc(100% - min(50vw, 220px));
+    max-width: min(64vw, 232px);
   }
 
   [data-theme="friends"] .calendar-page .subpage-header,
   [data-theme="kuromi"] .calendar-page .subpage-header,
+  [data-theme="gintama"] .calendar-page .subpage-header,
+  [data-theme="toothless"] .calendar-page .subpage-header,
   [data-theme="friends"] .weekly-page .subpage-header,
-  [data-theme="kuromi"] .weekly-page .subpage-header {
-    max-width: calc(100% - min(36vw, 160px));
-    min-height: min(160px, 30vw);
+  [data-theme="kuromi"] .weekly-page .subpage-header,
+  [data-theme="gintama"] .weekly-page .subpage-header,
+  [data-theme="toothless"] .weekly-page .subpage-header {
+    max-width: min(64vw, 240px);
+    min-height: min(132px, 26vw);
+    padding: 6px 9px;
   }
 
-  [data-theme="friends"] .overview-copy,
-  [data-theme="kuromi"] .overview-copy {
-    padding: 8px 10px;
-    background: color-mix(in srgb, var(--card-bg) 92%, transparent);
+  [data-theme="friends"] .overview-copy .summary,
+  [data-theme="kuromi"] .overview-copy .summary,
+  [data-theme="gintama"] .overview-copy .summary,
+  [data-theme="toothless"] .overview-copy .summary {
+    font-size: 11px;
+    margin-top: 2px;
   }
 
   [data-theme="friends"] h1,
   [data-theme="kuromi"] h1,
   [data-theme="gintama"] h1,
   [data-theme="toothless"] h1 {
-    font-size: clamp(18px, 5.8vw, 28px);
-  }
-
-  [data-theme="toothless"] h1 {
     font-size: clamp(17px, 5.2vw, 26px);
   }
 
-  [data-theme="friends"] .overview-copy .summary,
-  [data-theme="kuromi"] .overview-copy .summary {
-    font-size: 12px;
-    margin-top: 3px;
+  [data-theme="toothless"] h1 {
+    font-size: clamp(16px, 4.8vw, 24px);
   }
 
   [data-theme="friends"] .theme-progress-inline,
-  [data-theme="kuromi"] .theme-progress-inline {
-    margin: 4px 0 2px;
+  [data-theme="kuromi"] .theme-progress-inline,
+  [data-theme="gintama"] .theme-progress-inline,
+  [data-theme="toothless"] .theme-progress-inline {
+    margin: 3px 0 1px;
+    gap: 5px;
   }
 
   [data-theme="kuromi"] .calendar-day.has-photo,
