@@ -339,7 +339,7 @@
   align-items: center;
 }
 
-/* Friends / Kuromi — 상단 콜라주 (내용 뒤, 반투명 겹침 허용) */
+/* Friends / Kuromi — 지그재그 콜라주 (토끼 위 → 반대편 → 오른쪽 아래) */
 
 .theme-collage {
   display: none;
@@ -347,21 +347,21 @@
   top: max(52px, calc(44px + env(safe-area-inset-top)));
   right: max(4px, env(safe-area-inset-right));
   width: min(52vw, 280px);
+  height: min(720px, 124vw);
   z-index: 1;
   pointer-events: none;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto;
-  gap: clamp(14px, 3.2vw, 20px);
-  align-items: end;
 }
 
 [data-theme="friends"] .friends-collage,
 [data-theme="kuromi"] .kuromi-collage {
-  display: grid;
+  display: block;
 }
 
 .theme-photo {
+  position: absolute;
   display: block;
+  width: min(48vw, 260px);
+  height: min(52vw, 280px);
   object-fit: cover;
   object-position: center top;
   border-radius: 4px;
@@ -370,34 +370,36 @@
     0 12px 28px rgba(44, 42, 38, 0.22);
 }
 
-.theme-photo-main,
-.theme-photo-sub {
-  width: min(48vw, 260px);
-  height: min(52vw, 280px);
-}
-
 .theme-photo-main {
-  justify-self: end;
+  top: 0;
+  right: 0;
   transform: rotate(4deg);
+  transform-origin: 100% 0;
   opacity: 1;
-  position: relative;
   z-index: 2;
 }
 
 .theme-photo-sub {
-  opacity: 0.34;
-  position: relative;
+  opacity: 0.38;
   z-index: 1;
 }
 
+/* 2번째: 아래 줄 반대편(왼쪽) */
 .theme-photo-sub--left {
-  justify-self: start;
-  transform: rotate(-5deg);
+  top: min(236px, 44vw);
+  left: 0;
+  right: auto;
+  transform: rotate(-6deg);
+  transform-origin: 0% 50%;
 }
 
+/* 3번째: 맨 아래 토끼 쪽 오른쪽 */
 .theme-photo-sub--right {
-  justify-self: end;
+  top: min(472px, 88vw);
+  right: 0;
+  left: auto;
   transform: rotate(5deg);
+  transform-origin: 100% 100%;
 }
 
 .page-home .theme-collage {
@@ -972,21 +974,28 @@ body.celebration-open {
 @media (max-width: 768px) {
   .theme-collage {
     width: min(50vw, 240px);
-    gap: 14px;
+    height: min(640px, 118vw);
   }
 
   .page-home .theme-collage {
     top: max(48px, calc(40px + env(safe-area-inset-top)));
   }
 
-  .theme-photo-main,
-  .theme-photo-sub {
+  .theme-photo {
     width: min(46vw, 210px);
     height: min(50vw, 226px);
   }
 
+  .theme-photo-sub--left {
+    top: min(200px, 38vw);
+  }
+
+  .theme-photo-sub--right {
+    top: min(400px, 76vw);
+  }
+
   .theme-photo-sub {
-    opacity: 0.32;
+    opacity: 0.36;
   }
 
   .decor-hero {
