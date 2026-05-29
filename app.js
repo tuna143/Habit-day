@@ -61,10 +61,23 @@ if (!habitForm && !habitFormMobile) {
     }
   }
 
+  const THEME_TODAY_TITLES = {
+    friends: "Friend's Habit",
+    kuromi: "Kromi's Habit",
+  };
+
   const CELEBRATION_COPY = {
-    friends: { tagline: "The bunny approves.", title: "Perfect day" },
-    kuromi: { tagline: "Perfect chaos.", title: "Perfect day" },
-    original: { tagline: "You did it.", title: "Perfect day" },
+    friends: {
+      tagline:
+        "Central Perk would be proud — you showed up for every habit today, and the bunny is very impressed.",
+      title: "Perfect day",
+    },
+    kuromi: {
+      tagline:
+        "Every habit done, zero mercy for laziness — chaotic good energy only, and the skull stamp of approval.",
+      title: "Perfect day",
+    },
+    original: { tagline: "You did it — every habit checked off. Keep this streak going.", title: "Perfect day" },
   };
 
   function pruneHabitHistory(habitId) {
@@ -95,18 +108,24 @@ if (!habitForm && !habitFormMobile) {
     return `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
   }
 
+  function getThemeTodayTitle() {
+    const theme = document.documentElement.dataset.theme || "original";
+
+    return THEME_TODAY_TITLES[theme] || null;
+  }
+
   function updateDateHeading() {
     const label = formatDisplayDate(activeDateKey);
     const isToday = activeDateKey === getTodayKey();
+    const themeTitle = isToday ? getThemeTodayTitle() : null;
 
     if (appEyebrow) {
-      appEyebrow.textContent = isToday ? "Habit Day" : label;
+      appEyebrow.textContent = themeTitle || (isToday ? "Habit Day" : label);
     }
 
     if (appTitle) {
-      appTitle.textContent = isToday ? "Today's Habits" : `Habits for ${label}`;
+      appTitle.textContent = themeTitle || (isToday ? "Today's Habits" : `Habits for ${label}`);
     }
-
   }
 
   function shouldCelebrate() {
@@ -509,6 +528,8 @@ if (!habitForm && !habitFormMobile) {
   }
 
   window.addEventListener("habit-theme-change", () => {
+    updateDateHeading();
+
     if (themeCelebration && !themeCelebration.hidden) {
       updateCelebrationPanel(getCelebrationTheme());
     }
