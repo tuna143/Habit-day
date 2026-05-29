@@ -1,17 +1,11 @@
 const habitForm = document.querySelector("#habitForm");
-const habitFormMobile = document.querySelector("#habitFormMobile");
 
-if (!habitForm && !habitFormMobile) {
+if (!habitForm) {
   /* Not the habit checklist page */
 } else if (typeof loadData !== "function") {
   console.warn("Habit Day: shared.js must load before app.js");
 } else {
   const habitInput = document.querySelector("#habitInput");
-  const habitInputMobile = document.querySelector("#habitInputMobile");
-  const habitAddSheet = document.querySelector("#habitAddSheet");
-  const habitAddClose = document.querySelector("#habitAddClose");
-  const habitAddBackdrop = document.querySelector(".habit-add-backdrop");
-  const sideAddHabit = document.querySelector("#sideAddHabit");
   const habitList = document.querySelector("#habitList");
   const habitTemplate = document.querySelector("#habitTemplate");
   const emptyState = document.querySelector("#emptyState");
@@ -397,12 +391,6 @@ if (!habitForm && !habitFormMobile) {
   }
 
   function readHabitDraft() {
-    const mobileOpen = habitAddSheet && !habitAddSheet.hidden;
-
-    if (mobileOpen && habitInputMobile) {
-      return habitInputMobile.value.trim();
-    }
-
     return habitInput ? habitInput.value.trim() : "";
   }
 
@@ -410,59 +398,22 @@ if (!habitForm && !habitFormMobile) {
     if (habitInput) {
       habitInput.value = "";
     }
-
-    if (habitInputMobile) {
-      habitInputMobile.value = "";
-    }
   }
 
   function focusHabitDraft() {
-    const mobileOpen = habitAddSheet && !habitAddSheet.hidden;
-
-    if (mobileOpen && habitInputMobile) {
-      habitInputMobile.focus();
-      return;
-    }
-
     if (habitInput) {
       habitInput.focus();
     }
   }
 
-  function openHabitSheet() {
-    if (!habitAddSheet) {
-      return;
-    }
-
-    habitAddSheet.hidden = false;
-    document.body.classList.add("habit-sheet-open");
-
-    if (habitInputMobile) {
-      window.setTimeout(() => habitInputMobile.focus(), 50);
-    }
-  }
-
   function openAddHabit() {
-    const useSheet = window.matchMedia("(max-width: 768px)").matches || !habitForm;
+    const composer = document.querySelector(".composer");
 
-    if (useSheet) {
-      openHabitSheet();
-      return;
+    if (composer) {
+      composer.scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
 
-    if (habitInput) {
-      habitInput.scrollIntoView({ behavior: "smooth", block: "nearest" });
-      window.setTimeout(() => habitInput.focus(), 80);
-    }
-  }
-
-  function closeHabitSheet() {
-    if (!habitAddSheet) {
-      return;
-    }
-
-    habitAddSheet.hidden = true;
-    document.body.classList.remove("habit-sheet-open");
+    window.setTimeout(() => focusHabitDraft(), 80);
   }
 
   function addHabitFromInput() {
@@ -478,19 +429,11 @@ if (!habitForm && !habitFormMobile) {
 
     if (persistData()) {
       renderHabits();
-      closeHabitSheet();
     }
   }
 
   if (habitForm) {
     habitForm.addEventListener("submit", (event) => {
-      event.preventDefault();
-      addHabitFromInput();
-    });
-  }
-
-  if (habitFormMobile) {
-    habitFormMobile.addEventListener("submit", (event) => {
       event.preventDefault();
       addHabitFromInput();
     });
@@ -507,18 +450,6 @@ if (!habitForm && !habitFormMobile) {
 
   if (toolbarAddHabit) {
     toolbarAddHabit.addEventListener("click", openAddHabit);
-  }
-
-  if (sideAddHabit) {
-    sideAddHabit.addEventListener("click", openAddHabit);
-  }
-
-  if (habitAddClose) {
-    habitAddClose.addEventListener("click", closeHabitSheet);
-  }
-
-  if (habitAddBackdrop) {
-    habitAddBackdrop.addEventListener("click", closeHabitSheet);
   }
 
   if (habitCameraInput) {

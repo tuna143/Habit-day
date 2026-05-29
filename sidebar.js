@@ -9,7 +9,6 @@ function renderSidebar() {
   }
 
   const page = sidebar.dataset.page || "home";
-  const isHome = page === "home";
 
   sidebar.innerHTML = `
     <div class="app-menu-bar" aria-label="App menu">
@@ -58,14 +57,6 @@ function renderSidebar() {
                   <span class="app-menu-row-icon" aria-hidden="true">▣</span>
                   <span class="app-menu-row-text">Photos</span>
                 </a>
-                ${
-                  isHome
-                    ? `<button type="button" class="app-menu-row app-menu-row--accent" id="sideAddHabit" role="menuitem">
-                  <span class="app-menu-row-icon" aria-hidden="true">+</span>
-                  <span class="app-menu-row-text">Add habit</span>
-                </button>`
-                    : ""
-                }
               </div>
             </div>
             <div class="app-menu-layer" data-layer="themes" hidden>
@@ -231,14 +222,6 @@ function initAppMenus(sidebar) {
         closeAllMenus(sidebar);
       });
     });
-
-    const addHabit = menu.querySelector("#sideAddHabit");
-
-    if (addHabit) {
-      addHabit.addEventListener("click", () => {
-        closeAllMenus(sidebar);
-      });
-    }
 
     menu.querySelectorAll(".app-menu-dropdown").forEach((panel) => {
       panel.addEventListener("click", (event) => {

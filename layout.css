@@ -1247,14 +1247,6 @@ body.habit-camera-open {
     padding-bottom: calc(16px + env(safe-area-inset-bottom));
   }
 
-  .composer--desktop {
-    display: none !important;
-  }
-
-  .habit-add-sheet {
-    display: grid;
-  }
-
   .app-sidebar {
     position: fixed;
     top: 0;
@@ -1406,14 +1398,6 @@ body.habit-camera-open {
 
   .app-content {
     padding-bottom: 0;
-  }
-
-  .composer--desktop {
-    display: block;
-  }
-
-  .habit-add-sheet {
-    display: none !important;
   }
 
   .app-menu-bar {
