@@ -1,4 +1,4 @@
-const cacheName = "habit-day-v49";
+const cacheName = "habit-day-v50";
 const mainPage = "./app.html";
 
 const toothlessAssets = [
@@ -17,6 +17,12 @@ function isCodeRequest(request) {
     request.destination === "document" ||
     /\.(html|js|css|webmanifest)(\?|$)/i.test(url)
   );
+}
+
+function isAppIconRequest(request) {
+  const url = request.url;
+
+  return /\/apple-touch-icon\.png|\/icon\.svg|\/icon-\d+\.png/i.test(url);
 }
 
 const appShell = [
@@ -42,10 +48,6 @@ const appShell = [
   "./habit-photos.js",
   "./habit-camera.js",
   "./manifest.webmanifest",
-  "./icon.svg",
-  "./icon-192.png",
-  "./icon-512.png",
-  "./apple-touch-icon.png",
   ...toothlessAssets,
 ];
 
@@ -70,6 +72,21 @@ self.addEventListener("fetch", (event) => {
   }
 
   const request = event.request;
+
+  if (isAppIconRequest(request)) {
+    event.respondWith(
+      fetch(request)
+        .then((response) => {
+          if (response && response.ok) {
+            const copy = response.clone();
+            caches.open(cacheName).then((cache) => cache.put(request, copy));
+          }
+          return response;
+        })
+        .catch(() => caches.match(request))
+    );
+    return;
+  }
 
   if (isCodeRequest(request)) {
     event.respondWith(

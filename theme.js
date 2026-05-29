@@ -1,6 +1,6 @@
 const themeStorageKey = "habit-theme";
 const themes = ["original", "kuromi", "friends", "gintama", "toothless"];
-const ICON_BUST = "47";
+const ICON_BUST = "48";
 
 const appIcons = {
   svg: "icon.svg",
@@ -163,5 +163,5 @@ if (document.readyState === "loading") {
 }
 
 if ("serviceWorker" in navigator && location.protocol !== "file:") {
-  navigator.serviceWorker.register("./sw.js?v=49").catch(() => {});
+  navigator.serviceWorker.register("./sw.js?v=50").catch(() => {});
 }
