@@ -9,6 +9,7 @@ const themes = [
   { key: "original", svg: "icon.svg", prefix: "" },
   { key: "kuromi", svg: "icon-kuromi.svg", prefix: "-kuromi" },
   { key: "friends", svg: "icon-friends.svg", prefix: "-friends" },
+  { key: "gintama", svg: "icon-gintama.svg", prefix: "-gintama" },
 ];
 
 const sizes = [

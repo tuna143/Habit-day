@@ -214,6 +214,10 @@ const UserPhotos = (() => {
       return [...KUROMI_SCENE_POOL];
     }
 
+    if (theme === "gintama") {
+      return [...GINTAMA_SCENE_POOL];
+    }
+
     return [];
   }
 
@@ -224,6 +228,10 @@ const UserPhotos = (() => {
 
     if (theme === "kuromi") {
       return KUROMI_ASSETS.celebrate;
+    }
+
+    if (theme === "gintama") {
+      return GINTAMA_ASSETS.celebrate;
     }
 
     return null;
@@ -298,7 +306,7 @@ const UserPhotos = (() => {
 
   function resolveThemedCalendarPhoto(data, dateKey, theme) {
     const { total, done, percent } = getDayProgress(data, dateKey);
-    const isThemed = theme === "friends" || theme === "kuromi";
+    const isThemed = theme === "friends" || theme === "kuromi" || theme === "gintama";
 
     if (total === 0 || done === 0) {
       return null;

@@ -1,6 +1,6 @@
 const themeStorageKey = "habit-theme";
-const themes = ["original", "kuromi", "friends"];
-const ICON_BUST = "35";
+const themes = ["original", "kuromi", "friends", "gintama"];
+const ICON_BUST = "36";
 
 const themeBranding = {
   original: {
@@ -20,6 +20,12 @@ const themeBranding = {
     svg: "icon-friends.svg",
     apple: "apple-touch-icon-friends.png",
     png192: "icon-192-friends.png",
+  },
+  gintama: {
+    themeColor: "#1a2233",
+    svg: "icon-gintama.svg",
+    apple: "apple-touch-icon-gintama.png",
+    png192: "icon-192-gintama.png",
   },
 };
 

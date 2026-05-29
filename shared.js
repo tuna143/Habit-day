@@ -320,3 +320,36 @@ function getKuromiCalendarPhoto(data, dateKey) {
 
   return getKuromiSceneImage(dateKey);
 }
+
+const GINTAMA_ASSETS = {
+  hero: "assets/gintama/banner.png",
+  celebrate: "assets/gintama/celebrate.png",
+};
+
+const GINTAMA_SCENE_POOL = [
+  "assets/gintama/scene-01.png",
+  "assets/gintama/scene-02.png",
+  "assets/gintama/scene-03.png",
+  "assets/gintama/scene-04.png",
+  "assets/gintama/scene-05.png",
+  "assets/gintama/scene-06.png",
+  "assets/gintama/scene-07.png",
+  "assets/gintama/scene-08.png",
+  "assets/gintama/scene-09.png",
+  "assets/gintama/scene-10.png",
+  "assets/gintama/scene-11.png",
+  "assets/gintama/scene-12.png",
+  "assets/gintama/scene-13.png",
+  "assets/gintama/scene-14.png",
+  "assets/gintama/scene-15.png",
+  "assets/gintama/scene-16.png",
+  "assets/gintama/scene-17.png",
+  "assets/gintama/scene-18.png",
+  "assets/gintama/scene-19.png",
+  "assets/gintama/scene-20.png",
+];
+
+function getGintamaSceneImage(dateKey, salt = 0) {
+  const index = getFriendsSceneHash(dateKey, salt) % GINTAMA_SCENE_POOL.length;
+  return GINTAMA_SCENE_POOL[index];
+}

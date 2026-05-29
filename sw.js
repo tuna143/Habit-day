@@ -1,4 +1,4 @@
-const cacheName = "habit-day-v36";
+const cacheName = "habit-day-v37";
 const mainPage = "./app.html";
 
 function isCodeRequest(request) {
@@ -39,15 +39,19 @@ const appShell = [
   "./icon.svg",
   "./icon-kuromi.svg",
   "./icon-friends.svg",
+  "./icon-gintama.svg",
   "./icon-192.png",
   "./icon-192-kuromi.png",
   "./icon-192-friends.png",
+  "./icon-192-gintama.png",
   "./icon-512.png",
   "./icon-512-kuromi.png",
   "./icon-512-friends.png",
+  "./icon-512-gintama.png",
   "./apple-touch-icon.png",
   "./apple-touch-icon-kuromi.png",
   "./apple-touch-icon-friends.png",
+  "./apple-touch-icon-gintama.png",
 ];
 
 self.addEventListener("install", (event) => {

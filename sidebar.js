@@ -86,6 +86,13 @@ function renderSidebar() {
                     <small>Warm cozy</small>
                   </span>
                 </button>
+                <button type="button" class="theme-chip theme-chip--gintama" data-theme="gintama">
+                  <span class="theme-chip-dot" aria-hidden="true"></span>
+                  <span class="theme-chip-copy">
+                    <strong>Gintama</strong>
+                    <small>Silver soul</small>
+                  </span>
+                </button>
               </div>
             </div>
           </div>
@@ -108,6 +115,7 @@ function renderSidebar() {
           <button type="button" class="side-theme" data-theme="original" title="Original">Org</button>
           <button type="button" class="side-theme" data-theme="kuromi" title="Kuromi">Kuro</button>
           <button type="button" class="side-theme" data-theme="friends" title="Friends">Fr</button>
+          <button type="button" class="side-theme" data-theme="gintama" title="Gintama">Gi</button>
         </div>
         <a class="side-link side-link--pics side-link--pics-desktop${page === "photos" ? " is-active" : ""}" href="photos.html" title="My Photos">Pics</a>
       </section>

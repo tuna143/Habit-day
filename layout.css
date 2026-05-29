@@ -543,6 +543,23 @@ body {
   box-shadow: 0 4px 14px rgba(44, 42, 38, 0.28);
 }
 
+.theme-chip--gintama {
+  background: linear-gradient(145deg, #eef1f6 0%, #c5cad4 100%);
+  border-color: rgba(42, 58, 92, 0.28);
+  color: #1a2233;
+}
+
+.theme-chip--gintama .theme-chip-dot {
+  background: linear-gradient(145deg, #d4567a, #2a3a5c);
+}
+
+.theme-chip--gintama.is-active {
+  background: linear-gradient(145deg, #3d4f6a 0%, #1a2233 100%);
+  border-color: rgba(212, 86, 122, 0.45);
+  color: #f4f6fa;
+  box-shadow: 0 4px 14px rgba(18, 21, 28, 0.28);
+}
+
 body.app-menu-open::before {
   content: "";
   position: fixed;

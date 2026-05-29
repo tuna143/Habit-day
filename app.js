@@ -57,6 +57,7 @@ if (!habitForm) {
   const THEME_TODAY_TITLES = {
     friends: "Friend's Habit",
     kuromi: "Kromi's Habit",
+    gintama: "Gintoki's habit",
   };
 
   const CELEBRATION_COPY = {
@@ -68,6 +69,10 @@ if (!habitForm) {
     kuromi: {
       tagline:
         "Every habit done, zero mercy for laziness — chaotic good energy only, and the skull stamp of approval.",
+      title: "Perfect day",
+    },
+    gintama: {
+      tagline: "All habits done. The strawberry panties salute your discipline. Truly silver soul energy.",
       title: "Perfect day",
     },
     original: { tagline: "You did it — every habit checked off. Keep this streak going.", title: "Perfect day" },
@@ -124,7 +129,7 @@ if (!habitForm) {
   function shouldCelebrate() {
     const theme = document.documentElement.dataset.theme || "original";
 
-    if (theme === "friends" || theme === "kuromi") {
+    if (theme === "friends" || theme === "kuromi" || theme === "gintama") {
       return true;
     }
 
@@ -134,7 +139,7 @@ if (!habitForm) {
   function getCelebrationTheme() {
     const theme = document.documentElement.dataset.theme || "original";
 
-    if (theme === "friends" || theme === "kuromi") {
+    if (theme === "friends" || theme === "kuromi" || theme === "gintama") {
       return theme;
     }
 
@@ -158,6 +163,10 @@ if (!habitForm) {
       return KUROMI_ASSETS.celebrate;
     }
 
+    if (theme === "gintama") {
+      return GINTAMA_ASSETS.celebrate;
+    }
+
     return null;
   }
 
@@ -173,13 +182,16 @@ if (!habitForm) {
     }
 
     if (celebrationPhotoRing) {
-      celebrationPhotoRing.classList.remove("is-friends", "is-kuromi");
-      celebrationPhotoRing.classList.add(theme === "kuromi" ? "is-kuromi" : "is-friends");
+      celebrationPhotoRing.classList.remove("is-friends", "is-kuromi", "is-gintama");
+      celebrationPhotoRing.classList.add(
+        theme === "kuromi" ? "is-kuromi" : theme === "gintama" ? "is-gintama" : "is-friends"
+      );
     }
 
     if (celebrationPhoto) {
       const url = resolveCelebrationImage(theme);
       celebrationPhoto.classList.toggle("is-kuromi-art", theme === "kuromi");
+      celebrationPhoto.classList.toggle("is-gintama-art", theme === "gintama");
 
       if (url) {
         celebrationPhoto.src = url;

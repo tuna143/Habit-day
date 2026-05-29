@@ -27,6 +27,10 @@ function isKuromiTheme() {
   return getTheme() === "kuromi";
 }
 
+function isGintamaTheme() {
+  return getTheme() === "gintama";
+}
+
 function getHabitTitle(habitId) {
   const habit = data.habits.find((item) => item.id === habitId);
   return habit?.title || "Habit";
@@ -118,6 +122,7 @@ async function renderCalendar() {
   const themedPhotos =
     isFriendsTheme() ||
     isKuromiTheme() ||
+    isGintamaTheme() ||
     UserPhotos.usesUserPhotos() ||
     Boolean(UserPhotos.getStarredPerfectUrl());
 
