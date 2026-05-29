@@ -1,4 +1,4 @@
-const cacheName = "habit-day-v2";
+const cacheName = "habit-day-v3";
 const appShell = [
   "./",
   "./index.html",
@@ -6,6 +6,7 @@ const appShell = [
   "./app.js",
   "./manifest.webmanifest",
   "./icon.svg",
+  "./README.md",
 ];
 
 self.addEventListener("install", (event) => {
