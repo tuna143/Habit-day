@@ -344,8 +344,8 @@
   top: 0;
   right: max(0px, env(safe-area-inset-right));
   left: auto;
-  width: min(46vw, 280px);
-  height: min(220px, 40vw);
+  width: min(44vw, 268px);
+  height: min(300px, 52vw);
   z-index: 1;
   overflow: visible;
   pointer-events: none;
@@ -369,9 +369,9 @@
   object-position: center top;
   top: 0;
   right: 0;
-  width: min(38vw, 200px);
-  height: min(38vw, 200px);
-  aspect-ratio: 1;
+  width: min(30vw, 164px);
+  height: min(34vw, 188px);
+  aspect-ratio: 0.88;
   transform: rotate(-6deg);
   transform-origin: 100% 0%;
   z-index: 3;
@@ -402,14 +402,14 @@
 }
 
 [data-theme="friends"] .friends-cutout.cutout-b {
-  top: 6%;
-  right: min(34vw, 188px);
-  width: min(20vw, 104px);
-  height: min(20vw, 104px);
-  aspect-ratio: 1;
+  top: 30%;
+  right: 44%;
+  width: min(22vw, 120px);
+  height: min(24vw, 132px);
+  aspect-ratio: 0.92;
   object-fit: cover;
   object-position: center top;
-  transform: rotate(9deg);
+  transform: rotate(7deg);
   z-index: 2;
   opacity: 0.96;
 }
@@ -424,14 +424,14 @@
 }
 
 [data-theme="friends"] .friends-cutout.cutout-c {
-  top: 38%;
-  right: min(20vw, 108px);
-  width: min(17vw, 92px);
-  height: min(17vw, 92px);
-  aspect-ratio: 1;
+  top: 58%;
+  right: 6%;
+  width: min(20vw, 112px);
+  height: min(22vw, 124px);
+  aspect-ratio: 0.9;
   object-fit: cover;
   object-position: center top;
-  transform: rotate(-7deg);
+  transform: rotate(-5deg);
   z-index: 4;
   opacity: 0.94;
 }
@@ -474,8 +474,8 @@
   display: block;
   position: relative;
   margin-bottom: 8px;
-  min-height: min(200px, 38vw);
-  padding-right: min(42vw, 220px);
+  min-height: min(260px, 46vw);
+  padding-right: min(40vw, 210px);
 }
 
 [data-theme="friends"] .progress-card,
@@ -601,8 +601,8 @@
   top: 0;
   right: max(0px, env(safe-area-inset-right));
   left: auto;
-  width: min(46vw, 280px);
-  height: min(220px, 40vw);
+  width: min(44vw, 268px);
+  height: min(300px, 52vw);
   z-index: 1;
   overflow: visible;
   pointer-events: none;
@@ -629,9 +629,9 @@
 .kuromi-cutout.cutout-a {
   top: 0;
   right: 0;
-  width: min(38vw, 200px);
-  height: min(38vw, 200px);
-  aspect-ratio: 1;
+  width: min(30vw, 164px);
+  height: min(34vw, 188px);
+  aspect-ratio: 0.88;
   transform: rotate(-6deg);
   transform-origin: 100% 0;
   z-index: 3;
@@ -641,27 +641,27 @@
 }
 
 [data-theme="kuromi"] .kuromi-cutout.cutout-b {
-  top: 8%;
-  right: min(34vw, 188px);
-  width: min(20vw, 104px);
-  height: min(20vw, 104px);
-  aspect-ratio: 1;
+  top: 30%;
+  right: 44%;
+  width: min(22vw, 120px);
+  height: min(24vw, 132px);
+  aspect-ratio: 0.92;
   object-fit: cover;
   object-position: center top;
-  transform: rotate(8deg);
+  transform: rotate(7deg);
   z-index: 2;
   opacity: 0.94;
 }
 
 [data-theme="kuromi"] .kuromi-cutout.cutout-c {
-  top: 40%;
-  right: min(20vw, 108px);
-  width: min(17vw, 92px);
-  height: min(17vw, 92px);
-  aspect-ratio: 1;
+  top: 58%;
+  right: 6%;
+  width: min(20vw, 112px);
+  height: min(22vw, 124px);
+  aspect-ratio: 0.9;
   object-fit: cover;
   object-position: center top;
-  transform: rotate(-6deg);
+  transform: rotate(-5deg);
   z-index: 4;
   opacity: 0.92;
 }
@@ -1074,8 +1074,8 @@ body.celebration-open {
     pointer-events: none;
     opacity: 1;
     z-index: 1;
-    width: min(44vw, 200px);
-    height: min(188px, 36vw);
+    width: min(42vw, 196px);
+    height: min(248px, 46vw);
   }
 
   .decor-hero {
@@ -1085,8 +1085,8 @@ body.celebration-open {
 
   .friends-cutout.cutout-a,
   .kuromi-cutout.cutout-a {
-    width: min(36vw, 148px) !important;
-    height: min(36vw, 148px) !important;
+    width: min(32vw, 132px) !important;
+    height: min(36vw, 152px) !important;
     right: 0 !important;
     top: 0 !important;
     object-fit: cover !important;
@@ -1105,18 +1105,18 @@ body.celebration-open {
 
   [data-theme="friends"] .friends-cutout.cutout-b,
   [data-theme="kuromi"] .kuromi-cutout.cutout-b {
-    right: min(32vw, 148px) !important;
-    top: 4% !important;
-    width: min(24vw, 80px) !important;
-    height: min(24vw, 80px) !important;
+    right: 42% !important;
+    top: 30% !important;
+    width: min(22vw, 96px) !important;
+    height: min(24vw, 104px) !important;
   }
 
   [data-theme="friends"] .friends-cutout.cutout-c,
   [data-theme="kuromi"] .kuromi-cutout.cutout-c {
-    right: min(18vw, 88px) !important;
-    top: 36% !important;
-    width: min(20vw, 72px) !important;
-    height: min(20vw, 72px) !important;
+    right: 6% !important;
+    top: 58% !important;
+    width: min(20vw, 88px) !important;
+    height: min(22vw, 96px) !important;
   }
 
   .cutout-d,
@@ -1128,9 +1128,9 @@ body.celebration-open {
 
   [data-theme="friends"] .overview,
   [data-theme="kuromi"] .overview {
-    min-height: min(168px, 34vw);
+    min-height: min(220px, 42vw);
     margin-bottom: 8px;
-    padding-right: min(40vw, 168px);
+    padding-right: min(38vw, 160px);
   }
 
   [data-theme="friends"] .overview-copy,
