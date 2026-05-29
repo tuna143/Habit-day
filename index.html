@@ -1,59 +1,112 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="original">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="theme-color" content="#26735b" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#f6f7f2" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-    <meta name="apple-mobile-web-app-title" content="Habit Day" />
     <title>Habit Day</title>
-    <link rel="manifest" href="manifest.webmanifest" />
-    <link rel="icon" href="icon.svg" type="image/svg+xml" />
-    <link rel="apple-touch-icon" href="icon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Outfit:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="themes.css" />
+    <script src="theme.js"></script>
   </head>
   <body>
-    <main class="app-shell">
-      <section class="app-header" aria-labelledby="app-title">
-        <div>
-          <p class="eyebrow">Habit Day</p>
-          <h1 id="app-title">Today</h1>
-          <p class="summary" id="summaryText">Start small and keep your day moving.</p>
-        </div>
-        <div class="progress-card" aria-live="polite">
-          <span id="progressPercent">0%</span>
-          <p>Complete</p>
-        </div>
-      </section>
+    <div class="app-layout">
+      <aside id="app-sidebar" class="app-sidebar" data-page="home"></aside>
 
-      <section class="install-panel" id="installPanel" hidden>
-        <div>
-          <strong>Install Habit Day</strong>
-          <p>Open it from your phone home screen like a regular app.</p>
+      <div class="app-content">
+        <div class="friends-scene theme-decor theme-decor-friends" aria-hidden="true">
+          <img class="friends-cutout cutout-a" src="assets/friends/banner.png" alt="" />
+          <img class="friends-cutout cutout-b" src="assets/friends/day-04.png" alt="" />
+          <img class="friends-cutout cutout-c" src="assets/friends/day-05.png" alt="" />
+          <img class="friends-cutout cutout-d" src="assets/friends/day-06.png" alt="" />
+          <img class="friends-cutout cutout-e" src="assets/friends/day-07.png" alt="" />
+          <img class="friends-cutout cutout-f" src="assets/friends/day-01.png" alt="" />
         </div>
-        <button id="installButton" type="button">Install</button>
-      </section>
+        <div class="kuromi-scene theme-decor theme-decor-kuromi" aria-hidden="true">
+          <img class="kuromi-cutout cutout-a" src="assets/kuromi/celebrate.png" alt="" />
+          <img class="kuromi-cutout cutout-b" src="assets/kuromi/scene-01.png" alt="" />
+          <img class="kuromi-cutout cutout-c" src="assets/kuromi/scene-02.png" alt="" />
+          <img class="kuromi-cutout cutout-d" src="assets/kuromi/scene-03.png" alt="" />
+        </div>
+        <main class="app-shell">
+          <section class="overview overview-wrap" aria-labelledby="app-title">
+            <div class="overview-copy">
+              <p class="eyebrow" id="app-eyebrow">Habit Day</p>
+              <h1 id="app-title">Today's Habits</h1>
+              <div class="theme-progress-inline" id="themeProgressInline" aria-live="polite">
+                <div class="theme-progress-track">
+                  <span class="theme-progress-fill" id="themeProgressFill"></span>
+                </div>
+                <span class="theme-progress-pct" id="themeProgressPct">0%</span>
+              </div>
+              <p class="summary" id="summaryText">Start small and keep your day moving.</p>
+            </div>
+            <div class="progress-card" id="progressCard" aria-live="polite">
+              <span id="progressPercent">0%</span>
+              <p>Complete</p>
+              <img
+                class="theme-decor theme-decor-kuromi decor-progress"
+                data-src-base="assets/kuromi/progress"
+                src="assets/kuromi/progress.svg"
+                alt=""
+              />
+            </div>
+          </section>
 
-      <section class="composer" aria-label="Add habit">
-        <form id="habitForm">
-          <label for="habitInput">New habit</label>
-          <div class="input-row">
-            <input id="habitInput" name="habit" type="text" maxlength="32" placeholder="Example: Drink water" autocomplete="off" />
-            <button type="submit">Add</button>
+          <section class="composer" aria-label="Add habit">
+            <form id="habitForm">
+              <label for="habitInput">New habit</label>
+              <div class="input-row">
+                <input id="habitInput" name="habit" type="text" maxlength="32" placeholder="Example: Drink water" autocomplete="off" />
+                <button type="submit">Add</button>
+              </div>
+            </form>
+          </section>
+
+          <section class="board" aria-label="Habit list">
+            <div class="toolbar">
+              <h2>Checklist</h2>
+              <button class="ghost-button" id="resetToday" type="button">Reset today</button>
+            </div>
+            <ul class="habit-list" id="habitList"></ul>
+            <p class="empty-state has-decor" id="emptyState">
+              <img
+                class="theme-decor theme-decor-kuromi decor-empty"
+                data-src-base="assets/kuromi/empty"
+                src="assets/kuromi/empty.svg"
+                alt=""
+              />
+              No habits yet. Add one above to get started.
+            </p>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <div id="themeCelebration" class="theme-celebration" hidden>
+      <div class="celebration-backdrop"></div>
+      <div class="celebration-fireworks" id="celebrationFireworks" aria-hidden="true"></div>
+      <div class="celebration-panel">
+        <div class="celebration-hero">
+          <div class="celebration-photo-ring" aria-hidden="true">
+            <img class="celebration-photo" src="assets/friends/banner.png" alt="" />
           </div>
-        </form>
-      </section>
-
-      <section class="board" aria-label="Habit list">
-        <div class="toolbar">
-          <h2>Checklist</h2>
-          <button class="ghost-button" id="resetToday" type="button">Reset today</button>
+          <p class="celebration-tagline">The bunny approves.</p>
+          <p class="celebration-title">Perfect day</p>
         </div>
-        <ul class="habit-list" id="habitList"></ul>
-        <p class="empty-state" id="emptyState">No habits yet. Add one above to get started.</p>
-      </section>
-    </main>
+        <p class="celebration-hint">Tap to close</p>
+      </div>
+    </div>
 
     <template id="habitTemplate">
       <li class="habit-item">
@@ -66,6 +119,10 @@
       </li>
     </template>
 
+    <script src="sidebar.js"></script>
+    <script src="shared.js"></script>
+    <script src="user-photos.js"></script>
+    <script src="fireworks.js"></script>
     <script src="app.js"></script>
   </body>
 </html>

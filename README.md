@@ -1,16 +1,14 @@
-# Habit Day
+# Habit Day (습관바꾸기)
 
-A small habit tracker converted into a mobile-style Progressive Web App.
+브라우저에서 쓰는 습관 트래커입니다. 데이터는 **기기·브라우저에만** 저장됩니다.
 
-## Open locally
+## GitHub Pages로 모바일에서 쓰기
 
-Open `index.html` in a browser.
+1. 이 폴더를 GitHub 저장소에 push합니다.
+2. GitHub → **Settings** → **Pages** → Source: **Deploy from branch** → Branch: `main` → Folder: `/ (root)` → Save
+3. 몇 분 후 `https://<사용자명>.github.io/<저장소이름>/` 주소가 생깁니다.
+4. 휴대폰 브라우저에서 그 주소를 연 뒤, **홈 화면에 추가**하면 앱처럼 쓸 수 있습니다.
 
-## Install on a phone
+## 로컬에서만 열기
 
-To install it from a phone home screen, publish this folder to a web host that supports HTTPS, such as GitHub Pages, Netlify, or Vercel. Then open the published URL on your phone and choose:
-
-- Android Chrome: menu -> Add to Home screen or Install app
-- iPhone Safari: Share -> Add to Home Screen
-
-Opening with `file:///` is useful for testing, but install and offline caching usually require HTTPS.
+`습관바꾸기.html` 또는 `index.html`을 브라우저로 엽니다.

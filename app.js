@@ -1,11 +1,3 @@
-const storageKey = "habit-day-items";
-
-const defaultHabits = [
-  { id: makeId(), title: "Drink water", done: false },
-  { id: makeId(), title: "Take a 10 minute walk", done: false },
-  { id: makeId(), title: "Plan 3 tasks for today", done: false },
-];
-
 const habitForm = document.querySelector("#habitForm");
 const habitInput = document.querySelector("#habitInput");
 const habitList = document.querySelector("#habitList");
@@ -13,61 +5,110 @@ const habitTemplate = document.querySelector("#habitTemplate");
 const emptyState = document.querySelector("#emptyState");
 const summaryText = document.querySelector("#summaryText");
 const progressPercent = document.querySelector("#progressPercent");
+const progressCard = document.querySelector("#progressCard");
 const resetToday = document.querySelector("#resetToday");
-const installPanel = document.querySelector("#installPanel");
-const installButton = document.querySelector("#installButton");
+const appTitle = document.querySelector("#app-title");
+const appEyebrow = document.querySelector("#app-eyebrow");
+const themeProgressFill = document.querySelector("#themeProgressFill");
+const themeProgressPct = document.querySelector("#themeProgressPct");
 
-let habits = loadHabits();
-let installPromptEvent = null;
+let data = loadData();
+const selectedDate = getSelectedDate();
+let wasAllDone = false;
 
-function makeId() {
-  return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+const themeCelebration = document.querySelector("#themeCelebration");
+const celebrationFireworks = document.querySelector("#celebrationFireworks");
+const celebrationPhoto = document.querySelector(".celebration-photo");
+const celebrationTagline = document.querySelector(".celebration-tagline");
+const celebrationRing = document.querySelector(".celebration-photo-ring");
+
+function getTheme() {
+  return document.documentElement.dataset.theme || "original";
 }
 
-function loadHabits() {
-  const saved = localStorage.getItem(storageKey);
-
-  if (!saved) {
-    return defaultHabits;
-  }
-
-  try {
-    const parsed = JSON.parse(saved);
-    return Array.isArray(parsed) ? parsed : defaultHabits;
-  } catch {
-    return defaultHabits;
-  }
+function isFriendsTheme() {
+  return getTheme() === "friends";
 }
 
-function saveHabits() {
-  localStorage.setItem(storageKey, JSON.stringify(habits));
+function isKuromiTheme() {
+  return getTheme() === "kuromi";
+}
+
+function hasThemedCelebration() {
+  return (
+    isFriendsTheme() ||
+    isKuromiTheme() ||
+    UserPhotos.usesUserPhotos() ||
+    Boolean(UserPhotos.getStarredPerfectUrl())
+  );
+}
+
+function formatSelectedTitle(dateKey) {
+  const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const date = parseDateKey(dateKey);
+  const monthDay = `${monthNames[date.getMonth()]} ${date.getDate()}`;
+
+  if (isFriendsTheme()) {
+    return dateKey === getTodayKey() ? "Friend's Habit" : `${monthDay} · Friend's`;
+  }
+
+  if (isKuromiTheme()) {
+    return dateKey === getTodayKey() ? "Kuromi's Habits" : `${monthDay} · Kuromi`;
+  }
+
+  return dateKey === getTodayKey() ? "Today's Habits" : `${monthDay} Habits`;
+}
+
+function renderHeader() {
+  appTitle.textContent = formatSelectedTitle(selectedDate);
+
+  if (appEyebrow) {
+    if (isFriendsTheme()) {
+      appEyebrow.textContent = "Central Perk";
+    } else if (isKuromiTheme()) {
+      appEyebrow.textContent = "My Melody";
+    } else {
+      appEyebrow.textContent = "Habit Day";
+    }
+  }
+
+  resetToday.textContent = selectedDate === getTodayKey() ? "Reset today" : "Reset selected day";
 }
 
 function renderHabits() {
   habitList.innerHTML = "";
 
-  habits.forEach((habit) => {
+  data.habits.forEach((habit) => {
     const item = habitTemplate.content.firstElementChild.cloneNode(true);
     const checkButton = item.querySelector(".check-button");
     const deleteButton = item.querySelector(".delete-button");
     const title = item.querySelector("strong");
     const status = item.querySelector("span");
+    const done = isHabitDone(data, habit.id, selectedDate);
 
-    item.classList.toggle("done", habit.done);
+    item.classList.toggle("done", done);
     title.textContent = habit.title;
-    status.textContent = habit.done ? "Done" : "Still open";
-    checkButton.setAttribute("aria-pressed", String(habit.done));
+    status.textContent = done ? "Done" : "Still open";
+    checkButton.setAttribute("aria-pressed", String(done));
 
     checkButton.addEventListener("click", () => {
-      habit.done = !habit.done;
-      saveHabits();
-      renderHabits();
+      setHabitDone(data, habit.id, !isHabitDone(data, habit.id, selectedDate), selectedDate);
+      renderAll();
     });
 
     deleteButton.addEventListener("click", () => {
-      habits = habits.filter((itemHabit) => itemHabit.id !== habit.id);
-      saveHabits();
-      renderHabits();
+      data.habits = data.habits.filter((itemHabit) => itemHabit.id !== habit.id);
+
+      Object.keys(data.history).forEach((dateKey) => {
+        delete data.history[dateKey][habit.id];
+
+        if (Object.keys(data.history[dateKey]).length === 0) {
+          delete data.history[dateKey];
+        }
+      });
+
+      saveData(data);
+      renderAll();
     });
 
     habitList.append(item);
@@ -76,25 +117,147 @@ function renderHabits() {
   renderProgress();
 }
 
-function renderProgress() {
-  const total = habits.length;
-  const done = habits.filter((habit) => habit.done).length;
-  const percent = total === 0 ? 0 : Math.round((done / total) * 100);
-
-  emptyState.hidden = total > 0;
-  progressPercent.textContent = `${percent}%`;
-
-  if (total === 0) {
-    summaryText.textContent = "Add one small habit and the day starts to take shape.";
+function updateEmptyState(total) {
+  if (!emptyState) {
     return;
+  }
+
+  const hasHabits = total > 0;
+  emptyState.hidden = hasHabits;
+  emptyState.style.display = hasHabits ? "none" : "";
+}
+
+function hideCelebration() {
+  if (!themeCelebration) {
+    return;
+  }
+
+  CelebrationFireworks.stop();
+  themeCelebration.hidden = true;
+  themeCelebration.classList.remove("is-active");
+  document.body.classList.remove("celebration-open");
+}
+
+function showCelebration() {
+  if (!themeCelebration || !hasThemedCelebration()) {
+    return;
+  }
+
+  if (celebrationRing) {
+    celebrationRing.classList.toggle("is-friends", isFriendsTheme());
+    celebrationRing.classList.toggle("is-kuromi", isKuromiTheme());
+  }
+
+  if (celebrationPhoto) {
+    const celebrationSrc = UserPhotos.resolveCelebrationUrl(getTheme());
+
+    if (celebrationSrc) {
+      celebrationPhoto.src = celebrationSrc;
+      celebrationPhoto.alt = "Celebration";
+    }
+
+    celebrationPhoto.classList.toggle("is-kuromi-art", isKuromiTheme() && !UserPhotos.usesUserPhotos());
+    celebrationPhoto.classList.toggle(
+      "is-user-photo",
+      Boolean(celebrationSrc && celebrationSrc.startsWith("data:"))
+    );
+  }
+
+  if (celebrationTagline) {
+    if (UserPhotos.getStarredPerfectUrl() || UserPhotos.usesUserPhotos()) {
+      celebrationTagline.textContent = "Perfect day!";
+    } else if (isFriendsTheme()) {
+      celebrationTagline.textContent = "The bunny approves.";
+    } else {
+      celebrationTagline.textContent = "Kuromi approves.";
+    }
+  }
+
+  themeCelebration.hidden = false;
+  themeCelebration.classList.add("is-active");
+  document.body.classList.add("celebration-open");
+
+  requestAnimationFrame(() => {
+    CelebrationFireworks.start(celebrationFireworks, getTheme());
+  });
+}
+
+function syncCelebrationGate(total, done) {
+  wasAllDone = total > 0 && done === total;
+}
+
+function updateCelebration(total, done) {
+  const allDone = total > 0 && done === total;
+
+  if (!hasThemedCelebration() || !allDone) {
+    wasAllDone = false;
+    hideCelebration();
+    return;
+  }
+
+  if (!wasAllDone) {
+    showCelebration();
+    wasAllDone = true;
+    return;
+  }
+}
+
+function themedSummary(total, done) {
+  if (total === 0) {
+    if (isFriendsTheme()) {
+      return "Add a habit — the gang is waiting.";
+    }
+    if (isKuromiTheme()) {
+      return "Add a habit — Kuromi is watching.";
+    }
+    return "Add one small habit and the day starts to take shape.";
   }
 
   if (done === total) {
-    summaryText.textContent = `Nice work. You finished all ${total} habits today.`;
-    return;
+    if (isFriendsTheme()) {
+      return `You did it. All ${total} habits done today.`;
+    }
+    if (isKuromiTheme()) {
+      return `Perfect. All ${total} habits done today.`;
+    }
+    return `Nice work. You finished all ${total} habits today.`;
   }
 
-  summaryText.textContent = `${done} of ${total} complete. ${total - done} left for today.`;
+  const left = total - done;
+
+  if (isFriendsTheme()) {
+    return `${done} of ${total} done · ${left} to go.`;
+  }
+  if (isKuromiTheme()) {
+    return `${done} of ${total} done · ${left} left.`;
+  }
+  return `${done} of ${total} complete. ${left} left for today.`;
+}
+
+function renderProgress() {
+  const { total, done, percent } = getDayProgress(data, selectedDate);
+
+  updateEmptyState(total);
+  updateCelebration(total, done);
+
+  if (progressPercent) {
+    progressPercent.textContent = `${percent}%`;
+  }
+
+  if (themeProgressFill) {
+    themeProgressFill.style.width = `${percent}%`;
+  }
+
+  if (themeProgressPct) {
+    themeProgressPct.textContent = `${percent}%`;
+  }
+
+  summaryText.textContent = themedSummary(total, done);
+}
+
+function renderAll() {
+  renderHeader();
+  renderHabits();
 }
 
 habitForm.addEventListener("submit", (event) => {
@@ -107,50 +270,39 @@ habitForm.addEventListener("submit", (event) => {
     return;
   }
 
-  habits = [{ id: makeId(), title, done: false }, ...habits];
+  data.habits = [{ id: makeId(), title }, ...data.habits];
   habitInput.value = "";
-  saveHabits();
-  renderHabits();
+  saveData(data);
+  renderAll();
 });
 
 resetToday.addEventListener("click", () => {
-  habits = habits.map((habit) => ({ ...habit, done: false }));
-  saveHabits();
-  renderHabits();
+  delete data.history[selectedDate];
+  saveData(data);
+  wasAllDone = false;
+  hideCelebration();
+  renderAll();
 });
 
-window.addEventListener("beforeinstallprompt", (event) => {
-  event.preventDefault();
-  installPromptEvent = event;
-
-  if (installPanel) {
-    installPanel.hidden = false;
-  }
-});
-
-if (installButton) {
-  installButton.addEventListener("click", async () => {
-    if (!installPromptEvent) {
-      return;
-    }
-
-    installPromptEvent.prompt();
-    await installPromptEvent.userChoice;
-    installPromptEvent = null;
-    installPanel.hidden = true;
-  });
+if (themeCelebration) {
+  themeCelebration.addEventListener("click", hideCelebration);
 }
 
-window.addEventListener("appinstalled", () => {
-  installPromptEvent = null;
-
-  if (installPanel) {
-    installPanel.hidden = true;
-  }
+window.addEventListener("habit-theme-change", () => {
+  hideCelebration();
+  const { total, done } = getDayProgress(data, selectedDate);
+  syncCelebrationGate(total, done);
+  renderAll();
 });
 
-if ("serviceWorker" in navigator && location.protocol !== "file:") {
-  navigator.serviceWorker.register("./sw.js");
-}
+UserPhotos.ready().then(() => {
+  const initialProgress = getDayProgress(data, selectedDate);
+  syncCelebrationGate(initialProgress.total, initialProgress.done);
+  renderAll();
+});
 
-renderHabits();
+window.addEventListener("habit-photos-change", () => {
+  const progress = getDayProgress(data, selectedDate);
+  syncCelebrationGate(progress.total, progress.done);
+  renderAll();
+});
