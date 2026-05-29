@@ -243,7 +243,7 @@ if (!habitForm) {
     const index = celebrationBurstCounter;
     celebrationBurstCounter += 1;
 
-    const sizeW = Math.round(Math.min(72, Math.max(50, w * (0.12 + Math.random() * 0.05))));
+    const sizeW = Math.round(Math.min(84, Math.max(56, w * (0.14 + Math.random() * 0.05))));
     const sizeH = Math.round(sizeW * (1.06 + Math.random() * 0.1));
     const lane = Math.random();
     const left = Math.max(6, Math.min(w - sizeW - 6, w * (0.05 + lane * 0.9) - sizeW / 2));
