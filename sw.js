@@ -1,4 +1,4 @@
-const cacheName = "habit-day-v48";
+const cacheName = "habit-day-v49";
 const mainPage = "./app.html";
 
 const toothlessAssets = [
@@ -43,25 +43,9 @@ const appShell = [
   "./habit-camera.js",
   "./manifest.webmanifest",
   "./icon.svg",
-  "./icon-kuromi.svg",
-  "./icon-friends.svg",
-  "./icon-gintama.svg",
-  "./icon-toothless.svg",
   "./icon-192.png",
-  "./icon-192-kuromi.png",
-  "./icon-192-friends.png",
-  "./icon-192-gintama.png",
-  "./icon-192-toothless.png",
   "./icon-512.png",
-  "./icon-512-kuromi.png",
-  "./icon-512-friends.png",
-  "./icon-512-gintama.png",
-  "./icon-512-toothless.png",
   "./apple-touch-icon.png",
-  "./apple-touch-icon-kuromi.png",
-  "./apple-touch-icon-friends.png",
-  "./apple-touch-icon-gintama.png",
-  "./apple-touch-icon-toothless.png",
   ...toothlessAssets,
 ];
 

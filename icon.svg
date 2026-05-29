@@ -1,13 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Habit Day">
-  <rect width="512" height="512" rx="112" fill="#174b3b"/>
-  <circle cx="256" cy="256" r="148" fill="#ffffff"/>
+  <rect width="512" height="512" rx="118" fill="#111318"/>
+  <circle cx="256" cy="256" r="128" fill="none" stroke="#eef1f6" stroke-width="22" opacity="0.92"/>
   <path
-    d="M178 262l54 54 102-118"
+    d="M178 262l46 46 110-128"
     fill="none"
-    stroke="#174b3b"
-    stroke-width="46"
+    stroke="#72e8b8"
+    stroke-width="40"
     stroke-linecap="round"
     stroke-linejoin="round"
   />
-  <circle cx="366" cy="150" r="38" fill="#f0b85f"/>
+  <circle cx="348" cy="168" r="26" fill="#72e8b8"/>
 </svg>

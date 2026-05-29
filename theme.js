@@ -1,38 +1,19 @@
 const themeStorageKey = "habit-theme";
 const themes = ["original", "kuromi", "friends", "gintama", "toothless"];
-const ICON_BUST = "43";
+const ICON_BUST = "44";
+
+const appIcons = {
+  svg: "icon.svg",
+  apple: "apple-touch-icon.png",
+  png192: "icon-192.png",
+};
 
 const themeBranding = {
-  original: {
-    themeColor: "#26735b",
-    svg: "icon.svg",
-    apple: "apple-touch-icon.png",
-    png192: "icon-192.png",
-  },
-  kuromi: {
-    themeColor: "#35214a",
-    svg: "icon-kuromi.svg",
-    apple: "apple-touch-icon-kuromi.png",
-    png192: "icon-192-kuromi.png",
-  },
-  friends: {
-    themeColor: "#8a8378",
-    svg: "icon-friends.svg",
-    apple: "apple-touch-icon-friends.png",
-    png192: "icon-192-friends.png",
-  },
-  gintama: {
-    themeColor: "#1a2233",
-    svg: "icon-gintama.svg",
-    apple: "apple-touch-icon-gintama.png",
-    png192: "icon-192-gintama.png",
-  },
-  toothless: {
-    themeColor: "#141618",
-    svg: "icon-toothless.svg",
-    apple: "apple-touch-icon-toothless.png",
-    png192: "icon-192-toothless.png",
-  },
+  original: { themeColor: "#26735b" },
+  kuromi: { themeColor: "#35214a" },
+  friends: { themeColor: "#8a8378" },
+  gintama: { themeColor: "#1a2233" },
+  toothless: { themeColor: "#141618" },
 };
 
 function getTheme() {
@@ -90,17 +71,17 @@ function syncThemeBranding(theme) {
     const rel = link.rel;
 
     if (rel === "apple-touch-icon") {
-      link.href = `${brand.apple}${q}`;
+      link.href = `${appIcons.apple}${q}`;
     } else if (rel === "icon" && link.sizes === "192x192") {
-      link.href = `${brand.png192}${q}`;
+      link.href = `${appIcons.png192}${q}`;
     } else if (rel === "icon" && link.type === "image/svg+xml") {
-      link.href = `${brand.svg}${q}`;
+      link.href = `${appIcons.svg}${q}`;
     }
   });
 
-  setThemeIconLink("apple-touch-icon", `${brand.apple}${q}`);
-  setThemeIconLink("icon", `${brand.png192}${q}`, 'sizes="192x192"');
-  setThemeIconLink("icon", `${brand.svg}${q}`, 'type="image/svg+xml"');
+  setThemeIconLink("apple-touch-icon", `${appIcons.apple}${q}`);
+  setThemeIconLink("icon", `${appIcons.png192}${q}`, 'sizes="192x192"');
+  setThemeIconLink("icon", `${appIcons.svg}${q}`, 'type="image/svg+xml"');
 }
 
 function applyTheme(theme) {
@@ -182,5 +163,5 @@ if (document.readyState === "loading") {
 }
 
 if ("serviceWorker" in navigator && location.protocol !== "file:") {
-  navigator.serviceWorker.register("./sw.js?v=48").catch(() => {});
+  navigator.serviceWorker.register("./sw.js?v=49").catch(() => {});
 }
