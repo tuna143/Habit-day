@@ -813,6 +813,197 @@ body.habit-sheet-open {
   background: var(--dot-none);
 }
 
+.legend-dot.snap {
+  background: #e8b86a;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12);
+}
+
+.calendar-day.has-photo .calendar-day-bg {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-size: cover;
+  background-position: center;
+}
+
+.calendar-day.has-photo .calendar-day-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.06) 0%, rgba(0, 0, 0, 0.42) 100%);
+}
+
+.calendar-day.has-photo .calendar-day-number {
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+.calendar-day.has-photo.has-habit-snaps .calendar-day-number,
+.calendar-day.has-photo.is-perfect .calendar-day-number {
+  color: #fff;
+}
+
+.calendar-day.has-habit-snaps .calendar-day-snap-badge {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #e8b86a;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.9);
+}
+
+.calendar-day-photos {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  padding: max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right))
+    max(16px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+}
+
+.calendar-day-photos[hidden] {
+  display: none !important;
+}
+
+.calendar-day-photos-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(18, 20, 18, 0.55);
+  backdrop-filter: blur(4px);
+}
+
+.calendar-day-photos-panel {
+  position: relative;
+  width: min(100%, 420px);
+  max-height: min(88vh, 640px);
+  overflow: auto;
+  padding: 16px;
+  border-radius: calc(var(--radius) + 4px);
+  background: var(--card-bg, var(--surface));
+  border: 1px solid var(--card-border, var(--line));
+  box-shadow: var(--shadow);
+}
+
+.calendar-day-photos-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.calendar-day-photos-header h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.calendar-day-photos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.calendar-day-photo-card {
+  margin: 0;
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+
+.calendar-day-photo-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.calendar-day-photo-card figcaption {
+  padding: 6px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.calendar-day-photos-open {
+  width: 100%;
+}
+
+body.calendar-photos-open {
+  overflow: hidden;
+}
+
+.habit-camera-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 220;
+  display: grid;
+  place-items: end center;
+  padding: max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-right))
+    max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+}
+
+.habit-camera-overlay[hidden] {
+  display: none !important;
+}
+
+.habit-camera-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+}
+
+.habit-camera-panel {
+  position: relative;
+  width: min(100%, 420px);
+  padding: 12px;
+  border-radius: calc(var(--radius) + 6px);
+  background: #111;
+  color: #fff;
+}
+
+.habit-camera-video {
+  display: block;
+  width: 100%;
+  max-height: min(58vh, 420px);
+  border-radius: var(--radius);
+  background: #000;
+  object-fit: cover;
+}
+
+.habit-camera-hint {
+  margin: 10px 0 0;
+  font-size: 12px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.habit-camera-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.habit-camera-actions .ghost-button {
+  flex: 1;
+  color: rgba(255, 255, 255, 0.9);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.habit-camera-shutter {
+  flex: 1.4;
+}
+
+body.habit-camera-open {
+  overflow: hidden;
+}
+
 /* —— Weekly —— */
 
 .weekly-overview {

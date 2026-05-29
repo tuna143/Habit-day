@@ -90,6 +90,39 @@ const HabitPhotos = (() => {
     });
   }
 
+  async function getSnapsGroupedByDate() {
+    const database = await openDb();
+
+    return new Promise((resolve, reject) => {
+      const transaction = database.transaction(STORE, "readonly");
+      const store = transaction.objectStore(STORE);
+      const request = store.getAll();
+
+      request.onsuccess = () => {
+        const byDate = {};
+
+        (request.result || []).forEach((row) => {
+          if (!row.dateKey || !row.dataUrl) {
+            return;
+          }
+
+          if (!byDate[row.dateKey]) {
+            byDate[row.dateKey] = [];
+          }
+
+          byDate[row.dateKey].push({
+            habitId: row.habitId,
+            dataUrl: row.dataUrl,
+          });
+        });
+
+        resolve(byDate);
+      };
+
+      request.onerror = () => reject(request.error);
+    });
+  }
+
   async function saveSnap(dateKey, habitId, file) {
     if (!file || !file.type.startsWith("image/")) {
       throw new Error("Please choose a photo.");
@@ -114,7 +147,10 @@ const HabitPhotos = (() => {
       const store = transaction.objectStore(STORE);
       const request = store.put(record);
 
-      request.onsuccess = () => resolve(record);
+      request.onsuccess = () => {
+        notifySnapsChange();
+        resolve(record);
+      };
       request.onerror = () => reject(request.error);
     });
   }
@@ -127,7 +163,10 @@ const HabitPhotos = (() => {
       const store = transaction.objectStore(STORE);
       const request = store.delete(snapKey(dateKey, habitId));
 
-      request.onsuccess = () => resolve();
+      request.onsuccess = () => {
+        notifySnapsChange();
+        resolve();
+      };
       request.onerror = () => reject(request.error);
     });
   }
@@ -147,7 +186,10 @@ const HabitPhotos = (() => {
           .forEach((row) => store.delete(row.id));
       };
 
-      transaction.oncomplete = () => resolve();
+      transaction.oncomplete = () => {
+        notifySnapsChange();
+        resolve();
+      };
       transaction.onerror = () => reject(transaction.error);
       request.onerror = () => reject(request.error);
     });
@@ -168,7 +210,10 @@ const HabitPhotos = (() => {
           .forEach((row) => store.delete(row.id));
       };
 
-      transaction.oncomplete = () => resolve();
+      transaction.oncomplete = () => {
+        notifySnapsChange();
+        resolve();
+      };
       transaction.onerror = () => reject(transaction.error);
       request.onerror = () => reject(request.error);
     });
@@ -182,10 +227,15 @@ const HabitPhotos = (() => {
     return readyPromise;
   }
 
+  function notifySnapsChange() {
+    window.dispatchEvent(new CustomEvent("habit-photos-change"));
+  }
+
   return {
     ready,
     getSnap,
     getSnapsForDate,
+    getSnapsGroupedByDate,
     saveSnap,
     removeSnap,
     removeSnapsForHabit,

@@ -21,7 +21,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css?v=14" />
-    <link rel="stylesheet" href="layout.css?v=14" />
+    <link rel="stylesheet" href="layout.css?v=41" />
     <link rel="stylesheet" href="themes.css?v=40" />
     <script src="theme.js?v=35"></script>
   </head>
@@ -60,7 +60,7 @@
           <header class="subpage-header">
             <p class="eyebrow">Habit Day</p>
             <h1>Calendar</h1>
-            <p class="summary">Tap a date to view that day on the main page.</p>
+            <p class="summary">Tap a date with habit photos to view them, or any date to open that day on home.</p>
           </header>
 
           <section class="board calendar-section" aria-label="Calendar">
@@ -85,6 +85,7 @@
             <div class="calendar-legend">
               <span><i class="legend-dot complete"></i>100% · star photo</span>
               <span><i class="legend-dot partial"></i>1+ done · your / theme scene</span>
+              <span><i class="legend-dot snap"></i>Habit photo saved · tap to view</span>
               <span><i class="legend-dot none"></i>No record</span>
             </div>
           </section>
@@ -94,9 +95,24 @@
       <aside id="app-sidebar" class="app-sidebar" data-page="calendar"></aside>
     </div>
 
+    <div id="calendarDayPhotos" class="calendar-day-photos" hidden>
+      <div class="calendar-day-photos-backdrop" aria-hidden="true"></div>
+      <div class="calendar-day-photos-panel" role="dialog" aria-modal="true" aria-labelledby="calendarDayPhotosTitle">
+        <header class="calendar-day-photos-header">
+          <h2 id="calendarDayPhotosTitle">Day photos</h2>
+          <button type="button" class="ghost-button" id="calendarDayPhotosClose" aria-label="Close">×</button>
+        </header>
+        <div class="calendar-day-photos-grid" id="calendarDayPhotosGrid"></div>
+        <button type="button" class="primary-button calendar-day-photos-open" id="calendarDayPhotosOpen">
+          Open this day on home
+        </button>
+      </div>
+    </div>
+
     <script src="sidebar.js?v=14"></script>
     <script src="shared.js?v=14"></script>
     <script src="user-photos.js?v=14"></script>
-    <script src="calendar.js?v=14"></script>
+    <script src="habit-photos.js?v=36"></script>
+    <script src="calendar.js?v=15"></script>
   </body>
 </html>

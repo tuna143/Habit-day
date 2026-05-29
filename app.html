@@ -22,7 +22,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css?v=23" />
-    <link rel="stylesheet" href="layout.css?v=20" />
+    <link rel="stylesheet" href="layout.css?v=41" />
     <link rel="stylesheet" href="themes.css?v=40" />
     <script>
       window.__HABIT_BUILD = "24";
@@ -210,6 +210,20 @@
       </div>
     </div>
 
+    <div id="habitCameraOverlay" class="habit-camera-overlay" hidden>
+      <div class="habit-camera-backdrop" aria-hidden="true"></div>
+      <div class="habit-camera-panel" role="dialog" aria-modal="true" aria-label="Take habit photo">
+        <video id="habitCameraVideo" class="habit-camera-video" playsinline muted></video>
+        <p class="habit-camera-hint">Silent capture · no shutter sound</p>
+        <div class="habit-camera-actions">
+          <button type="button" class="ghost-button" id="habitCameraCancel">Cancel</button>
+          <button type="button" class="primary-button habit-camera-shutter" id="habitCameraShutter" aria-label="Take photo">
+            Capture
+          </button>
+        </div>
+      </div>
+    </div>
+
     <input
       type="file"
       id="habitCameraInput"
@@ -237,8 +251,9 @@
     <script src="sidebar.js?v=35"></script>
     <script src="shared.js?v=35"></script>
     <script src="user-photos.js?v=35"></script>
-    <script src="habit-photos.js?v=35"></script>
+    <script src="habit-photos.js?v=36"></script>
+    <script src="habit-camera.js?v=1"></script>
     <script src="fireworks.js?v=35"></script>
-    <script src="app.js?v=24"></script>
+    <script src="app.js?v=25"></script>
   </body>
 </html>

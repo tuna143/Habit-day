@@ -284,7 +284,38 @@ if (!habitForm && !habitFormMobile) {
     }
   }
 
-  function openHabitCamera(habitId) {
+  async function processHabitPhoto(file, habitId) {
+    if (!file) {
+      return;
+    }
+
+    if (typeof HabitPhotos === "undefined") {
+      setHabitDone(data, habitId, true, activeDateKey);
+      renderHabits();
+      return;
+    }
+
+    try {
+      await HabitPhotos.saveSnap(activeDateKey, habitId, file);
+      setHabitDone(data, habitId, true, activeDateKey);
+
+      if (persistData()) {
+        await renderHabits();
+      }
+    } catch (error) {
+      if (summaryText) {
+        summaryText.textContent = error.message || "Could not save that photo.";
+      }
+    }
+  }
+
+  async function openHabitCamera(habitId) {
+    if (typeof HabitCamera !== "undefined" && HabitCamera.supportsInline()) {
+      const file = await HabitCamera.capturePhoto();
+      await processHabitPhoto(file, habitId);
+      return;
+    }
+
     if (!habitCameraInput) {
       setHabitDone(data, habitId, true, activeDateKey);
       renderHabits();
@@ -502,24 +533,7 @@ if (!habitForm && !habitFormMobile) {
         return;
       }
 
-      if (typeof HabitPhotos === "undefined") {
-        setHabitDone(data, pending.habitId, true, activeDateKey);
-        renderHabits();
-        return;
-      }
-
-      try {
-        await HabitPhotos.saveSnap(activeDateKey, pending.habitId, file);
-        setHabitDone(data, pending.habitId, true, activeDateKey);
-
-        if (persistData()) {
-          await renderHabits();
-        }
-      } catch (error) {
-        if (summaryText) {
-          summaryText.textContent = error.message || "Could not save that photo.";
-        }
-      }
+      await processHabitPhoto(file, pending.habitId);
     });
   }
 
@@ -567,5 +581,5 @@ if (!habitForm && !habitFormMobile) {
 }
 
 if ("serviceWorker" in navigator && location.protocol !== "file:") {
-  navigator.serviceWorker.register("./sw.js?v=33").catch(() => {});
+  navigator.serviceWorker.register("./sw.js?v=36").catch(() => {});
 }
