@@ -1,11 +1,70 @@
 const storageKey = "habit-day-items";
 const selectedDateKey = "habit-selected-date";
 
-const defaultHabits = [
-  { id: makeId(), title: "Drink water" },
-  { id: makeId(), title: "Take a 10 minute walk" },
-  { id: makeId(), title: "Plan 3 tasks for today" },
+const welcomeCelebrationKey = "habit-day-welcome-celebration";
+
+const DEFAULT_HABIT_TITLES = [
+  "Message to minju",
+  "Drink green-tea",
+  "Wake up at 7am",
+  "Watch drama Friends",
 ];
+
+function createDefaultHabits() {
+  return DEFAULT_HABIT_TITLES.map((title) => ({ id: makeId(), title }));
+}
+
+function shiftDateKey(days) {
+  const date = new Date();
+  date.setDate(date.getDate() + days);
+  return formatDateKey(date);
+}
+
+function createDemoInitialData() {
+  const habits = createDefaultHabits();
+  const todayKey = getTodayKey();
+  const yesterdayKey = shiftDateKey(-1);
+  const dayBeforeKey = shiftDateKey(-2);
+  const history = {
+    [dayBeforeKey]: { [habits[0].id]: true },
+    [yesterdayKey]: { [habits[1].id]: true },
+    [todayKey]: {},
+  };
+
+  habits.forEach((habit) => {
+    history[todayKey][habit.id] = true;
+  });
+
+  return { habits, history };
+}
+
+function markWelcomeCelebration() {
+  sessionStorage.setItem(welcomeCelebrationKey, "1");
+}
+
+function consumeWelcomeCelebration() {
+  if (sessionStorage.getItem(welcomeCelebrationKey) !== "1") {
+    return false;
+  }
+
+  sessionStorage.removeItem(welcomeCelebrationKey);
+  return true;
+}
+
+function shouldSeedDefaultHabits(habits, history) {
+  if (!Array.isArray(habits) || habits.length > 0) {
+    return false;
+  }
+
+  return !history || Object.keys(history).length === 0;
+}
+
+function seedInitialData() {
+  const initial = createDemoInitialData();
+  saveData(initial);
+  markWelcomeCelebration();
+  return initial;
+}
 
 function makeId() {
   return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
@@ -43,7 +102,7 @@ function loadData() {
   const saved = localStorage.getItem(storageKey);
 
   if (!saved) {
-    return { habits: defaultHabits.map((habit) => ({ ...habit, id: makeId() })), history: {} };
+    return seedInitialData();
   }
 
   try {
@@ -63,22 +122,30 @@ function loadData() {
         });
       }
 
+      if (shouldSeedDefaultHabits(habits, history)) {
+        return seedInitialData();
+      }
+
       return { habits, history };
     }
 
     if (parsed.habits && parsed.history) {
-      return {
-        habits: Array.isArray(parsed.habits)
-          ? parsed.habits.filter((habit) => habit && habit.id && habit.title)
-          : [],
-        history: parsed.history && typeof parsed.history === "object" ? parsed.history : {},
-      };
+      const habits = Array.isArray(parsed.habits)
+        ? parsed.habits.filter((habit) => habit && habit.id && habit.title)
+        : [];
+      const history = parsed.history && typeof parsed.history === "object" ? parsed.history : {};
+
+      if (shouldSeedDefaultHabits(habits, history)) {
+        return seedInitialData();
+      }
+
+      return { habits, history };
     }
   } catch {
-    return { habits: defaultHabits.map((habit) => ({ ...habit, id: makeId() })), history: {} };
+    return seedInitialData();
   }
 
-  return { habits: defaultHabits.map((habit) => ({ ...habit, id: makeId() })), history: {} };
+  return seedInitialData();
 }
 
 function saveData(data) {

@@ -477,6 +477,16 @@ if (!habitForm) {
     activeDateKey = getSelectedDate();
     data = normalizeData(loadData());
     renderHabits();
+
+    if (typeof consumeWelcomeCelebration === "function" && consumeWelcomeCelebration()) {
+      const { percent } = getDayProgress(data, activeDateKey);
+
+      if (percent === 100 && activeDateKey === getTodayKey()) {
+        previousPercent = 99;
+        showCelebration();
+        previousPercent = 100;
+      }
+    }
   }
 
   boot();
