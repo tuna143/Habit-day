@@ -162,29 +162,29 @@ body {
 }
 
 .side-theme[data-theme="friends"] {
-  background: linear-gradient(160deg, #5c574f 0%, #3d3934 100%);
-  border-color: rgba(255, 255, 255, 0.2);
-  color: #f8f2e8;
+  background: linear-gradient(160deg, #f5f1eb 0%, #ddd6cc 100%);
+  border-color: rgba(61, 56, 52, 0.22);
+  color: #3d3834;
 }
 
 .side-theme[data-theme="friends"].is-active {
-  background: linear-gradient(160deg, #9a9288 0%, #4a4540 100%);
-  border-color: rgba(255, 248, 235, 0.55);
-  color: #fff;
-  box-shadow: 0 3px 10px rgba(44, 42, 38, 0.28);
+  background: linear-gradient(160deg, #6a6560 0%, #3d3834 100%);
+  border-color: rgba(255, 248, 242, 0.4);
+  color: #faf7f2;
+  box-shadow: 0 3px 10px rgba(44, 42, 38, 0.22);
 }
 
 .side-theme[data-theme="gintama"] {
-  background: linear-gradient(160deg, #eef1f6 0%, #c5cad4 100%);
-  border-color: rgba(42, 58, 92, 0.3);
+  background: linear-gradient(160deg, #f2f4f8 0%, #d5dae3 100%);
+  border-color: rgba(42, 58, 92, 0.22);
   color: #1a2233;
 }
 
 .side-theme[data-theme="gintama"].is-active {
   background: linear-gradient(160deg, #4a5f82 0%, #1a2233 100%);
-  border-color: rgba(232, 90, 130, 0.55);
-  color: #fff;
-  box-shadow: 0 3px 10px rgba(26, 34, 51, 0.28);
+  border-color: rgba(200, 90, 114, 0.4);
+  color: #f6f8fb;
+  box-shadow: 0 3px 10px rgba(26, 34, 51, 0.24);
 }
 
 .side-quick {
@@ -540,37 +540,37 @@ body {
 }
 
 .theme-chip--friends {
-  background: linear-gradient(145deg, #faf6f0 0%, #e0d6c8 100%);
-  border-color: rgba(56, 53, 48, 0.32);
-  color: #2c2a28;
+  background: linear-gradient(145deg, #faf7f2 0%, #e8e2d8 100%);
+  border-color: rgba(61, 56, 52, 0.24);
+  color: #3d3834;
 }
 
 .theme-chip--friends .theme-chip-dot {
-  background: linear-gradient(145deg, #e8c090, #5c574f);
+  background: linear-gradient(145deg, #c9b8a4, #6a6560);
 }
 
 .theme-chip--friends.is-active {
-  background: linear-gradient(145deg, #8a8378 0%, #383532 100%);
-  border-color: rgba(255, 248, 235, 0.5);
-  color: #fffaf2;
-  box-shadow: 0 4px 14px rgba(44, 42, 38, 0.28);
+  background: linear-gradient(145deg, #6a6560 0%, #3d3834 100%);
+  border-color: rgba(255, 248, 242, 0.38);
+  color: #faf7f2;
+  box-shadow: 0 4px 14px rgba(44, 42, 38, 0.22);
 }
 
 .theme-chip--gintama {
-  background: linear-gradient(145deg, #f4f6fa 0%, #d5dae3 100%);
-  border-color: rgba(42, 58, 92, 0.34);
+  background: linear-gradient(145deg, #f6f8fb 0%, #dce1ea 100%);
+  border-color: rgba(42, 58, 92, 0.24);
   color: #1a2233;
 }
 
 .theme-chip--gintama .theme-chip-dot {
-  background: linear-gradient(145deg, #e85a82, #2a3a5c);
+  background: linear-gradient(145deg, #c85a72, #9ec5e0);
 }
 
 .theme-chip--gintama.is-active {
   background: linear-gradient(145deg, #4a5f82 0%, #1a2233 100%);
-  border-color: rgba(232, 90, 130, 0.5);
-  color: #fff;
-  box-shadow: 0 4px 14px rgba(18, 21, 28, 0.28);
+  border-color: rgba(200, 90, 114, 0.38);
+  color: #f6f8fb;
+  box-shadow: 0 4px 14px rgba(18, 21, 28, 0.24);
 }
 
 body.app-menu-open::before {

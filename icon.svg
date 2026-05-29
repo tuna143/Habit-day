@@ -1,11 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Habit Day">
-  <defs>
-    <linearGradient id="bg" x1="72" y1="56" x2="440" y2="456" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#3a9177"/>
-      <stop offset="100%" stop-color="#174b3b"/>
-    </linearGradient>
-  </defs>
-  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <rect width="512" height="512" rx="112" fill="#174b3b"/>
   <circle cx="256" cy="256" r="148" fill="#ffffff"/>
   <path
     d="M178 262l54 54 102-118"
@@ -16,5 +10,4 @@
     stroke-linejoin="round"
   />
   <circle cx="366" cy="150" r="38" fill="#f0b85f"/>
-  <circle cx="366" cy="150" r="38" fill="none" stroke="#174b3b" stroke-width="5" opacity="0.18"/>
 </svg>

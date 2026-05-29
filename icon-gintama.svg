@@ -1,20 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Habit Day Gintama">
-  <defs>
-    <linearGradient id="bg" x1="72" y1="56" x2="440" y2="456" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#4a5f82"/>
-      <stop offset="100%" stop-color="#1a2233"/>
-    </linearGradient>
-  </defs>
-  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
-  <circle cx="256" cy="256" r="148" fill="#ffffff"/>
+  <rect width="512" height="512" rx="112" fill="#1a2233"/>
+  <circle cx="256" cy="256" r="148" fill="#f6f8fb"/>
   <path
     d="M178 262l54 54 102-118"
     fill="none"
-    stroke="#1a2233"
+    stroke="#9ec5e0"
     stroke-width="46"
     stroke-linecap="round"
     stroke-linejoin="round"
   />
-  <circle cx="366" cy="150" r="38" fill="#e85a82"/>
-  <circle cx="366" cy="150" r="38" fill="none" stroke="#1a2233" stroke-width="5" opacity="0.2"/>
+  <circle cx="366" cy="150" r="38" fill="#c85a72"/>
 </svg>
