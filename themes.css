@@ -339,7 +339,7 @@
   align-items: center;
 }
 
-/* Friends / Kuromi — 지그재그 콜라주 (토끼 위 → 반대편 → 오른쪽 아래) */
+/* Friends / Kuromi — 홈 4장 지그재그 / 서브페이지 2장 컴팩트 */
 
 .theme-collage {
   --collage-photo-h: min(52vw, 280px);
@@ -349,9 +349,12 @@
   top: max(52px, calc(44px + env(safe-area-inset-top)));
   right: max(4px, env(safe-area-inset-right));
   width: min(54vw, 292px);
-  height: calc(var(--collage-photo-h) * 3 + var(--collage-photo-gap) * 2);
   z-index: 1;
   pointer-events: none;
+}
+
+.theme-collage--home {
+  height: calc(var(--collage-photo-h) * 4 + var(--collage-photo-gap) * 3);
 }
 
 [data-theme="friends"] .friends-collage,
@@ -373,8 +376,6 @@
 }
 
 .theme-photo-main {
-  top: 0;
-  right: 0;
   transform: rotate(4deg);
   transform-origin: 100% 0;
   opacity: 1;
@@ -386,8 +387,14 @@
   z-index: 1;
 }
 
-/* 2번째: 아래 줄 반대편(왼쪽) — 1번과 안 겹침 */
-.theme-photo-sub--left {
+/* 홈 1: 위 오른쪽(메인) */
+.theme-collage--home .theme-photo-main {
+  top: 0;
+  right: 0;
+}
+
+/* 홈 2: 왼쪽 */
+.theme-collage--home .theme-photo-sub--left {
   top: calc(var(--collage-photo-h) + var(--collage-photo-gap));
   left: 0;
   right: auto;
@@ -395,17 +402,57 @@
   transform-origin: 0% 50%;
 }
 
-/* 3번째: 맨 아래 토끼 쪽 오른쪽 — 2번과 안 겹침 */
-.theme-photo-sub--right {
+/* 홈 3: 오른쪽 */
+.theme-collage--home .theme-photo-sub--right {
   top: calc((var(--collage-photo-h) + var(--collage-photo-gap)) * 2);
   right: 0;
   left: auto;
   transform: rotate(5deg);
-  transform-origin: 100% 100%;
+  transform-origin: 100% 50%;
 }
 
-.page-home .theme-collage {
+/* 홈 4: 왼쪽 아래 */
+.theme-collage--home .theme-photo-sub--bl {
+  top: calc((var(--collage-photo-h) + var(--collage-photo-gap)) * 3);
+  left: 0;
+  right: auto;
+  transform: rotate(-4deg);
+  transform-origin: 0% 100%;
+}
+
+.page-home .theme-collage--home {
   top: 0;
+}
+
+/* 위클리 · 캘린더 — 작은 2장, 대각선 */
+.theme-collage--subpage {
+  --collage-photo-h: min(30vw, 156px);
+  --collage-photo-gap: clamp(16px, 4vw, 28px);
+  width: min(42vw, 188px);
+  height: calc(var(--collage-photo-h) * 2 + var(--collage-photo-gap));
+}
+
+.theme-collage--subpage .theme-photo {
+  width: min(34vw, 168px);
+  height: var(--collage-photo-h);
+}
+
+.theme-collage--subpage .theme-photo-main {
+  top: 0;
+  right: 0;
+  opacity: 1;
+  transform: rotate(5deg);
+  transform-origin: 100% 0;
+  z-index: 2;
+}
+
+.theme-collage--subpage .theme-photo-sub {
+  top: calc(var(--collage-photo-h) + var(--collage-photo-gap));
+  left: 0;
+  right: auto;
+  opacity: 0.42;
+  transform: rotate(-7deg);
+  transform-origin: 0% 100%;
 }
 
 [data-theme="friends"] .theme-collage,
@@ -621,10 +668,10 @@
   position: relative;
   z-index: 3;
   width: 100%;
-  max-width: calc(100% - min(48vw, 248px));
+  max-width: calc(100% - min(38vw, 176px));
   margin-bottom: 10px;
   padding: 10px 12px;
-  min-height: 0;
+  min-height: min(180px, 32vw);
   border-radius: var(--radius);
   background: color-mix(in srgb, var(--card-bg) 92%, transparent);
   border: 1px solid var(--card-border);
@@ -644,8 +691,8 @@
   backdrop-filter: blur(8px);
 }
 
-.app-content:has(.calendar-page) .theme-collage,
-.app-content:has(.weekly-page) .theme-collage {
+.app-content:has(.calendar-page) .theme-collage--subpage,
+.app-content:has(.weekly-page) .theme-collage--subpage {
   top: max(52px, calc(44px + env(safe-area-inset-top)));
 }
 
@@ -974,22 +1021,36 @@ body.celebration-open {
 }
 
 @media (max-width: 768px) {
-  .theme-collage {
+  .theme-collage--home {
     --collage-photo-h: min(50vw, 226px);
     --collage-photo-gap: clamp(18px, 4.5vw, 28px);
     width: min(52vw, 248px);
   }
 
-  .page-home .theme-collage {
+  .page-home .theme-collage--home {
     top: max(48px, calc(40px + env(safe-area-inset-top)));
   }
 
-  .theme-photo {
+  .theme-collage--home .theme-photo {
     width: min(46vw, 210px);
+  }
+
+  .theme-collage--subpage {
+    --collage-photo-h: min(28vw, 132px);
+    --collage-photo-gap: clamp(14px, 3.5vw, 22px);
+    width: min(40vw, 172px);
+  }
+
+  .theme-collage--subpage .theme-photo {
+    width: min(32vw, 140px);
   }
 
   .theme-photo-sub {
     opacity: 0.36;
+  }
+
+  .theme-collage--subpage .theme-photo-sub {
+    opacity: 0.4;
   }
 
   .decor-hero {
@@ -1006,16 +1067,20 @@ body.celebration-open {
 
   [data-theme="friends"] .overview,
   [data-theme="kuromi"] .overview {
-    min-height: min(160px, 30vw);
+    min-height: min(180px, 34vw);
   }
 
   [data-theme="friends"] .overview-copy,
-  [data-theme="kuromi"] .overview-copy,
+  [data-theme="kuromi"] .overview-copy {
+    max-width: calc(100% - min(50vw, 220px));
+  }
+
   [data-theme="friends"] .calendar-page .subpage-header,
   [data-theme="kuromi"] .calendar-page .subpage-header,
   [data-theme="friends"] .weekly-page .subpage-header,
   [data-theme="kuromi"] .weekly-page .subpage-header {
-    max-width: calc(100% - min(46vw, 210px));
+    max-width: calc(100% - min(36vw, 160px));
+    min-height: min(160px, 30vw);
   }
 
   [data-theme="friends"] .overview-copy,
