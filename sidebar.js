@@ -1,4 +1,4 @@
-/* sidebar.js build 39 — single top-right ⋯ menu (mobile) + desktop sidebar */
+/* sidebar.js build 40 — main theme profile + 銀魂 label */
 const HOME_HREF = "app.html";
 
 function renderSidebar() {
@@ -68,6 +68,21 @@ function renderSidebar() {
                 <span class="app-menu-chevron app-menu-chevron--back" aria-hidden="true">‹</span>
                 <span class="app-menu-row-text">Theme</span>
               </button>
+              <div class="app-menu-profile">
+                <label class="app-menu-profile-label" for="habitUserNameMobile">Your name</label>
+                <input
+                  id="habitUserNameMobile"
+                  class="habit-user-name-input"
+                  type="text"
+                  maxlength="20"
+                  placeholder="Your name"
+                  autocomplete="nickname"
+                />
+                <p class="app-menu-profile-hint">
+                  Main theme title:
+                  <strong data-main-title-preview>Name's habit</strong>
+                </p>
+              </div>
               <div class="app-menu-theme-list" role="group" aria-label="Choose theme">
                 <button type="button" class="theme-chip theme-chip--original" data-theme="original">
                   <span class="theme-chip-dot" aria-hidden="true"></span>
@@ -75,6 +90,7 @@ function renderSidebar() {
                     <strong>Original</strong>
                     <small>Fresh green</small>
                   </span>
+                  <span class="theme-chip-main-badge" aria-hidden="true">Main</span>
                 </button>
                 <button type="button" class="theme-chip theme-chip--kuromi" data-theme="kuromi">
                   <span class="theme-chip-dot" aria-hidden="true"></span>
@@ -82,6 +98,7 @@ function renderSidebar() {
                     <strong>Kuromi</strong>
                     <small>Lavender ♡</small>
                   </span>
+                  <span class="theme-chip-main-badge" aria-hidden="true">Main</span>
                 </button>
                 <button type="button" class="theme-chip theme-chip--friends" data-theme="friends">
                   <span class="theme-chip-dot" aria-hidden="true"></span>
@@ -89,13 +106,15 @@ function renderSidebar() {
                     <strong>Friends</strong>
                     <small>Warm cozy</small>
                   </span>
+                  <span class="theme-chip-main-badge" aria-hidden="true">Main</span>
                 </button>
                 <button type="button" class="theme-chip theme-chip--gintama" data-theme="gintama">
                   <span class="theme-chip-dot" aria-hidden="true"></span>
                   <span class="theme-chip-copy">
-                    <strong>Gintama</strong>
+                    <strong>銀魂</strong>
                     <small>Silver soul</small>
                   </span>
+                  <span class="theme-chip-main-badge" aria-hidden="true">Main</span>
                 </button>
                 <button type="button" class="theme-chip theme-chip--toothless" data-theme="toothless">
                   <span class="theme-chip-dot" aria-hidden="true"></span>
@@ -103,8 +122,12 @@ function renderSidebar() {
                     <strong>Toothless</strong>
                     <small>Night Fury</small>
                   </span>
+                  <span class="theme-chip-main-badge" aria-hidden="true">Main</span>
                 </button>
               </div>
+              <button type="button" class="app-menu-set-main-theme" data-set-main-theme>
+                Set as main theme
+              </button>
             </div>
           </div>
         </div>
@@ -126,8 +149,23 @@ function renderSidebar() {
           <button type="button" class="side-theme" data-theme="original" title="Original">Org</button>
           <button type="button" class="side-theme" data-theme="kuromi" title="Kuromi">Kuro</button>
           <button type="button" class="side-theme" data-theme="friends" title="Friends">Fr</button>
-          <button type="button" class="side-theme" data-theme="gintama" title="Gintama">Gi</button>
+          <button type="button" class="side-theme" data-theme="gintama" title="銀魂">銀</button>
           <button type="button" class="side-theme" data-theme="toothless" title="Toothless">To</button>
+        </div>
+        <div class="side-main-theme">
+          <label class="side-main-theme-label" for="habitUserNameDesktop">Your name</label>
+          <input
+            id="habitUserNameDesktop"
+            class="habit-user-name-input habit-user-name-input--desktop"
+            type="text"
+            maxlength="20"
+            placeholder="Your name"
+            autocomplete="nickname"
+          />
+          <p class="side-main-theme-hint">
+            Main title: <strong data-main-title-preview>Name's habit</strong>
+          </p>
+          <button type="button" class="side-set-main-theme" data-set-main-theme>Set as main theme</button>
         </div>
         <a class="side-link side-link--pics side-link--pics-desktop${page === "photos" ? " is-active" : ""}" href="photos.html" title="My Photos">Pics</a>
       </section>

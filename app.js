@@ -122,6 +122,10 @@ if (!habitForm) {
   }
 
   function getThemeTodayTitle() {
+    if (typeof HabitTheme !== "undefined" && typeof HabitTheme.getTodayTitle === "function") {
+      return HabitTheme.getTodayTitle();
+    }
+
     const theme = document.documentElement.dataset.theme || "original";
 
     return THEME_TODAY_TITLES[theme] || null;
@@ -720,6 +724,10 @@ if (!habitForm) {
     if (themeCelebration && !themeCelebration.hidden) {
       updateCelebrationPanel(getCelebrationTheme());
     }
+  });
+
+  window.addEventListener("habit-profile-change", () => {
+    updateDateHeading();
   });
 
   window.addEventListener("habit-photos-change", () => {
