@@ -790,17 +790,17 @@
 [data-theme="gintama"] .overview-copy .eyebrow,
 [data-theme="toothless"] .overview-copy .eyebrow {
   margin: 0;
-  font-size: 10px;
-  letter-spacing: 0.05em;
+  font-size: 9px;
+  letter-spacing: 0.04em;
 }
 
 [data-theme="friends"] .overview-copy .summary,
 [data-theme="kuromi"] .overview-copy .summary,
 [data-theme="gintama"] .overview-copy .summary,
 [data-theme="toothless"] .overview-copy .summary {
-  margin-top: 3px;
-  font-size: 12px;
-  line-height: 1.35;
+  margin-top: 2px;
+  font-size: 11px;
+  line-height: 1.32;
 }
 
 [data-theme="friends"] .composer,
@@ -832,12 +832,13 @@
   background: color-mix(in srgb, var(--card-bg) 88%, transparent);
 }
 
-[data-theme="kuromi"] h1 {
-  font-size: clamp(18px, 4.2vw, 28px);
+[data-theme="kuromi"] .overview-copy h1,
+[data-theme="kuromi"] .subpage-header h1 {
+  font-size: clamp(15px, 3.5vw, 22px);
   font-weight: 800;
   letter-spacing: -0.03em;
   margin: 0;
-  line-height: 1.12;
+  line-height: 1.14;
 }
 
 .theme-progress-inline {
@@ -884,27 +885,28 @@
   text-align: right;
 }
 
-[data-theme="friends"] h1,
-[data-theme="gintama"] h1,
-[data-theme="toothless"] h1 {
-  font-size: clamp(18px, 4.4vw, 30px);
+[data-theme="friends"] .overview-copy h1,
+[data-theme="friends"] .subpage-header h1,
+[data-theme="gintama"] .overview-copy h1,
+[data-theme="gintama"] .subpage-header h1 {
+  font-size: clamp(15px, 3.6vw, 24px);
+  font-weight: 800;
   letter-spacing: -0.02em;
   margin: 0;
-  line-height: 1.12;
+  line-height: 1.14;
   overflow-wrap: anywhere;
   word-break: keep-all;
 }
 
-[data-theme="toothless"] h1 {
-  font-size: clamp(17px, 4.1vw, 28px);
-}
-
-[data-theme="friends"] .subpage-header h1,
-[data-theme="kuromi"] .subpage-header h1,
-[data-theme="gintama"] .subpage-header h1,
+[data-theme="toothless"] .overview-copy h1,
 [data-theme="toothless"] .subpage-header h1 {
-  font-size: clamp(20px, 5.5vw, 34px);
-  margin-bottom: 2px;
+  font-size: clamp(14px, 3.4vw, 22px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0;
+  line-height: 1.14;
+  overflow-wrap: anywhere;
+  word-break: keep-all;
 }
 
 [data-theme="friends"] .subpage-header,
@@ -1712,15 +1714,20 @@ body.celebration-open {
     margin-top: 2px;
   }
 
-  [data-theme="friends"] h1,
-  [data-theme="kuromi"] h1,
-  [data-theme="gintama"] h1,
-  [data-theme="toothless"] h1 {
-    font-size: clamp(17px, 5.2vw, 26px);
+  [data-theme="friends"] .overview-copy h1,
+  [data-theme="friends"] .subpage-header h1,
+  [data-theme="kuromi"] .overview-copy h1,
+  [data-theme="kuromi"] .subpage-header h1,
+  [data-theme="gintama"] .overview-copy h1,
+  [data-theme="gintama"] .subpage-header h1,
+  [data-theme="toothless"] .overview-copy h1,
+  [data-theme="toothless"] .subpage-header h1 {
+    font-size: clamp(14px, 4.6vw, 22px);
   }
 
-  [data-theme="toothless"] h1 {
-    font-size: clamp(16px, 4.8vw, 24px);
+  [data-theme="toothless"] .overview-copy h1,
+  [data-theme="toothless"] .subpage-header h1 {
+    font-size: clamp(13px, 4.2vw, 20px);
   }
 
   [data-theme="friends"] .theme-progress-inline,
