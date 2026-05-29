@@ -26,9 +26,12 @@ if (!habitForm) {
 
   const CELEBRATION_BURST_STYLES = ["pop-launch", "pop-launch-fast", "pop-launch-wide"];
   const CELEBRATION_BURST_TARGET = 5;
-  const CELEBRATION_BURST_MAX = 14;
+  const CELEBRATION_BURST_BADGE_TARGET = 4;
+  const CELEBRATION_BURST_MAX = 18;
+  const CELEBRATION_BADGE_THEMES = ["friends", "kuromi", "gintama", "toothless"];
   let celebrationBurstPool = [];
   let celebrationBurstCounter = 0;
+  let celebrationActiveTheme = "friends";
 
   let data = normalizeData(loadData());
   let activeDateKey = getSelectedDate();
@@ -231,6 +234,32 @@ if (!habitForm) {
     return CELEBRATION_BURST_STYLES[index % CELEBRATION_BURST_STYLES.length];
   }
 
+  function isCelebrationBadgeTheme(theme) {
+    return CELEBRATION_BADGE_THEMES.includes(theme);
+  }
+
+  function appendCelebrationBurst(node) {
+    const remove = () => {
+      if (node.isConnected) {
+        node.remove();
+      }
+    };
+
+    node.addEventListener("animationend", remove, { once: true });
+    window.setTimeout(remove, 3200);
+    celebrationPhotoBursts.append(node);
+  }
+
+  function pickBurstLaunchPosition(w, h, sizeW, sizeH, laneIndex) {
+    const lane = Math.random();
+    const left = Math.max(6, Math.min(w - sizeW - 6, w * (0.05 + lane * 0.9) - sizeW / 2));
+    const top = h - sizeH - (8 + Math.random() * 32);
+    const driftX = Math.round((Math.random() - 0.5) * w * 0.18);
+    const rot = Math.round(-16 + Math.random() * 32);
+
+    return { left, top, driftX, rot };
+  }
+
   function getCelebrationMainPhotoSize() {
     const ring = celebrationPhotoRing || document.querySelector(".celebration-photo-ring");
 
@@ -266,15 +295,10 @@ if (!habitForm) {
     const burstScale = Math.sqrt(0.25) * 0.92 * (0.96 + Math.random() * 0.08);
     const sizeW = Math.round(mainPhoto.w * burstScale);
     const sizeH = Math.round(mainPhoto.h * burstScale);
-    const lane = Math.random();
-    const left = Math.max(6, Math.min(w - sizeW - 6, w * (0.05 + lane * 0.9) - sizeW / 2));
-    const top = h - sizeH - (8 + Math.random() * 32);
-    const driftX = Math.round((Math.random() - 0.5) * w * 0.18);
-    const rot = Math.round(-16 + Math.random() * 32);
-
-    const img = document.createElement("img");
+    const { left, top, driftX, rot } = pickBurstLaunchPosition(w, h, sizeW, sizeH, index);
     const style = pickBurstStyle(index);
 
+    const img = document.createElement("img");
     img.className = `celebration-burst-photo celebration-burst-photo--${style}`;
     img.src = celebrationBurstPool[index % celebrationBurstPool.length];
     img.alt = "";
@@ -286,16 +310,36 @@ if (!habitForm) {
     img.style.height = `${sizeH}px`;
     img.style.setProperty("--burst-dx", `${driftX}px`);
     img.style.setProperty("--burst-rot", `${rot}deg`);
+    appendCelebrationBurst(img);
+  }
 
-    const remove = () => {
-      if (img.isConnected) {
-        img.remove();
-      }
-    };
+  function spawnCelebrationBadgePop(w, h, theme, index) {
+    if (!celebrationPhotoBursts || !isCelebrationBadgeTheme(theme)) {
+      return;
+    }
 
-    img.addEventListener("animationend", remove, { once: true });
-    window.setTimeout(remove, 3200);
-    celebrationPhotoBursts.append(img);
+    if (celebrationBurstCounter >= CELEBRATION_BURST_MAX) {
+      return;
+    }
+
+    celebrationBurstCounter += 1;
+
+    const size = 56;
+    const { left, top, driftX, rot } = pickBurstLaunchPosition(w, h, size, size, index + 0.5);
+    const style = pickBurstStyle(index + 1);
+    const badge = document.createElement("div");
+
+    badge.className = `celebration-burst-badge celebration-burst-badge--${theme} celebration-burst-photo--${style}`;
+    badge.setAttribute("aria-hidden", "true");
+    badge.style.left = `${left}px`;
+    badge.style.top = `${top}px`;
+    badge.style.setProperty("--burst-dx", `${driftX}px`);
+    badge.style.setProperty("--burst-rot", `${rot}deg`);
+
+    const mark = document.createElement("span");
+    mark.className = "celebration-burst-badge__mark";
+    badge.append(mark);
+    appendCelebrationBurst(badge);
   }
 
   function spawnCelebrationPhotoBurst(detail) {
@@ -311,10 +355,15 @@ if (!habitForm) {
       return;
     }
 
+    if (isCelebrationBadgeTheme(celebrationActiveTheme) && Math.random() < 0.32) {
+      spawnCelebrationBadgePop(detail.w, detail.h, celebrationActiveTheme, celebrationBurstCounter);
+      return;
+    }
+
     spawnCelebrationPhotoPop(detail.w, detail.h);
   }
 
-  function launchCelebrationPhotoPops() {
+  function launchCelebrationPhotoPops(theme) {
     const w = window.innerWidth;
     const h = window.innerHeight;
 
@@ -326,6 +375,20 @@ if (!habitForm) {
 
         spawnCelebrationPhotoPop(w, h);
       }, burst * 200 + Math.random() * 160);
+    }
+
+    if (!isCelebrationBadgeTheme(theme)) {
+      return;
+    }
+
+    for (let badge = 0; badge < CELEBRATION_BURST_BADGE_TARGET; badge += 1) {
+      window.setTimeout(() => {
+        if (!themeCelebration || themeCelebration.hidden) {
+          return;
+        }
+
+        spawnCelebrationBadgePop(w, h, theme, badge);
+      }, badge * 220 + 120 + Math.random() * 140);
     }
   }
 
@@ -375,6 +438,7 @@ if (!habitForm) {
     }
 
     const theme = getCelebrationTheme();
+    celebrationActiveTheme = theme;
     updateCelebrationPanel(theme);
     clearCelebrationBurstPhotos();
     prepareCelebrationBurstPool(theme);
@@ -391,7 +455,7 @@ if (!habitForm) {
         CelebrationFireworks.start(celebrationFireworks, theme);
       }
 
-      launchCelebrationPhotoPops();
+      launchCelebrationPhotoPops(theme);
     }
   }
 

@@ -1308,6 +1308,88 @@
   animation: burst-pop-launch 3.1s cubic-bezier(0.18, 0.9, 0.3, 1.03) forwards;
 }
 
+.celebration-burst-badge {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 10px;
+  border-width: 2px;
+  border-style: solid;
+  opacity: 0;
+  --burst-dx: 0px;
+  --burst-rot: 0deg;
+  box-shadow:
+    0 2px 12px rgba(0, 0, 0, 0.28),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+  will-change: transform, opacity;
+  transform-origin: center bottom;
+  backface-visibility: hidden;
+  pointer-events: none;
+}
+
+.celebration-burst-badge__mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.celebration-burst-badge--kuromi {
+  background: linear-gradient(155deg, #8b62b8 0%, #2d1548 100%);
+  border-color: rgba(232, 196, 248, 0.55);
+}
+
+.celebration-burst-badge--kuromi .celebration-burst-badge__mark {
+  font-size: 26px;
+}
+
+.celebration-burst-badge--kuromi .celebration-burst-badge__mark::before {
+  content: "♥";
+}
+
+.celebration-burst-badge--friends {
+  background: linear-gradient(155deg, #6a6560 0%, #3d3834 100%);
+  border-color: rgba(255, 248, 242, 0.48);
+}
+
+.celebration-burst-badge--friends .celebration-burst-badge__mark {
+  font-size: 28px;
+}
+
+.celebration-burst-badge--friends .celebration-burst-badge__mark::before {
+  content: "🥕";
+}
+
+.celebration-burst-badge--gintama {
+  background: linear-gradient(155deg, #4a5f82 0%, #1a2233 100%);
+  border-color: rgba(200, 90, 114, 0.5);
+}
+
+.celebration-burst-badge--gintama .celebration-burst-badge__mark {
+  font-size: 26px;
+}
+
+.celebration-burst-badge--gintama .celebration-burst-badge__mark::before {
+  content: "🍓";
+}
+
+.celebration-burst-badge--toothless {
+  background: linear-gradient(155deg, #4a4f56 0%, #141618 100%);
+  border-color: rgba(196, 178, 232, 0.55);
+}
+
+.celebration-burst-badge--toothless .celebration-burst-badge__mark {
+  width: 28px;
+  height: 30px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 28' fill='none'%3E%3Cpath d='M12 24V11' stroke='%239bc94a' stroke-width='1.6' stroke-linecap='round'/%3E%3Cellipse cx='12' cy='8.2' rx='2.4' ry='3.4' fill='%23e8dcfa'/%3E%3Cellipse cx='8.6' cy='10.4' rx='2.1' ry='3' fill='%23cfc0ee'/%3E%3Cellipse cx='15.4' cy='10.4' rx='2.1' ry='3' fill='%23cfc0ee'/%3E%3Cellipse cx='10.2' cy='12.8' rx='1.9' ry='2.7' fill='%23b8a4e4'/%3E%3Cellipse cx='13.8' cy='12.8' rx='1.9' ry='2.7' fill='%23b8a4e4'/%3E%3Ccircle cx='12' cy='6.6' r='1.1' fill='%23f4f0fc'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+  filter: drop-shadow(0 1px 2px rgba(72, 58, 108, 0.35));
+}
+
 @keyframes burst-pop-launch {
   0% {
     opacity: 0;
@@ -1390,7 +1472,10 @@
 @media (prefers-reduced-motion: reduce) {
   .celebration-burst-photo--pop-launch,
   .celebration-burst-photo--pop-launch-fast,
-  .celebration-burst-photo--pop-launch-wide {
+  .celebration-burst-photo--pop-launch-wide,
+  .celebration-burst-badge.celebration-burst-photo--pop-launch,
+  .celebration-burst-badge.celebration-burst-photo--pop-launch-fast,
+  .celebration-burst-badge.celebration-burst-photo--pop-launch-wide {
     animation: burst-pop-launch 1.4s ease-out forwards;
   }
 }
