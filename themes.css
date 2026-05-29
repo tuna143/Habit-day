@@ -670,74 +670,49 @@
   opacity: 0.75;
 }
 
-/* Friends — 위클리 전용 사진 */
+/* 캘린더 · 위클리 — 상단 콜라주 (홈과 동일 레이어) */
 
-.friends-weekly-photo {
-  display: none;
-  position: absolute;
-  right: max(8px, env(safe-area-inset-right));
-  top: 0;
-  left: auto;
-  z-index: 3;
-  margin: 0;
-  width: min(34vw, 172px);
-  height: min(34vw, 172px);
-  pointer-events: none;
-  transform: rotate(5deg);
-  filter: drop-shadow(0 12px 24px rgba(44, 28, 18, 0.18));
+[data-theme="friends"] .calendar-page,
+[data-theme="kuromi"] .calendar-page,
+[data-theme="friends"] .weekly-page,
+[data-theme="kuromi"] .weekly-page {
+  position: relative;
+  z-index: 2;
 }
 
-[data-theme="friends"] .friends-weekly-photo {
-  display: block;
-}
-
-.kuromi-weekly-photo {
-  display: none;
-  position: absolute;
-  right: max(8px, env(safe-area-inset-right));
-  top: 0;
-  z-index: 3;
-  margin: 0;
-  width: min(34vw, 172px);
-  height: min(34vw, 172px);
-  pointer-events: none;
-  transform: rotate(-5deg);
-  filter: drop-shadow(0 12px 24px rgba(62, 28, 90, 0.2));
-}
-
-[data-theme="kuromi"] .kuromi-weekly-photo {
-  display: block;
-}
-
-.kuromi-weekly-photo img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 1;
-  object-fit: cover;
-  object-position: center top;
-  border-radius: 14px;
-}
-
+[data-theme="friends"] .calendar-page .subpage-header,
+[data-theme="kuromi"] .calendar-page .subpage-header,
+[data-theme="friends"] .weekly-page .subpage-header,
 [data-theme="kuromi"] .weekly-page .subpage-header {
-  padding-right: min(34vw, 180px);
-  min-height: 0;
+  position: relative;
+  z-index: 4;
+  margin-bottom: 8px;
+  padding: 10px 12px;
+  padding-right: min(46vw, 248px);
+  min-height: min(188px, 36vw);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--card-bg) 90%, transparent);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(4px);
 }
 
-.friends-weekly-photo img {
-  display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 1;
-  border-radius: 14px;
-  object-fit: cover;
-  object-position: center top;
-  border: 3px solid rgba(250, 246, 240, 0.95);
+[data-theme="friends"] .calendar-page .board,
+[data-theme="kuromi"] .calendar-page .board,
+[data-theme="friends"] .weekly-page .board,
+[data-theme="kuromi"] .weekly-page .board {
+  position: relative;
+  z-index: 4;
+  background: color-mix(in srgb, var(--card-bg) 86%, transparent);
+  border-radius: var(--radius);
+  backdrop-filter: blur(6px);
 }
 
-[data-theme="friends"] .weekly-page .subpage-header {
-  padding-left: 0;
-  padding-right: min(34vw, 180px);
-  min-height: 0;
+.app-content:has(.calendar-page) .friends-scene-back,
+.app-content:has(.weekly-page) .friends-scene-back,
+.app-content:has(.calendar-page) .kuromi-scene-back,
+.app-content:has(.weekly-page) .kuromi-scene-back {
+  top: min(200px, 40vw);
 }
 
 .overview-wrap {
@@ -1167,43 +1142,24 @@ body.celebration-open {
     margin: 4px 0 2px;
   }
 
+  [data-theme="friends"] .calendar-page .subpage-header,
+  [data-theme="kuromi"] .calendar-page .subpage-header,
+  [data-theme="friends"] .weekly-page .subpage-header,
   [data-theme="kuromi"] .weekly-page .subpage-header {
-    padding-right: min(34vw, 140px);
-    padding-top: 0;
-    min-height: 0;
+    padding-right: min(44vw, 200px);
+    min-height: min(168px, 32vw);
   }
 
-  .kuromi-weekly-photo {
-    right: max(8px, env(safe-area-inset-right));
-    top: max(48px, calc(40px + env(safe-area-inset-top)));
-    width: min(88px, 28vw);
-    height: min(88px, 28vw);
-  }
-
-  .kuromi-weekly-photo img {
-    height: 100%;
+  .app-content:has(.calendar-page) .friends-scene-back,
+  .app-content:has(.weekly-page) .friends-scene-back,
+  .app-content:has(.calendar-page) .kuromi-scene-back,
+  .app-content:has(.weekly-page) .kuromi-scene-back {
+    top: min(176px, 38vw);
   }
 
   [data-theme="kuromi"] .calendar-day.has-photo,
   [data-theme="kuromi"] .calendar-day.has-photo .calendar-day-number {
     min-height: 48px;
-  }
-
-  [data-theme="friends"] .weekly-page .subpage-header {
-    padding-right: min(34vw, 140px);
-    padding-top: 0;
-    min-height: 0;
-  }
-
-  .friends-weekly-photo {
-    right: max(8px, env(safe-area-inset-right));
-    top: max(48px, calc(40px + env(safe-area-inset-top)));
-    width: min(88px, 28vw);
-    height: min(88px, 28vw);
-  }
-
-  .friends-weekly-photo img {
-    height: 100%;
   }
 
   [data-theme="friends"] .calendar-day.has-photo,

@@ -22,18 +22,56 @@
     />
     <link rel="stylesheet" href="styles.css?v=14" />
     <link rel="stylesheet" href="layout.css?v=14" />
-    <link rel="stylesheet" href="themes.css?v=30" />
+    <link rel="stylesheet" href="themes.css?v=31" />
     <script src="theme.js?v=27"></script>
   </head>
   <body>
     <div class="app-layout">
       <div class="app-content">
-        <figure class="theme-decor theme-decor-friends friends-weekly-photo" aria-hidden="true">
-          <img src="assets/friends/weekly-accent.png" alt="" onerror="this.src='assets/friends/day-02.png'" />
-        </figure>
-        <figure class="theme-decor theme-decor-kuromi kuromi-weekly-photo" aria-hidden="true">
-          <img src="assets/kuromi/celebrate.png" alt="" />
-        </figure>
+        <div class="friends-scene friends-scene-back theme-decor theme-decor-friends" aria-hidden="true">
+          <img
+            class="friends-cutout cutout-b"
+            src="assets/friends/day-06.png"
+            alt=""
+            onerror="this.onerror=null;this.style.display='none'"
+          />
+          <img
+            class="friends-cutout cutout-c"
+            src="assets/friends/scene-12.png"
+            alt=""
+            onerror="this.onerror=null;this.style.display='none'"
+          />
+        </div>
+        <div class="friends-scene friends-scene-front theme-decor theme-decor-friends" aria-hidden="true">
+          <img
+            class="friends-cutout cutout-a"
+            src="assets/friends/weekly-accent.png"
+            alt=""
+            onerror="this.onerror=null;this.src='assets/friends/banner.png'"
+          />
+        </div>
+        <div class="kuromi-scene kuromi-scene-back theme-decor theme-decor-kuromi" aria-hidden="true">
+          <img
+            class="kuromi-cutout cutout-b"
+            src="assets/kuromi/scene-03.png"
+            alt=""
+            onerror="this.onerror=null;this.style.display='none'"
+          />
+          <img
+            class="kuromi-cutout cutout-c"
+            src="assets/kuromi/scene-04.png"
+            alt=""
+            onerror="this.onerror=null;this.style.display='none'"
+          />
+        </div>
+        <div class="kuromi-scene kuromi-scene-front theme-decor theme-decor-kuromi" aria-hidden="true">
+          <img
+            class="kuromi-cutout cutout-a"
+            src="assets/kuromi/celebrate.png"
+            alt=""
+            onerror="this.onerror=null;this.src='assets/kuromi/hero.svg'"
+          />
+        </div>
         <main class="app-shell weekly-page">
           <header class="subpage-header">
             <p class="eyebrow">Habit Day</p>
