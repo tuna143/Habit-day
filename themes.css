@@ -255,6 +255,21 @@
   font-size: 18px;
 }
 
+[data-theme="friends"] .habit-snap {
+  border-radius: 14px;
+  outline-color: rgba(245, 243, 239, 0.95);
+  box-shadow:
+    0 12px 26px rgba(44, 42, 38, 0.28),
+    0 4px 10px rgba(44, 42, 38, 0.16);
+  transform: rotate(-4deg);
+}
+
+[data-theme="kuromi"] .habit-snap {
+  outline-color: rgba(235, 230, 244, 0.95);
+  box-shadow: 0 12px 26px rgba(45, 21, 72, 0.22);
+  transform: rotate(6deg);
+}
+
 [data-theme="kuromi"] .eyebrow::before {
   content: "♡ ";
 }

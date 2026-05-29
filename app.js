@@ -28,10 +28,12 @@ if (!habitForm && !habitFormMobile) {
   const celebrationPhotoRing = document.querySelector(".celebration-photo-ring");
   const celebrationTagline = document.querySelector(".celebration-tagline");
   const celebrationTitle = document.querySelector(".celebration-title");
+  const habitCameraInput = document.querySelector("#habitCameraInput");
 
   let data = normalizeData(loadData());
   let activeDateKey = getSelectedDate();
   let previousPercent = null;
+  let pendingHabitCapture = null;
 
   function normalizeData(raw) {
     if (!raw || !Array.isArray(raw.habits)) {
@@ -75,6 +77,10 @@ if (!habitForm && !habitFormMobile) {
         delete data.history[dateKey];
       }
     });
+
+    if (typeof HabitPhotos !== "undefined") {
+      HabitPhotos.removeSnapsForHabit(habitId).catch(() => {});
+    }
   }
 
   function formatDisplayDate(dateKey) {
@@ -249,30 +255,84 @@ if (!habitForm && !habitFormMobile) {
     maybeCelebrate(percent);
   }
 
-  function renderHabits() {
+  async function loadDaySnaps() {
+    if (typeof HabitPhotos === "undefined") {
+      return {};
+    }
+
+    try {
+      await HabitPhotos.ready();
+      return await HabitPhotos.getSnapsForDate(activeDateKey);
+    } catch {
+      return {};
+    }
+  }
+
+  function openHabitCamera(habitId) {
+    if (!habitCameraInput) {
+      setHabitDone(data, habitId, true, activeDateKey);
+      renderHabits();
+      return;
+    }
+
+    pendingHabitCapture = { habitId };
+    habitCameraInput.value = "";
+    habitCameraInput.click();
+  }
+
+  async function renderHabits() {
     if (!habitList || !habitTemplate) {
       return;
     }
+
+    const daySnaps = await loadDaySnaps();
 
     habitList.innerHTML = "";
 
     data.habits.forEach((habit) => {
       const done = isHabitDone(data, habit.id, activeDateKey);
+      const snapUrl = daySnaps[habit.id];
       const item = habitTemplate.content.firstElementChild.cloneNode(true);
       const checkButton = item.querySelector(".check-button");
       const deleteButton = item.querySelector(".delete-button");
       const title = item.querySelector("strong");
       const status = item.querySelector("span");
+      const snapFrame = item.querySelector(".habit-snap");
+      const snapImg = item.querySelector(".habit-snap-img");
 
       item.classList.toggle("done", done);
+      item.classList.toggle("has-snap", Boolean(done && snapUrl));
       title.textContent = habit.title;
-      status.textContent = done ? "Done" : "Still open";
+      status.textContent = done ? (snapUrl ? "Done · photo saved" : "Done") : "Tap circle to take a photo";
       checkButton.setAttribute("aria-pressed", String(done));
+      checkButton.setAttribute(
+        "aria-label",
+        done ? "Undo habit (removes photo)" : "Take photo and complete habit"
+      );
+
+      if (snapFrame && snapImg && snapUrl) {
+        snapFrame.hidden = false;
+        snapImg.src = snapUrl;
+        snapImg.alt = `${habit.title} photo`;
+      } else if (snapFrame) {
+        snapFrame.hidden = true;
+      }
 
       checkButton.addEventListener("click", () => {
         const currentlyDone = isHabitDone(data, habit.id, activeDateKey);
-        setHabitDone(data, habit.id, !currentlyDone, activeDateKey);
-        renderHabits();
+
+        if (currentlyDone) {
+          setHabitDone(data, habit.id, false, activeDateKey);
+
+          if (typeof HabitPhotos !== "undefined") {
+            HabitPhotos.removeSnap(activeDateKey, habit.id).catch(() => {});
+          }
+
+          renderHabits();
+          return;
+        }
+
+        openHabitCamera(habit.id);
       });
 
       deleteButton.addEventListener("click", () => {
@@ -396,11 +456,48 @@ if (!habitForm && !habitFormMobile) {
     habitAddBackdrop.addEventListener("click", closeHabitSheet);
   }
 
+  if (habitCameraInput) {
+    habitCameraInput.addEventListener("change", async () => {
+      const file = habitCameraInput.files?.[0];
+      const pending = pendingHabitCapture;
+
+      habitCameraInput.value = "";
+      pendingHabitCapture = null;
+
+      if (!file || !pending) {
+        return;
+      }
+
+      if (typeof HabitPhotos === "undefined") {
+        setHabitDone(data, pending.habitId, true, activeDateKey);
+        renderHabits();
+        return;
+      }
+
+      try {
+        await HabitPhotos.saveSnap(activeDateKey, pending.habitId, file);
+        setHabitDone(data, pending.habitId, true, activeDateKey);
+
+        if (persistData()) {
+          await renderHabits();
+        }
+      } catch (error) {
+        if (summaryText) {
+          summaryText.textContent = error.message || "Could not save that photo.";
+        }
+      }
+    });
+  }
+
   if (resetToday) {
     resetToday.addEventListener("click", () => {
       if (data.history[activeDateKey]) {
         delete data.history[activeDateKey];
         persistData();
+      }
+
+      if (typeof HabitPhotos !== "undefined") {
+        HabitPhotos.removeSnapsForDate(activeDateKey).catch(() => {});
       }
 
       renderHabits();
@@ -433,11 +530,21 @@ if (!habitForm && !habitFormMobile) {
 
   boot();
 
+  const photoReady = [];
+
+  if (typeof HabitPhotos !== "undefined") {
+    photoReady.push(HabitPhotos.ready());
+  }
+
   if (typeof UserPhotos !== "undefined") {
-    UserPhotos.ready().then(renderHabits).catch(() => {});
+    photoReady.push(UserPhotos.ready());
+  }
+
+  if (photoReady.length) {
+    Promise.all(photoReady).then(() => renderHabits()).catch(() => {});
   }
 }
 
 if ("serviceWorker" in navigator && location.protocol !== "file:") {
-  navigator.serviceWorker.register("./sw.js?v=17").catch(() => {});
+  navigator.serviceWorker.register("./sw.js?v=18").catch(() => {});
 }

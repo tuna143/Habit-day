@@ -11,21 +11,21 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="mobile-web-app-capable" content="yes" />
     <title>Habit Day</title>
-    <link rel="manifest" href="manifest.webmanifest?v=17" />
-    <link rel="icon" href="icon.svg?v=17" type="image/svg+xml" data-theme-icon="true" />
-    <link rel="apple-touch-icon" href="apple-touch-icon.png?v=17" sizes="180x180" data-theme-icon="true" />
-    <link rel="icon" href="icon-192.png?v=17" type="image/png" sizes="192x192" data-theme-icon="true" />
+    <link rel="manifest" href="manifest.webmanifest?v=18" />
+    <link rel="icon" href="icon.svg?v=18" type="image/svg+xml" data-theme-icon="true" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png?v=18" sizes="180x180" data-theme-icon="true" />
+    <link rel="icon" href="icon-192.png?v=18" type="image/png" sizes="192x192" data-theme-icon="true" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Outfit:wght@600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=14" />
-    <link rel="stylesheet" href="layout.css?v=14" />
-    <link rel="stylesheet" href="themes.css?v=17" />
+    <link rel="stylesheet" href="styles.css?v=18" />
+    <link rel="stylesheet" href="layout.css?v=18" />
+    <link rel="stylesheet" href="themes.css?v=18" />
     <script>
-      window.__HABIT_BUILD = "17";
+      window.__HABIT_BUILD = "18";
       (function () {
         if ("serviceWorker" in navigator) {
           navigator.serviceWorker.getRegistrations().then(function (regs) {
@@ -37,7 +37,7 @@
         if (window.caches) {
           caches.keys().then(function (keys) {
             keys.forEach(function (key) {
-              if (key.indexOf("habit-day-v17") === -1) {
+              if (key.indexOf("habit-day-v18") === -1) {
                 caches.delete(key);
               }
             });
@@ -45,7 +45,7 @@
         }
       })();
     </script>
-    <script src="theme.js?v=17"></script>
+    <script src="theme.js?v=18"></script>
   </head>
   <body>
     <div class="app-layout">
@@ -146,7 +146,7 @@
                 src="assets/kuromi/empty.svg"
                 alt=""
               />
-              No habits yet. Tap <strong>⋯</strong> (top right) → <strong>Add habit</strong>.
+              No habits yet. Tap <strong>⋯</strong> → <strong>Add habit</strong>. Complete habits with a quick photo.
             </p>
           </section>
         </main>
@@ -198,21 +198,35 @@
       </div>
     </div>
 
+    <input
+      type="file"
+      id="habitCameraInput"
+      accept="image/*"
+      capture="environment"
+      hidden
+    />
+
     <template id="habitTemplate">
       <li class="habit-item">
-        <button class="check-button" type="button" aria-label="Toggle complete"></button>
-        <div class="habit-copy">
-          <strong></strong>
-          <span></span>
+        <button class="check-button" type="button" aria-label="Take photo and complete habit"></button>
+        <div class="habit-main">
+          <div class="habit-copy">
+            <strong></strong>
+            <span></span>
+          </div>
+          <figure class="habit-snap" hidden>
+            <img class="habit-snap-img" alt="" />
+          </figure>
         </div>
         <button class="delete-button" type="button" aria-label="Delete">x</button>
       </li>
     </template>
 
-    <script src="sidebar.js?v=14"></script>
-    <script src="shared.js?v=14"></script>
-    <script src="user-photos.js?v=14"></script>
-    <script src="fireworks.js?v=14"></script>
-    <script src="app.js?v=14"></script>
+    <script src="sidebar.js?v=18"></script>
+    <script src="shared.js?v=18"></script>
+    <script src="user-photos.js?v=18"></script>
+    <script src="habit-photos.js?v=18"></script>
+    <script src="fireworks.js?v=18"></script>
+    <script src="app.js?v=18"></script>
   </body>
 </html>
