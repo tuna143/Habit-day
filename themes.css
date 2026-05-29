@@ -649,7 +649,7 @@
 .page-home [data-theme="gintama"] .overview-copy,
 .page-home [data-theme="toothless"] .overview-copy {
   width: fit-content;
-  max-width: min(32vw, 150px);
+  max-width: min(45vw, 214px);
 }
 
 /* 위클리 · 캘린더 — 메인 우상단 + 서브 균형 */
@@ -776,8 +776,8 @@
   position: relative;
   z-index: 3;
   width: fit-content;
-  max-width: min(32vw, 157px);
-  padding: 4px 6px;
+  max-width: min(46vw, 224px);
+  padding: 6px 8px;
   border-radius: calc(var(--radius) - 2px);
   background: color-mix(in srgb, var(--card-bg) 88%, transparent);
   border: 1px solid var(--card-border);
@@ -790,7 +790,7 @@
 [data-theme="gintama"] .overview-copy .eyebrow,
 [data-theme="toothless"] .overview-copy .eyebrow {
   margin: 0;
-  font-size: 5px;
+  font-size: 9px;
   letter-spacing: 0.04em;
 }
 
@@ -799,7 +799,7 @@
 [data-theme="gintama"] .overview-copy .summary,
 [data-theme="toothless"] .overview-copy .summary {
   margin-top: 2px;
-  font-size: 6px;
+  font-size: 11px;
   line-height: 1.32;
 }
 
@@ -834,7 +834,7 @@
 
 [data-theme="kuromi"] .overview-copy h1,
 [data-theme="kuromi"] .subpage-header h1 {
-  font-size: clamp(8px, 2vw, 13px);
+  font-size: clamp(11px, 2.5vw, 15px);
   font-weight: 800;
   letter-spacing: -0.03em;
   margin: 0;
@@ -878,9 +878,9 @@
 }
 
 .theme-progress-pct {
-  min-width: 22px;
+  min-width: 32px;
   color: var(--accent-strong);
-  font-size: 6px;
+  font-size: 11px;
   font-weight: 800;
   text-align: right;
 }
@@ -889,7 +889,7 @@
 [data-theme="friends"] .subpage-header h1,
 [data-theme="gintama"] .overview-copy h1,
 [data-theme="gintama"] .subpage-header h1 {
-  font-size: clamp(8px, 2vw, 13px);
+  font-size: clamp(11px, 2.5vw, 17px);
   font-weight: 800;
   letter-spacing: -0.02em;
   margin: 0;
@@ -900,7 +900,7 @@
 
 [data-theme="toothless"] .overview-copy h1,
 [data-theme="toothless"] .subpage-header h1 {
-  font-size: clamp(8px, 1.9vw, 13px);
+  font-size: clamp(10px, 2.4vw, 15px);
   font-weight: 800;
   letter-spacing: -0.02em;
   margin: 0;
@@ -920,7 +920,7 @@
 [data-theme="kuromi"] .subpage-header .summary,
 [data-theme="gintama"] .subpage-header .summary,
 [data-theme="toothless"] .subpage-header .summary {
-  font-size: 7px;
+  font-size: 13px;
   line-height: 1.4;
 }
 
@@ -954,10 +954,10 @@
   position: relative;
   z-index: 3;
   width: fit-content;
-  max-width: min(32vw, 150px);
-  margin-bottom: 6px;
-  padding: 4px 6px;
-  min-height: min(83px, 15vw);
+  max-width: min(46vw, 214px);
+  margin-bottom: 8px;
+  padding: 6px 8px;
+  min-height: min(118px, 22vw);
   border-radius: calc(var(--radius) - 2px);
   background: color-mix(in srgb, var(--card-bg) 88%, transparent);
   border: 1px solid var(--card-border);
@@ -1634,8 +1634,8 @@ body.celebration-open {
   .page-home [data-theme="kuromi"] .overview-copy,
   .page-home [data-theme="gintama"] .overview-copy,
   .page-home [data-theme="toothless"] .overview-copy {
-    max-width: min(36vw, 134px);
-    padding: 4px 5px;
+    max-width: min(50vw, 192px);
+    padding: 6px 9px;
   }
 
   .theme-collage--home .theme-photo-sub--left {
@@ -1691,7 +1691,7 @@ body.celebration-open {
   [data-theme="kuromi"] .overview-copy,
   [data-theme="gintama"] .overview-copy,
   [data-theme="toothless"] .overview-copy {
-    max-width: min(36vw, 130px);
+    max-width: min(51vw, 186px);
   }
 
   [data-theme="friends"] .calendar-page .subpage-header,
@@ -1702,16 +1702,16 @@ body.celebration-open {
   [data-theme="kuromi"] .weekly-page .subpage-header,
   [data-theme="gintama"] .weekly-page .subpage-header,
   [data-theme="toothless"] .weekly-page .subpage-header {
-    max-width: min(36vw, 134px);
-    min-height: min(74px, 15vw);
-    padding: 4px 5px;
+    max-width: min(51vw, 192px);
+    min-height: min(106px, 21vw);
+    padding: 6px 9px;
   }
 
   [data-theme="friends"] .overview-copy .summary,
   [data-theme="kuromi"] .overview-copy .summary,
   [data-theme="gintama"] .overview-copy .summary,
   [data-theme="toothless"] .overview-copy .summary {
-    font-size: 6px;
+    font-size: 11px;
     margin-top: 2px;
   }
 
@@ -1723,12 +1723,12 @@ body.celebration-open {
   [data-theme="gintama"] .subpage-header h1,
   [data-theme="toothless"] .overview-copy h1,
   [data-theme="toothless"] .subpage-header h1 {
-    font-size: clamp(8px, 2.6vw, 13px);
+    font-size: clamp(10px, 3.2vw, 15px);
   }
 
   [data-theme="toothless"] .overview-copy h1,
   [data-theme="toothless"] .subpage-header h1 {
-    font-size: clamp(7px, 2.4vw, 11px);
+    font-size: clamp(9px, 2.9vw, 14px);
   }
 
   [data-theme="friends"] .theme-progress-inline,

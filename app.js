@@ -64,7 +64,7 @@ if (!habitForm) {
   const THEME_TODAY_TITLES = {
     friends: "Friend's Habit",
     kuromi: "Kromi's Habit",
-    gintama: "Gintoki's habit",
+    gintama: "銀魂's habit",
     toothless: "Dragon's habit",
   };
 
@@ -263,7 +263,7 @@ if (!habitForm) {
     celebrationBurstCounter += 1;
 
     const mainPhoto = getCelebrationMainPhotoSize();
-    const burstScale = Math.sqrt(0.25) * 1.1 * (0.96 + Math.random() * 0.08);
+    const burstScale = Math.sqrt(0.25) * 0.92 * (0.96 + Math.random() * 0.08);
     const sizeW = Math.round(mainPhoto.w * burstScale);
     const sizeH = Math.round(mainPhoto.h * burstScale);
     const lane = Math.random();
