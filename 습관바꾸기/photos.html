@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en" data-theme="original">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#f6f7f2" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>My Photos · Habit Day</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Outfit:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="themes.css" />
+    <script src="theme.js"></script>
+  </head>
+  <body>
+    <div class="app-layout">
+      <aside id="app-sidebar" class="app-sidebar" data-page="photos"></aside>
+
+      <div class="app-content">
+        <main class="app-shell photos-page">
+          <header class="subpage-header">
+            <p class="eyebrow">Habit Day</p>
+            <h1>My Photos</h1>
+            <p class="summary">
+              Add your own images — they mix with Friends &amp; Kuromi theme photos on the calendar and celebration.
+              Stored only on this device.
+            </p>
+          </header>
+
+          <section class="board photos-panel" aria-label="Photo settings">
+            <div class="photos-toolbar">
+              <label class="photos-toggle">
+                <input type="checkbox" id="photosEnabled" checked />
+                <span>Mix my photos with theme images</span>
+              </label>
+              <p class="photos-count" id="photosCount">0 / 24</p>
+            </div>
+
+            <div class="photos-actions">
+              <label class="photos-add-button">
+                <input type="file" id="photoInput" accept="image/*" hidden />
+                Add photo
+              </label>
+              <p class="photos-hint" id="photosHint">JPG, PNG, or WebP · max 12 MB each</p>
+            </div>
+
+            <p class="photos-status" id="photosStatus" role="status" aria-live="polite"></p>
+
+            <ul class="photos-grid" id="photosGrid" aria-label="Your photos"></ul>
+
+            <p class="photos-empty" id="photosEmpty" hidden>
+              No photos yet. Tap <strong>Add photo</strong> to upload one from your device.
+            </p>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <script src="shared.js"></script>
+    <script src="user-photos.js"></script>
+    <script src="sidebar.js"></script>
+    <script src="photos.js"></script>
+  </body>
+</html>

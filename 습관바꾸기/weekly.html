@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en" data-theme="original">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#f6f7f2" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Weekly Stats · Habit Day</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Outfit:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="themes.css" />
+    <script src="theme.js"></script>
+  </head>
+  <body>
+    <div class="app-layout">
+      <aside id="app-sidebar" class="app-sidebar" data-page="weekly"></aside>
+
+      <div class="app-content">
+        <figure class="theme-decor theme-decor-friends friends-weekly-photo" aria-hidden="true">
+          <img src="assets/friends/weekly-accent.png" alt="" onerror="this.src='assets/friends/day-02.png'" />
+        </figure>
+        <figure class="theme-decor theme-decor-kuromi kuromi-weekly-photo" aria-hidden="true">
+          <img src="assets/kuromi/celebrate.png" alt="" />
+        </figure>
+        <main class="app-shell weekly-page">
+          <header class="subpage-header">
+            <p class="eyebrow">Habit Day</p>
+            <h1>Weekly Stats</h1>
+            <p class="summary">Tap a day to jump to that date on the main page.</p>
+          </header>
+
+          <section class="board stats-section" aria-label="Weekly stats">
+            <div class="weekly-overview" id="weeklyOverview"></div>
+            <div class="weekly-chart" id="weeklyChart"></div>
+            <p class="stats-summary" id="weeklySummary">Your weekly record will show here.</p>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <script src="sidebar.js"></script>
+    <script src="shared.js"></script>
+    <script src="user-photos.js"></script>
+    <script src="weekly.js"></script>
+  </body>
+</html>
