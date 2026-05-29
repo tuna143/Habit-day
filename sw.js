@@ -46,7 +46,6 @@ const appShell = [
   "./user-photos.js",
   "./fireworks.js",
   "./habit-photos.js",
-  "./habit-snap-badges.js",
   "./habit-camera.js",
   "./manifest.webmanifest",
   ...toothlessAssets,
