@@ -13,6 +13,7 @@ if (!habitForm) {
   const progressPercent = document.querySelector("#progressPercent");
   const appEyebrow = document.querySelector("#app-eyebrow");
   const appTitle = document.querySelector("#app-title");
+  const appTitleText = document.querySelector("#app-title-text");
   const appDate = document.querySelector("#app-date");
   const themeProgressFill = document.querySelector("#themeProgressFill");
   const themeProgressPct = document.querySelector("#themeProgressPct");
@@ -152,8 +153,12 @@ if (!habitForm) {
       appEyebrow.textContent = themeTitle || (isToday ? "Habit Day" : label);
     }
 
-    if (appTitle) {
-      appTitle.textContent = themeTitle || (isToday ? "Today's Habits" : `Habits for ${label}`);
+    const titleText = themeTitle || (isToday ? "Today's Habits" : `Habits for ${label}`);
+
+    if (appTitleText) {
+      appTitleText.textContent = titleText;
+    } else if (appTitle) {
+      appTitle.textContent = titleText;
     }
 
     if (appDate) {

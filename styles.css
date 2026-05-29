@@ -61,20 +61,21 @@ input {
   font-weight: 700;
 }
 
-.overview-title-row {
-  display: flex;
-  flex-wrap: wrap;
+.overview-title {
+  display: inline-flex;
+  flex-wrap: nowrap;
   align-items: baseline;
-  gap: 6px 10px;
+  gap: 0;
+  max-width: 100%;
   margin-bottom: 8px;
 }
 
-.overview-title-row h1 {
-  margin-bottom: 0;
+.overview-title-text {
+  min-width: 0;
 }
 
 .overview-date {
-  margin: 0;
+  margin: 0 0 0 0.32em;
   flex-shrink: 0;
   color: var(--muted);
   font-size: clamp(14px, 3.2vw, 20px);
