@@ -899,23 +899,10 @@ body.celebration-open {
   overflow: hidden;
 }
 
-/* 사이드바 장식 */
+/* 사이드바 원형 K 장식 — 사용 안 함 */
 
 .side-decor {
-  display: none;
-  margin-top: auto;
-  padding-top: 8px;
-}
-
-[data-theme="kuromi"] .side-decor-kuromi,
-[data-theme="friends"] .side-decor-friends {
-  display: flex;
-  justify-content: center;
-}
-
-.side-decor img {
-  border-radius: 50%;
-  object-fit: cover;
+  display: none !important;
 }
 
 @media (max-width: 768px) {

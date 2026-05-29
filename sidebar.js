@@ -1,11 +1,5 @@
-/* sidebar.js build 9 — Org + Fr themes only */
+/* sidebar.js build 10 */
 const HOME_HREF = "app.html";
-
-function removeKuromiThemeButton(root = document) {
-  root.querySelectorAll('.side-theme[data-theme="kuromi"]').forEach((button) => {
-    button.remove();
-  });
-}
 
 function renderSidebar() {
   const sidebar = document.getElementById("app-sidebar");
@@ -29,23 +23,17 @@ function renderSidebar() {
       <p class="side-block-label">Theme</p>
       <div class="side-themes" role="group" aria-label="Choose theme">
         <button type="button" class="side-theme" data-theme="original" title="Original">Org</button>
+        <button type="button" class="side-theme" data-theme="kuromi" title="Kuromi">Kuro</button>
         <button type="button" class="side-theme" data-theme="friends" title="Friends">Fr</button>
       </div>
       <a class="side-link side-link--pics${page === "photos" ? " is-active" : ""}" href="photos.html" title="My Photos">Pics</a>
     </section>
-    <div class="side-decor side-decor-kuromi" aria-hidden="true">
-      <img src="assets/kuromi/sidebar.svg" alt="" width="48" height="48" data-fallback="assets/kuromi/sidebar.svg" />
-    </div>
   `;
-
-  removeKuromiThemeButton(sidebar);
 
   if (typeof initThemeControls === "function") {
     initThemeControls(sidebar);
   }
 }
-
-removeKuromiThemeButton();
 
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", renderSidebar);

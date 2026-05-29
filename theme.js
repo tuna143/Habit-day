@@ -1,5 +1,5 @@
 const themeStorageKey = "habit-theme";
-const themes = ["original", "friends"];
+const themes = ["original", "kuromi", "friends"];
 const themeColors = {
   original: "#f6f7f2",
   kuromi: "#ccc6d4",
@@ -9,7 +9,7 @@ const themeColors = {
 function getTheme() {
   const saved = localStorage.getItem(themeStorageKey);
 
-  if (saved === "mid-friends" || saved === "kuromi") {
+  if (saved === "mid-friends") {
     localStorage.setItem(themeStorageKey, "friends");
     return "friends";
   }
@@ -31,12 +31,6 @@ function applyTheme(theme) {
   window.dispatchEvent(new CustomEvent("habit-theme-change", { detail: { theme } }));
 }
 
-function removeKuromiThemeButton(root = document) {
-  root.querySelectorAll('.side-theme[data-theme="kuromi"]').forEach((button) => {
-    button.remove();
-  });
-}
-
 function syncThemeButtons(theme) {
   document.querySelectorAll(".side-theme, .theme-chip").forEach((button) => {
     if (themes.includes(button.dataset.theme)) {
@@ -48,11 +42,18 @@ function syncThemeButtons(theme) {
 function initThemeControls(root = document) {
   const current = getTheme();
 
-  removeKuromiThemeButton(root);
-
   root.querySelectorAll(".side-theme, .theme-chip").forEach((button) => {
+    if (!themes.includes(button.dataset.theme)) {
+      return;
+    }
+
     button.classList.toggle("is-active", button.dataset.theme === current);
 
+    if (button.dataset.themeBound === "true") {
+      return;
+    }
+
+    button.dataset.themeBound = "true";
     button.addEventListener("click", () => {
       applyTheme(button.dataset.theme);
     });
@@ -60,7 +61,7 @@ function initThemeControls(root = document) {
 }
 
 function initThemeImages() {
-  document.querySelectorAll(".theme-decor img, .side-decor img").forEach((img) => {
+  document.querySelectorAll(".theme-decor img").forEach((img) => {
     const base = img.dataset.srcBase;
 
     if (!base) {
@@ -93,15 +94,8 @@ function initThemeImages() {
 
 applyTheme(getTheme());
 
-removeKuromiThemeButton();
-
 if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", () => {
-    removeKuromiThemeButton();
-    initThemeControls();
-    initThemeImages();
-  });
+  document.addEventListener("DOMContentLoaded", initThemeImages);
 } else {
-  initThemeControls();
   initThemeImages();
 }

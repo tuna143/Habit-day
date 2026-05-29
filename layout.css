@@ -738,10 +738,6 @@ body {
     width: 100%;
   }
 
-  [data-theme="kuromi"] .side-decor-kuromi,
-  [data-theme="friends"] .side-decor-friends {
-    display: flex;
-  }
 }
 
 @media (max-width: 680px) {

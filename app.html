@@ -11,7 +11,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="mobile-web-app-capable" content="yes" />
     <title>Habit Day</title>
-    <link rel="manifest" href="manifest.webmanifest?v=9" />
+    <link rel="manifest" href="manifest.webmanifest?v=10" />
     <link rel="icon" href="icon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="icon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -20,11 +20,11 @@
       href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Outfit:wght@600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=9" />
-    <link rel="stylesheet" href="layout.css?v=9" />
-    <link rel="stylesheet" href="themes.css?v=9" />
+    <link rel="stylesheet" href="styles.css?v=10" />
+    <link rel="stylesheet" href="layout.css?v=10" />
+    <link rel="stylesheet" href="themes.css?v=10" />
     <script>
-      window.__HABIT_BUILD = "9";
+      window.__HABIT_BUILD = "10";
       (function () {
         if ("serviceWorker" in navigator) {
           navigator.serviceWorker.getRegistrations().then(function (regs) {
@@ -36,7 +36,7 @@
         if (window.caches) {
           caches.keys().then(function (keys) {
             keys.forEach(function (key) {
-              if (key.indexOf("habit-day-v9") === -1) {
+              if (key.indexOf("habit-day-v10") === -1) {
                 caches.delete(key);
               }
             });
@@ -44,7 +44,7 @@
         }
       })();
     </script>
-    <script src="theme.js?v=9"></script>
+    <script src="theme.js?v=10"></script>
   </head>
   <body>
     <div class="app-layout">
@@ -185,10 +185,10 @@
       </li>
     </template>
 
-    <script src="sidebar.js?v=9"></script>
-    <script src="shared.js?v=9"></script>
-    <script src="user-photos.js?v=9"></script>
-    <script src="fireworks.js?v=9"></script>
-    <script src="app.js?v=9"></script>
+    <script src="sidebar.js?v=10"></script>
+    <script src="shared.js?v=10"></script>
+    <script src="user-photos.js?v=10"></script>
+    <script src="fireworks.js?v=10"></script>
+    <script src="app.js?v=10"></script>
   </body>
 </html>
