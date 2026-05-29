@@ -339,7 +339,7 @@
   align-items: center;
 }
 
-/* Friends / Kuromi — 홈 3장(메인 크게) / 서브페이지 2장 */
+/* Friends / Kuromi — 홈 3장 우→좌→우 지그재그 / 서브페이지 2장 */
 
 .theme-collage {
   --collage-photo-h: min(52vw, 280px);
@@ -351,18 +351,26 @@
   width: min(54vw, 292px);
   z-index: 1;
   pointer-events: none;
+  overflow: visible;
 }
 
 .theme-collage--home {
-  --collage-photo-main-h: min(58vw, 320px);
-  --collage-photo-main-w: min(56vw, 300px);
-  --collage-photo-sub-h: min(28vw, 152px);
-  --collage-photo-sub-w: min(30vw, 168px);
+  --collage-step-gap: clamp(22px, 5vw, 38px);
+  --collage-photo-main-h: min(56vw, 300px);
+  --collage-photo-main-w: min(54vw, 286px);
+  --collage-photo-sub-l-w: min(34vw, 186px);
+  --collage-photo-sub-l-h: min(32vw, 172px);
+  --collage-photo-sub-r-w: min(46vw, 248px);
+  --collage-photo-sub-r-h: min(40vw, 210px);
   left: 0;
   right: 0;
   width: auto;
-  height: min(70vh, 480px);
-  min-height: calc(var(--collage-photo-main-h) + var(--collage-photo-sub-h) * 0.35);
+  overflow: visible;
+  height: calc(
+    var(--collage-photo-main-h) + var(--collage-step-gap) + var(--collage-photo-sub-l-h) * 0.5 +
+      var(--collage-step-gap) + var(--collage-photo-sub-r-h) * 0.92
+  );
+  min-height: min(88vh, 620px);
 }
 
 [data-theme="friends"] .friends-collage,
@@ -391,45 +399,55 @@
 }
 
 .theme-photo-sub {
-  opacity: 0.34;
   z-index: 1;
 }
 
-/* 홈 — 메인(토끼/쿠로미) 우상단, 가장 큼 */
+/* 홈 1 — 우: 메인(토끼) 고정, 가장 큼 */
 .theme-collage--home .theme-photo-main {
-  top: max(6px, env(safe-area-inset-top));
-  right: max(4px, env(safe-area-inset-right));
+  top: max(8px, env(safe-area-inset-top));
+  right: max(6px, env(safe-area-inset-right));
   left: auto;
   width: var(--collage-photo-main-w);
   height: var(--collage-photo-main-h);
   transform: rotate(4deg);
+  transform-origin: 100% 0;
+  opacity: 1;
+  z-index: 3;
   box-shadow:
     0 0 0 4px #ffffff,
     0 16px 36px rgba(44, 42, 38, 0.24);
 }
 
-/* 홈 — 서브 1: 좌측 상단, 메인 반대편 */
+/* 홈 2 — 좌: 한 칸 내려가며, 본문에 가려져 살짝만 보임 */
 .theme-collage--home .theme-photo-sub--left {
-  top: max(28px, calc(16px + env(safe-area-inset-top)));
-  left: max(6px, env(safe-area-inset-left));
+  top: calc(max(8px, env(safe-area-inset-top)) + var(--collage-photo-main-h) + var(--collage-step-gap));
+  left: calc(-1 * var(--collage-photo-sub-l-w) * 0.78);
   right: auto;
-  width: var(--collage-photo-sub-w);
-  height: var(--collage-photo-sub-h);
+  width: var(--collage-photo-sub-l-w);
+  height: var(--collage-photo-sub-l-h);
   transform: rotate(-7deg);
-  transform-origin: 0% 0;
+  transform-origin: 0% 30%;
+  opacity: 0.4;
+  z-index: 1;
 }
 
-/* 홈 — 서브 2: 본문과 살짝 겹침, 좌하 */
-.theme-collage--home .theme-photo-sub--accent {
-  top: clamp(200px, 31vh, 320px);
-  left: max(10px, env(safe-area-inset-left));
-  right: auto;
-  width: calc(var(--collage-photo-sub-w) * 0.92);
-  height: calc(var(--collage-photo-sub-h) * 0.92);
-  transform: rotate(-4deg);
-  transform-origin: 0% 50%;
-  opacity: 0.28;
-  z-index: 1;
+/* 홈 3 — 우: 또 내려가며, 우하단에 많이 보이게 */
+.theme-collage--home .theme-photo-sub--right {
+  top: calc(
+    max(8px, env(safe-area-inset-top)) + var(--collage-photo-main-h) + var(--collage-step-gap) +
+      var(--collage-photo-sub-l-h) * 0.42 + var(--collage-step-gap)
+  );
+  right: max(2px, env(safe-area-inset-right));
+  left: auto;
+  width: var(--collage-photo-sub-r-w);
+  height: var(--collage-photo-sub-r-h);
+  transform: rotate(6deg);
+  transform-origin: 100% 100%;
+  opacity: 0.62;
+  z-index: 2;
+  box-shadow:
+    0 0 0 4px #ffffff,
+    0 14px 30px rgba(44, 42, 38, 0.2);
 }
 
 .page-home .theme-collage--home {
@@ -1034,20 +1052,27 @@ body.celebration-open {
 
 @media (max-width: 768px) {
   .theme-collage--home {
-    --collage-photo-main-h: min(54vw, 268px);
-    --collage-photo-main-w: min(52vw, 252px);
-    --collage-photo-sub-h: min(26vw, 132px);
-    --collage-photo-sub-w: min(28vw, 148px);
-    min-height: calc(var(--collage-photo-main-h) * 0.95);
+    --collage-step-gap: clamp(18px, 4.5vw, 30px);
+    --collage-photo-main-h: min(52vw, 256px);
+    --collage-photo-main-w: min(50vw, 240px);
+    --collage-photo-sub-l-w: min(32vw, 168px);
+    --collage-photo-sub-l-h: min(30vw, 156px);
+    --collage-photo-sub-r-w: min(44vw, 220px);
+    --collage-photo-sub-r-h: min(38vw, 188px);
+    min-height: min(92vh, 560px);
   }
 
   .page-home .theme-collage--home {
     top: 0;
   }
 
-  .theme-collage--home .theme-photo-sub--accent {
-    top: clamp(176px, 29vh, 272px);
-    opacity: 0.26;
+  .theme-collage--home .theme-photo-sub--left {
+    left: calc(-1 * var(--collage-photo-sub-l-w) * 0.8);
+    opacity: 0.38;
+  }
+
+  .theme-collage--home .theme-photo-sub--right {
+    opacity: 0.58;
   }
 
   .theme-collage--subpage {
