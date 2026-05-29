@@ -328,7 +328,7 @@ if (!habitForm) {
 
     celebrationBurstCounter += 1;
 
-    const size = 56;
+    const size = 40;
     const { left, top, driftX, rot } = pickBurstLaunchPosition(w, h, size, size, index + 0.5);
     const style = pickBurstStyle(index + 1);
     const badge = document.createElement("div");
