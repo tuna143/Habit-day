@@ -1,6 +1,6 @@
 const themeStorageKey = "habit-theme";
 const themes = ["original", "kuromi", "friends", "gintama", "toothless"];
-const ICON_BUST = "45";
+const ICON_BUST = "46";
 
 const appIcons = {
   svg: "icon.svg",
