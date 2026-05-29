@@ -308,20 +308,6 @@ button {
   object-position: center;
 }
 
-.habit-snap-badges {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.habit-snap-badge {
-  position: absolute;
-  display: none;
-  line-height: 1;
-  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.55));
-}
-
 .habit-item.has-snap {
   grid-template-columns: 42px minmax(0, 1fr) 38px;
 }

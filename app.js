@@ -550,7 +550,13 @@ if (!habitForm) {
     }
 
     try {
-      await HabitPhotos.saveSnap(activeDateKey, habitId, file);
+      let stampedFile = file;
+
+      if (typeof HabitSnapBadges !== "undefined") {
+        stampedFile = await HabitSnapBadges.stampFile(file);
+      }
+
+      await HabitPhotos.saveSnap(activeDateKey, habitId, stampedFile);
       setHabitDone(data, habitId, true, activeDateKey);
 
       if (persistData()) {
