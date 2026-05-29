@@ -11,10 +11,10 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="mobile-web-app-capable" content="yes" />
     <title>Habit Day</title>
-    <link rel="manifest" href="manifest.webmanifest?v=32" />
-    <link rel="icon" href="icon.svg?v=32" type="image/svg+xml" data-theme-icon="true" />
-    <link rel="apple-touch-icon" href="apple-touch-icon.png?v=32" sizes="180x180" data-theme-icon="true" />
-    <link rel="icon" href="icon-192.png?v=32" type="image/png" sizes="192x192" data-theme-icon="true" />
+    <link rel="manifest" href="manifest.webmanifest?v=33" />
+    <link rel="icon" href="icon.svg?v=33" type="image/svg+xml" data-theme-icon="true" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png?v=33" sizes="180x180" data-theme-icon="true" />
+    <link rel="icon" href="icon-192.png?v=33" type="image/png" sizes="192x192" data-theme-icon="true" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -37,7 +37,7 @@
         if (window.caches) {
           caches.keys().then(function (keys) {
             keys.forEach(function (key) {
-              if (key.indexOf("habit-day-v32") === -1) {
+              if (key.indexOf("habit-day-v33") === -1) {
                 caches.delete(key);
               }
             });
@@ -45,7 +45,7 @@
         }
       })();
     </script>
-    <script src="theme.js?v=32"></script>
+    <script src="theme.js?v=33"></script>
   </head>
   <body>
     <div class="app-layout">
@@ -222,11 +222,11 @@
       </li>
     </template>
 
-    <script src="sidebar.js?v=32"></script>
-    <script src="shared.js?v=32"></script>
-    <script src="user-photos.js?v=32"></script>
-    <script src="habit-photos.js?v=32"></script>
-    <script src="fireworks.js?v=32"></script>
+    <script src="sidebar.js?v=33"></script>
+    <script src="shared.js?v=33"></script>
+    <script src="user-photos.js?v=33"></script>
+    <script src="habit-photos.js?v=33"></script>
+    <script src="fireworks.js?v=33"></script>
     <script src="app.js?v=23"></script>
   </body>
 </html>

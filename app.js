@@ -546,5 +546,5 @@ if (!habitForm && !habitFormMobile) {
 }
 
 if ("serviceWorker" in navigator && location.protocol !== "file:") {
-  navigator.serviceWorker.register("./sw.js?v=32").catch(() => {});
+  navigator.serviceWorker.register("./sw.js?v=33").catch(() => {});
 }

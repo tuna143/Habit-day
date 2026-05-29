@@ -1,17 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Habit Day Kuromi">
   <rect width="512" height="512" rx="112" fill="#2d1548"/>
-  <g fill="#ffffff">
-    <path
-      d="M192 210 L178 198 L158 108 L148 58 L124 78 L142 118 L168 178 L186 202 Z"
-    />
-    <path
-      d="M320 210 L334 198 L354 108 L364 58 L388 78 L370 118 L344 178 L326 202 Z"
-    />
-    <ellipse cx="256" cy="302" rx="112" ry="104"/>
-    <circle cx="256" cy="250" r="24" fill="#f5a8c8"/>
-    <ellipse cx="214" cy="298" rx="17" ry="21" fill="#2d1548"/>
-    <ellipse cx="298" cy="298" rx="17" ry="21" fill="#2d1548"/>
-    <ellipse cx="256" cy="334" rx="8" ry="7" fill="#2d1548"/>
-  </g>
+  <circle cx="256" cy="256" r="148" fill="#f6f7f2"/>
+  <path
+    d="M178 262l54 54 102-118"
+    fill="none"
+    stroke="#f06eb0"
+    stroke-width="44"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
   <circle cx="366" cy="150" r="36" fill="#f0b85f"/>
 </svg>
